@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+audit-report.json
+audit-report.md
+bundle.json

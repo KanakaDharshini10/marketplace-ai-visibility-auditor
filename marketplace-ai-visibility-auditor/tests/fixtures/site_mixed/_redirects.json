@@ -1,0 +1,10 @@
+{
+  "/products/legacy-model.html": [
+    301,
+    "/products/legacy-model-v2.html"
+  ],
+  "/products/legacy-model-v2.html": [
+    301,
+    "/"
+  ]
+}

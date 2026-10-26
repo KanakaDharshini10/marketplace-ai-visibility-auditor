@@ -1,0 +1,660 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/audit-report.schema.json",
+  "title": "Marketplace AI Visibility audit report",
+  "description": "The single report emitted by the entrypoint skill. The first four properties (site, audited_at, summary, findings) are the required floor from the Round 3 brief; everything else is an additive superset.",
+  "type": "object",
+  "required": [
+    "site",
+    "audited_at",
+    "summary",
+    "findings"
+  ],
+  "properties": {
+    "site": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Host of the audited site, e.g. example.com"
+    },
+    "site_url": {
+      "type": "string",
+      "description": "Absolute URL the audit started from"
+    },
+    "audited_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+      "description": "UTC timestamp, ISO-8601 with a trailing Z"
+    },
+    "report_version": {
+      "type": "string"
+    },
+    "generator": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "entrypoint_skill": {
+          "type": "string"
+        },
+        "specialist_skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "total_findings",
+        "critical",
+        "high",
+        "medium"
+      ],
+      "properties": {
+        "total_findings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "critical": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "high": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "medium": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "low": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "info": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "overall_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100,
+          "description": "null when no pillar had evidence to score."
+        },
+        "readiness_band": {
+          "type": "string",
+          "enum": [
+            "strong",
+            "workable",
+            "weak",
+            "poor",
+            "critical",
+            "unmeasured"
+          ]
+        },
+        "discoverability_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100,
+          "description": "null when no pillar had evidence to score."
+        },
+        "engagement_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100,
+          "description": "null when no pillar had evidence to score."
+        },
+        "by_pillar": {
+          "type": "object"
+        },
+        "by_dimension": {
+          "type": "object"
+        },
+        "headline": {
+          "type": "string"
+        },
+        "coverage_state": {
+          "type": "string",
+          "enum": [
+            "content",
+            "transport_only"
+          ],
+          "description": "Whether any page was parsed. transport_only means no claim is made about site content."
+        },
+        "specialist_coverage": {
+          "type": "string",
+          "enum": [
+            "complete",
+            "partial",
+            "unrecorded"
+          ],
+          "description": "Whether every specialist finished. partial: at least one specialist failed; its pillar is reported as unmeasured (never as clean) and the failure is named in coverage.specialists and diagnostics.skill_runs. unrecorded: no run records were supplied to the report builder."
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "scores": {
+      "type": "object",
+      "properties": {
+        "overall": {
+          "type": "object"
+        },
+        "pillars": {
+          "type": "object"
+        }
+      }
+    },
+    "prioritized_actions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "proactive_recommendations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/opportunity"
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "specialists": {
+          "type": "object",
+          "description": "Specialist coverage: which specialists completed, which failed (skill, pillar, error) and which pillars are therefore unmeasured.",
+          "properties": {
+            "state": {
+              "type": "string",
+              "enum": [
+                "complete",
+                "partial",
+                "unrecorded"
+              ]
+            },
+            "expected": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "completed": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "failed": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "skill",
+                  "error"
+                ],
+                "properties": {
+                  "skill": {
+                    "type": "string"
+                  },
+                  "pillar": {
+                    "type": "string"
+                  },
+                  "error": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "unmeasured_pillars": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "evidence_manifest": {
+      "type": "object"
+    },
+    "diagnostics": {
+      "type": "object",
+      "properties": {
+        "skill_runs": {
+          "type": "array",
+          "description": "One record per specialist the entrypoint ran. status is ok or failed; findings is a count only when status is ok and null otherwise - a failed specialist is never recorded as having found nothing.",
+          "items": {
+            "type": "object",
+            "required": [
+              "skill",
+              "status"
+            ],
+            "properties": {
+              "skill": {
+                "type": "string"
+              },
+              "pillar": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "failed"
+                ]
+              },
+              "ok": {
+                "type": "boolean"
+              },
+              "findings": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "error": {
+                "type": "string"
+              },
+              "elapsed_s": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "answerability": {
+      "type": "object",
+      "description": "Questions generated from the site's own content, each resolved against the crawled evidence with a citing URL and snippet.",
+      "properties": {
+        "questions": {
+          "type": "array"
+        },
+        "total_questions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "counts": {
+          "type": "object"
+        },
+        "by_kind": {
+          "type": "object"
+        },
+        "answerability_score": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "commerce_evidence": {
+          "type": "array"
+        },
+        "notes": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "questions",
+        "total_questions",
+        "counts"
+      ]
+    }
+  },
+  "$defs": {
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low",
+        "info"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "evidenceItem": {
+      "type": "object",
+      "required": [
+        "kind",
+        "observation"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "observation",
+            "absence",
+            "measurement",
+            "quote"
+          ]
+        },
+        "observation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string"
+        },
+        "locator": {
+          "type": "string"
+        }
+      }
+    },
+    "suggestedAction": {
+      "type": "object",
+      "required": [
+        "summary",
+        "priority"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "mechanism": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "type": "string"
+        },
+        "effort": {
+          "$ref": "#/$defs/level"
+        },
+        "impact": {
+          "$ref": "#/$defs/level"
+        },
+        "verification": {
+          "type": "string"
+        },
+        "verification_type": {
+          "type": "string",
+          "enum": [
+            "self_verifiable",
+            "external_validation",
+            "requires_external_data"
+          ],
+          "description": "How the verification step can be checked. external_validation needs a third-party system; requires_external_data needs data this audit cannot see."
+        },
+        "owner": {
+          "type": "string"
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "severity",
+        "evidence",
+        "suggested_action"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^F-[0-9]{3,}$"
+        },
+        "rule_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "$ref": "#/$defs/severity"
+        },
+        "pillar": {
+          "type": "string",
+          "enum": [
+            "crawl_render",
+            "machine_readability",
+            "freshness_corroboration",
+            "entity",
+            "engagement",
+            "answerability"
+          ]
+        },
+        "pillar_label": {
+          "type": "string"
+        },
+        "dimension": {
+          "type": "string",
+          "enum": [
+            "discoverability",
+            "engagement",
+            "answerability"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence_level": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "description": "Deterministic band over `confidence`, so a reader can weigh the finding without reading a float."
+        },
+        "sampling": {
+          "type": "object",
+          "description": "What the finding was measured over. Stated rather than implied, so a small sample is never read as a universal fact.",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "sample",
+                "site_wide",
+                "count",
+                "scoped",
+                "single"
+              ]
+            },
+            "affected": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "sampled": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "unit": {
+              "type": "string"
+            },
+            "coverage": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            },
+            "basis": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "basis"
+          ]
+        },
+        "source_skill": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observation": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What was directly measured. Free of consequence language; re-checkable."
+        },
+        "interpretation": {
+          "type": "string",
+          "description": "What the observation may mean for retrieval or readability. Reasoning, labelled as reasoning."
+        },
+        "evidence_items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidenceItem"
+          }
+        },
+        "affected_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "affected_url_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "metrics": {
+          "type": "object"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "suggested_action": {
+          "$ref": "#/$defs/suggestedAction"
+        },
+        "priority_rank": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "opportunity": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "mechanism",
+        "steps",
+        "priority"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "const": "proactive"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dimension": {
+          "type": "string",
+          "enum": [
+            "discoverability",
+            "engagement"
+          ]
+        },
+        "mechanism": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why_now": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "effort": {
+          "$ref": "#/$defs/level"
+        },
+        "impact": {
+          "$ref": "#/$defs/level"
+        },
+        "priority": {
+          "$ref": "#/$defs/priority"
+        },
+        "verification": {
+          "type": "string"
+        },
+        "example": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

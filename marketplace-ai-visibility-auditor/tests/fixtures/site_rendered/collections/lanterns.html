@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lanterns - Northbeam</title>
+<meta name="description" content="Every Northbeam lantern.">
+<meta property="og:title" content="Lanterns"><meta property="og:type" content="website">
+<link rel="canonical" href="/collections/lanterns.html">
+</head><body>
+<main>
+  <h1>Lanterns</h1>
+  <ul>
+    <li><a href="/products/halo-lantern.html">Halo Lantern</a> <span>&pound;79.00</span></li>
+    <li><a href="/products/halo-lantern-mini.html">Halo Lantern Mini</a> <span>&pound;49.00</span></li>
+    <li><a href="/products/beacon-lantern.html">Beacon Lantern</a> <span>&pound;99.00</span></li>
+    <li><a href="/products/beacon-lantern-xl.html">Beacon Lantern XL</a> <span>&pound;129.00</span></li>
+    <li><a href="/products/trail-lantern.html">Trail Lantern</a> <span>&pound;39.00</span></li>
+    <li><a href="/products/trail-lantern-duo.html">Trail Lantern Duo</a> <span>&pound;69.00</span></li>
+    <li><a href="/products/camp-lantern.html">Camp Lantern</a> <span>&pound;59.00</span></li>
+    <li><a href="/products/camp-lantern-pro.html">Camp Lantern Pro</a> <span>&pound;89.00</span></li>
+    <li><a href="/products/summit-lantern.html">Summit Lantern</a> <span>&pound;149.00</span></li>
+  </ul>
+
+  <!-- The filter and sort controls are mounted by script. In the server
+       response this listing has neither; in a browser it has both. -->
+  <div id="controls"></div>
+</main>
+
+<script>
+  document.getElementById('controls').innerHTML =
+    '<form>' +
+    '<label for="f-price">Filter by price</label>' +
+    '<select id="f-price" name="filter_price"><option>Under &pound;50</option>' +
+    '<option>&pound;50 to &pound;100</option></select>' +
+    '<label for="s-by">Sort by</label>' +
+    '<select id="s-by" name="sort"><option>Price: low to high</option>' +
+    '<option>Price: high to low</option></select>' +
+    '</form>';
+</script>
+</body></html>

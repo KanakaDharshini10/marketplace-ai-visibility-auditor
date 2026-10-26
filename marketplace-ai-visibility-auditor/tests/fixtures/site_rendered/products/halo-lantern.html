@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halo Lantern - Northbeam</title>
+<meta name="description" content="The Halo Lantern is a rechargeable field lantern.">
+<meta property="og:title" content="Halo Lantern"><meta property="og:type" content="product">
+<link rel="canonical" href="/products/halo-lantern.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Halo Lantern","sku":"HL-1","brand":{"@type":"Brand","name":"Northbeam"}}</script>
+</head><body>
+<main>
+  <h1>Halo Lantern</h1>
+  <p>A rechargeable field lantern with a folding handle.</p>
+
+  <!-- Everything below arrives after hydration. The server response states
+       no price, no stock, no rating and carries no review markup: that is the
+       whole point of this fixture. A fetch that does not run scripts sees the
+       empty mounts; a browser sees the facts. -->
+  <div id="commerce"></div>
+  <div id="reviews"></div>
+  <div id="specs"></div>
+</main>
+
+<script>
+  // Deliberately synchronous and immediate: the fixture must render the same
+  // way on every run, so nothing here waits on a timer or a network call.
+  document.getElementById('commerce').innerHTML =
+    '<p class="price">&pound;79.00</p>' +
+    '<p class="stock">In stock - ships in 2 business days.</p>' +
+    '<button type="button">Add to cart</button>';
+  document.getElementById('reviews').innerHTML =
+    '<section><h2>Customer reviews</h2>' +
+    '<p class="rating">Rated 4.6 out of 5 from 213 reviews</p>' +
+    '<p>"Bright and light." - a verified buyer</p></section>';
+  document.getElementById('specs').innerHTML =
+    '<table><tr><th>Weight</th><td>410 g</td></tr>' +
+    '<tr><th>Run time</th><td>18 hours</td></tr>' +
+    '<tr><th>Water resistance</th><td>IPX6</td></tr></table>';
+  var typed = document.createElement('script');
+  typed.type = 'application/ld+json';
+  typed.textContent = JSON.stringify({
+    "@context": "https://schema.org", "@type": "Product", "name": "Halo Lantern",
+    "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.6",
+                        "reviewCount": "213"},
+    "offers": {"@type": "Offer", "price": "79.00", "priceCurrency": "GBP",
+               "availability": "https://schema.org/InStock"}
+  });
+  document.head.appendChild(typed);
+</script>
+</body></html>

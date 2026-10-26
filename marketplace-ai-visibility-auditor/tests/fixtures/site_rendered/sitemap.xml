@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/index.html</loc><lastmod>{{TODAY}}</lastmod></url>
+  <url><loc>/collections/lanterns.html</loc><lastmod>{{TODAY}}</lastmod></url>
+  <url><loc>/products/halo-lantern.html</loc><lastmod>{{TODAY}}</lastmod></url>
+  <url><loc>/products/beacon-lantern.html</loc><lastmod>{{TODAY}}</lastmod></url>
+</urlset>

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/evidence-bundle.schema.json",
+  "title": "Shared evidence bundle",
+  "description": "The frozen, JSON-serialisable record of everything the collection phase observed. Produced once by the entrypoint skill and consumed read-only by every specialist skill. Specialist skills MUST NOT perform network I/O; if a fact is not in this bundle, it may not be claimed.",
+  "type": "object",
+  "required": ["schema_version", "generator", "site", "robots", "pages", "stats"],
+  "properties": {
+    "schema_version": { "type": "string", "minLength": 1 },
+    "generator": {
+      "type": "object",
+      "required": ["tool", "version", "mode"],
+      "properties": {
+        "tool": { "type": "string" },
+        "version": { "type": "string" },
+        "user_agent": { "type": "string" },
+        "robots_token": { "type": "string" },
+        "mode": { "type": "string" }
+      }
+    },
+    "config": { "type": "object" },
+    "site": {
+      "type": "object",
+      "required": ["origin", "host", "home_url"],
+      "properties": {
+        "input": { "type": "string" },
+        "origin": { "type": "string" },
+        "host": { "type": "string" },
+        "registrable_host": { "type": "string" },
+        "home_url": { "type": "string" },
+        "scheme": { "type": "string" }
+      }
+    },
+    "started_at": { "type": "string" },
+    "finished_at": { "type": "string" },
+    "robots": {
+      "type": "object",
+      "required": ["url", "status", "exists"],
+      "properties": {
+        "url": { "type": "string" },
+        "status": { "type": "integer" },
+        "exists": { "type": "boolean" },
+        "unreachable": { "type": "boolean" },
+        "sitemaps": { "type": "array", "items": { "type": "string" } },
+        "groups": { "type": "array", "items": { "type": "object" } },
+        "ai_crawlers": { "type": "object" },
+        "auditor_summary": { "type": "object" }
+      }
+    },
+    "host_probes": { "type": "object" },
+    "well_known": { "type": "object" },
+    "sitemaps": { "type": "array", "items": { "type": "object" } },
+    "not_found_probe": { "type": "object" },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url"],
+        "properties": {
+          "url": { "type": "string" },
+          "final_url": { "type": "string" },
+          "status": { "type": "integer" },
+          "page_type": { "type": "string" },
+          "jsonld_types": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "page_types": { "type": "object" },
+    "declared_anchors": { "type": "array", "items": { "type": "object" } },
+    "declared_anchors_total": { "type": "integer", "minimum": 0 },
+    "render": { "type": "object" },
+    "blocked_by_robots": { "type": "array", "items": { "type": "object" } },
+    "fetch_errors": { "type": "array", "items": { "type": "object" } },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "requests": { "type": "integer", "minimum": 0 },
+        "bytes_downloaded": { "type": "integer", "minimum": 0 },
+        "unique_urls_fetched": { "type": "integer", "minimum": 0 },
+        "html_pages_parsed": { "type": "integer", "minimum": 0 },
+        "cache_reuses": { "type": "integer", "minimum": 0 },
+        "elapsed_s": { "type": "number", "minimum": 0 }
+      }
+    }
+  }
+}

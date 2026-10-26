@@ -1,0 +1,100 @@
+{
+  "name": "marketplace-ai-visibility-auditor",
+  "version": "1.11.2",
+  "description": "Audits a marketplace or brand website for AI visibility and recommendation readiness: whether assistants can crawl it, read it, attribute it to the right entity, trust its freshness, and whether visitors they send actually find what they were promised. Read-only; emits one evidence-backed report with prioritized fixes.",
+  "license": "Apache-2.0",
+  "entrypoint": "marketplace-ai-visibility-audit",
+  "runtime": {
+    "language": "python",
+    "minimum_version": "3.9",
+    "dependencies": [],
+    "optional_dependencies": [
+      "playwright (only for the --render confirmation pass; the audit runs fully without it)"
+    ],
+    "network": "outbound HTTP(S) GET/HEAD to the audited site only",
+    "shared_library": "lib/aiva"
+  },
+  "skills": [
+    {
+      "id": "marketplace-ai-visibility-audit",
+      "path": "skills/marketplace-ai-visibility-audit",
+      "entrypoint": true,
+      "role": "orchestrator",
+      "summary": "Receives the audit request, builds the shared evidence bundle once, composes every specialist skill, scores the site and emits the single audit report.",
+      "produces": "audit report (schemas/audit-report.schema.json)",
+      "script": "scripts/run_audit.py"
+    },
+    {
+      "id": "crawl-render-audit",
+      "path": "skills/crawl-render-audit",
+      "role": "specialist",
+      "pillar": "crawl_render",
+      "dimension": "discoverability",
+      "summary": "Can a machine reach the content at all? robots.txt (including AI-assistant crawler tokens), bot walls and edge refusals, sitemaps, HTTP status and redirect health, canonical and indexability directives, host canonicalisation, important-page discovery, and JavaScript-rendering dependence.",
+      "consumes": "evidence bundle (schemas/evidence-bundle.schema.json)",
+      "script": "scripts/analyze.py"
+    },
+    {
+      "id": "machine-readability-audit",
+      "path": "skills/machine-readability-audit",
+      "role": "specialist",
+      "pillar": "machine_readability",
+      "dimension": "discoverability",
+      "summary": "Once reached, can a machine parse the facts? JSON-LD validity and coverage, Product/Offer/Brand/AggregateRating completeness, price, availability, identifiers and attributes, microdata fallback, metadata and Open Graph, semantic HTML, and facts locked in non-text - images or linked documents.",
+      "consumes": "evidence bundle (schemas/evidence-bundle.schema.json)",
+      "script": "scripts/analyze.py"
+    },
+    {
+      "id": "freshness-corroboration",
+      "path": "skills/freshness-corroboration",
+      "role": "specialist",
+      "pillar": "freshness_corroboration",
+      "dimension": "discoverability",
+      "summary": "Is the machine-readable version current, self-consistent and corroborated? Date signals, sitemap lastmod honesty, price and availability agreement between markup and visible text, review recency, contradiction detection and declared off-site anchors.",
+      "consumes": "evidence bundle (schemas/evidence-bundle.schema.json)",
+      "script": "scripts/analyze.py"
+    },
+    {
+      "id": "entity-audit",
+      "path": "skills/entity-audit",
+      "role": "specialist",
+      "pillar": "entity",
+      "dimension": "discoverability",
+      "summary": "Does the site define who it is unambiguously? Organization and Brand identity, name consistency across title/OG/markup/copyright, product-to-brand relationships, variant modelling, category taxonomy, physical locations as readable entities, stable identifiers and disambiguation signals.",
+      "consumes": "evidence bundle (schemas/evidence-bundle.schema.json)",
+      "script": "scripts/analyze.py"
+    },
+    {
+      "id": "engagement-audit",
+      "path": "skills/engagement-audit",
+      "role": "specialist",
+      "pillar": "engagement",
+      "dimension": "engagement",
+      "summary": "Does a visitor an assistant sends actually land on the answer? Specification depth, comparison attributes, filtering and sorting, reviews, FAQs, shipping/returns/availability visibility, deep-link continuity and orientation affordances.",
+      "consumes": "evidence bundle (schemas/evidence-bundle.schema.json)",
+      "script": "scripts/analyze.py"
+    },
+    {
+      "id": "answerability-audit",
+      "path": "skills/answerability-audit",
+      "role": "specialist",
+      "pillar": "answerability",
+      "dimension": "answerability",
+      "summary": "Can the crawled evidence answer the questions a buyer or shopping assistant would ask? Generates questions from the site's own catalogue and content - never from a stock list - resolves each against the shared evidence bundle, and reports the ones the site cannot answer with the URL it looked at and the snippet it found.",
+      "consumes": "evidence bundle (schemas/evidence-bundle.schema.json)",
+      "script": "scripts/analyze.py"
+    }
+  ],
+  "composition": {
+    "model": "entrypoint fans out over specialists, then merges",
+    "contract": "Each specialist skill exposes analyze(bundle: dict) -> list[Finding] in its scripts/analyze.py. The entrypoint resolves those paths from this manifest, so adding or removing a specialist requires no change to orchestrator code.",
+    "shared_evidence": "Every URL is fetched at most once by the entrypoint and frozen into the evidence bundle. Specialists perform no network I/O.",
+    "guardrails": [
+      "read-only: GET/HEAD only, no authentication, no site modification",
+      "robots.txt honoured for the audited site and for any declared off-site anchor",
+      "rate limited, byte capped, time budgeted (< 5 minutes for a typical site)",
+      "every finding must cite at least one recorded observation or it is rejected",
+      "no third-party services: only the audited site and the anchors it declares are fetched"
+    ]
+  }
+}

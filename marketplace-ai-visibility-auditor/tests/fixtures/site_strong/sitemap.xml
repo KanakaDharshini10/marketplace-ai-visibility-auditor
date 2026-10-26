@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/</loc><lastmod>{{RECENT}}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>/collections/running.html</loc><lastmod>{{RECENT}}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>/products/velocity-x9.html</loc><lastmod>{{TODAY}}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>/products/marathon-elite.html</loc><lastmod>{{TODAY}}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>/products/trail-blazer-t2.html</loc><lastmod>{{RECENT}}</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>/compare/velocity-x9-vs-marathon-elite.html</loc><lastmod>{{RECENT}}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>/pages/shipping.html</loc><lastmod>{{MONTH_AGO}}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>/pages/returns.html</loc><lastmod>{{MONTH_AGO}}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>/pages/faq.html</loc><lastmod>{{RECENT}}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>/about.html</loc><lastmod>{{MONTH_AGO}}</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+</urlset>

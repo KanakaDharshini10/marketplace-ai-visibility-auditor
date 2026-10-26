@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /cart
+Allow: /
+
+Sitemap: /sitemap.xml
+# DEFECT CR-SITEMAP-BROKEN: this second sitemap does not exist
+Sitemap: /sitemap-products.xml

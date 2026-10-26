@@ -1,0 +1,25 @@
+# DEFECT CR-AI-CRAWLERS-BLOCKED: every assistant crawler is blanket-blocked
+# DEFECT CR-ROBOTS-SYNTAX: Noindex: is not part of the standard
+# DEFECT CR-SITEMAP-*: no Sitemap directive and no sitemap file exists
+User-agent: *
+Disallow: /cart
+Disallow: /checkout
+Noindex: /secret
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /

@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- DEFECT MR-LANG-MISSING: no lang attribute -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- DEFECT EG-NO-VIEWPORT: no viewport meta -->
+  <!-- DEFECT MR-META-DESCRIPTION-MISSING / EN-NO-SELF-DESCRIPTION -->
+  <!-- DEFECT EN-DUPLICATE-TITLES: every page uses this same title -->
+  <title>Kestrel Athletics</title>
+  <!-- DEFECT CR-CANONICAL-MISSING: no canonical link -->
+  <!-- DEFECT MR-NO-STRUCTURED-DATA: no JSON-LD anywhere on this site -->
+</head>
+<body>
+  <header>
+    <img src="/logo.png">
+    <nav>
+      <a href="/collections/running.html">Running</a>
+      <a href="/about.html">About</a>
+      <!-- DEFECT EN-LOCATIONS-UNSTRUCTURED: locator exists, no Place entity anywhere -->
+      <a href="/stores.html">Find a store</a>
+    </nav>
+  </header>
+  <main>
+    <!-- DEFECT MR-HEADING-STRUCTURE: no h1 on the page -->
+    <h2>New season</h2>
+    <p>Shoes built for the road.</p>
+    <ul>
+      <li><a href="/products/velocity-x9.html">Velocity X9</a></li>
+      <li><a href="/products/trail-runner-t2.html">Trail Runner T2</a></li>
+      <li><a href="/products/marathon-elite.html">Marathon Elite</a></li>
+    </ul>
+  </main>
+  <footer>
+    <!-- DEFECT FC-STALE-COPYRIGHT -->
+    <p>&copy; {{OLD_YEAR}} Kestrel Athletics</p>
+  </footer>
+  <!-- DEFECT EG-NO-SITE-SEARCH: no search input anywhere -->
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Kestrel Athletics
+
+> Indian performance running-shoe brand founded in Bengaluru in 2016. Road and
+> trail shoes for distance runners. Tagline: Built for the long road.
+
+## Products
+- [Velocity X9](/products/velocity-x9.html): daily road trainer, INR 5,499, 245 g, 8 mm drop, in stock
+- [Marathon Elite](/products/marathon-elite.html): carbon-plated race shoe, INR 8,999, 198 g, 6 mm drop, in stock
+- [Trail Blazer T2](/products/trail-blazer-t2.html): trail shoe, INR 6,499, 289 g, 6 mm drop, in stock
+
+## Guidance
+- [Velocity X9 vs Marathon Elite](/compare/velocity-x9-vs-marathon-elite.html): which to buy
+- [FAQ](/pages/faq.html): sizing, waterproofing, delivery, returns
+
+## Policies
+- [Shipping](/pages/shipping.html): free over INR 2,000, dispatch 1-2 days, delivery 2-5 days
+- [Returns](/pages/returns.html): 30 days, free, unworn
+
+## Company
+- [About](/about.html): legal name Kestrel Athletics Private Limited, founded 2016, Bengaluru

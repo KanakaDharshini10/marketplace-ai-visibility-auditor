@@ -1,0 +1,3811 @@
+{
+  "site": "127.0.0.1:34559",
+  "audited_at": "2026-09-07T14:11:47Z",
+  "summary": {
+    "total_findings": 35,
+    "critical": 0,
+    "high": 12,
+    "medium": 21,
+    "low": 1,
+    "info": 1,
+    "overall_score": 10.5,
+    "readiness_band": "critical",
+    "discoverability_score": 8.4,
+    "engagement_score": 0.0,
+    "by_pillar": {
+      "engagement": 7,
+      "entity": 6,
+      "freshness_corroboration": 3,
+      "crawl_render": 6,
+      "machine_readability": 8,
+      "answerability": 5
+    },
+    "by_dimension": {
+      "discoverability": 23,
+      "engagement": 7,
+      "answerability": 5
+    },
+    "coverage_state": "content",
+    "specialist_coverage": "complete",
+    "score_basis": "content and transport evidence from 7 parsed content page(s) (1 further fetched page(s) - search, account or navigation/reference endpoints - carry no content claim), sampled from 9 URL(s) the site advertises (page cap 40).",
+    "headline": "127.0.0.1:34559 is reachable, but 12 high-severity gap(s) weaken how readily its facts can be quoted from the pages sampled."
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "rule_id": "EG-DEEPLINK-REDIRECTED-HOME",
+      "title": "Deep links are redirected to the home page",
+      "severity": "high",
+      "pillar": "engagement",
+      "pillar_label": "Engagement & comparison readiness",
+      "dimension": "engagement",
+      "confidence": 0.9,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "site_wide",
+        "affected": 1,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "site-wide observation"
+      },
+      "source_skill": "engagement-audit",
+      "evidence": "1 requested URL(s) ended at a front door after a redirect: a deep path ended at the site root (e.g. http://127.0.0.1:34559/products/legacy-model.html -> http://127.0.0.1:34559/).",
+      "observation": "1 requested URL(s) ended at a front door after a redirect: a deep path ended at the site root (e.g. http://127.0.0.1:34559/products/legacy-model.html -> http://127.0.0.1:34559/).",
+      "interpretation": "A URL that resolves to the home page carries none of the specificity the original link promised, so anything that cited the deep link now points at a generic landing page. A crawler that requests arbitrary paths under this host also receives 200 for all of them, which can make retired URLs look live. This audit observed the redirects; it does not measure how any particular index treats them.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "http://127.0.0.1:34559/products/legacy-model.html redirected to http://127.0.0.1:34559/ (2 hop(s))",
+          "url": "http://127.0.0.1:34559/products/legacy-model.html",
+          "locator": "redirect chain"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/legacy-model.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "affected": 1,
+        "cross_domain": 0,
+        "priority_score": 64.8
+      },
+      "tags": [
+        "continuity",
+        "redirects"
+      ],
+      "suggested_action": {
+        "summary": "Stop collapsing unknown or retired URLs onto the home page.",
+        "priority": "high",
+        "mechanism": "A home-page catch-all breaks the continuity between the answer and the visit, and it means arbitrary URLs under the host return 200 rather than 404, so retired addresses stay indistinguishable from live ones.",
+        "verification": "Each URL listed resolves to its own content or returns 404.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "high",
+        "steps": [
+          "Redirect a retired product to its closest live replacement, not to the home page.",
+          "If there is no replacement, return 404/410 with a helpful page.",
+          "Never use a catch-all rewrite for unmatched routes."
+        ]
+      },
+      "priority_rank": 1
+    },
+    {
+      "id": "F-002",
+      "rule_id": "EN-NAME-INCONSISTENT",
+      "title": "The brand is called different things in different places on its own site",
+      "severity": "high",
+      "pillar": "entity",
+      "pillar_label": "Entity clarity & disambiguation",
+      "dimension": "discoverability",
+      "confidence": 0.8,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "site_wide",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "site-wide observation"
+      },
+      "source_skill": "entity-audit",
+      "evidence": "2 materially different trading names are declared across the site's own metadata: \"Northvale\" (schema.org Organization/Brand name); \"Kitchenware Direct\" (og:site_name). (1 further name(s) are declared in a non-trading role and are not counted as conflicting: \"northvale.example\" (social).)",
+      "observation": "2 materially different trading names are declared across the site's own metadata: \"Northvale\" (schema.org Organization/Brand name); \"Kitchenware Direct\" (og:site_name). (1 further name(s) are declared in a non-trading role and are not counted as conflicting: \"northvale.example\" (social).)",
+      "interpretation": "Every distinct spelling of a name is a candidate for a separate entity. Where the site itself uses several for the same organisation, nothing in its markup states that they are one, so a reader has to infer it. Names that belong to a department, a subsidiary, a product brand or a localized version of the site are classified as such and are not counted here.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "brand name \"Northvale\" declared in schema.org Organization/Brand name",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "schema.org Organization/Brand name"
+        },
+        {
+          "kind": "observation",
+          "observation": "brand name \"Kitchenware Direct\" declared in og:site_name",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "og:site_name"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "distinct_names": 2,
+        "excluded_related_names": [],
+        "priority_score": 57.6
+      },
+      "tags": [
+        "entity",
+        "naming"
+      ],
+      "suggested_action": {
+        "summary": "Pick one canonical brand string and use it byte-identically everywhere.",
+        "priority": "high",
+        "mechanism": "One exact string in Organization.name, og:site_name, the title suffix and Product.brand is an explicit statement that every mention is the same entity; several strings leave that to be inferred.",
+        "verification": "Grep the rendered home page for the brand string; every occurrence should be identical.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "high",
+        "steps": [
+          "Choose the exact trading name, including capitalisation and any suffix.",
+          "Use it in Organization.name, og:site_name, the <title> suffix, the footer copyright and Product.brand.name.",
+          "Put the legal entity name in legalName, not in name.",
+          "Roll the same string out to every off-site profile."
+        ]
+      },
+      "priority_rank": 2
+    },
+    {
+      "id": "F-003",
+      "rule_id": "FC-CROSS-PAGE-PRICE-CONFLICT",
+      "title": "The same product is priced differently on the listing and on its own page",
+      "severity": "high",
+      "pillar": "freshness_corroboration",
+      "pillar_label": "Freshness & corroboration",
+      "dimension": "discoverability",
+      "confidence": 0.9,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "site_wide",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "site-wide observation"
+      },
+      "source_skill": "freshness-corroboration",
+      "evidence": "1 product(s) carry different Offer.price values on a listing page and on the product page itself (e.g. 3999 on http://127.0.0.1:34559/collections/all.html vs 4499 on http://127.0.0.1:34559/products/northvale-kettle.html).",
+      "observation": "1 product(s) carry different Offer.price values on a listing page and on the product page itself (e.g. 3999 on http://127.0.0.1:34559/collections/all.html vs 4499 on http://127.0.0.1:34559/products/northvale-kettle.html).",
+      "interpretation": "Two prices for one product is an internal contradiction: nothing in the markup says which is current, so a reader of either page has no basis to pick. One source removes the disagreement.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "listing price 3999 vs product-page price 4499",
+          "url": "http://127.0.0.1:34559/collections/all.html",
+          "locator": "compared against http://127.0.0.1:34559/products/northvale-kettle.html"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/collections/all.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 2,
+      "metrics": {
+        "scope": "site",
+        "conflicts": 1,
+        "priority_score": 54.0
+      },
+      "tags": [
+        "consistency",
+        "price"
+      ],
+      "suggested_action": {
+        "summary": "Serve one price per product from a single source, on every surface.",
+        "priority": "high",
+        "mechanism": "Two prices for one product is an internal contradiction: nothing in the markup says which is current, so a reader of either page has no basis to pick. One source removes the disagreement.",
+        "verification": "A crawl of every category page reports zero price mismatches against the linked product pages.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Render listing tiles and product pages from the same pricing service call, not from a denormalised copy.",
+          "Invalidate listing caches when a product price changes.",
+          "Add a nightly consistency job that diffs listing vs detail prices."
+        ]
+      },
+      "priority_rank": 3
+    },
+    {
+      "id": "F-004",
+      "rule_id": "CR-CANONICAL-WRONG-TARGET",
+      "title": "Canonical tags collapse content pages onto the home page",
+      "severity": "high",
+      "pillar": "crawl_render",
+      "pillar_label": "Crawl & render reachability",
+      "dimension": "discoverability",
+      "confidence": 0.95,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "sample",
+        "affected": 1,
+        "sampled": 6,
+        "unit": "sampled content page(s)",
+        "coverage": 0.17,
+        "basis": "1/6 sampled content page(s)"
+      },
+      "source_skill": "crawl-render-audit",
+      "evidence": "1 of 6 sampled content page(s) (product) declare the home page as their canonical URL, a statement that the home page is the preferred address for content it does not carry. 2 further sampled page(s) were not assessed: 1 a navigation/reference address of http://127.0.0.1:34559/, not a document of its own; 1 carries a noindex directive, so it is not competing for a canonical URL.",
+      "observation": "1 of 6 sampled content page(s) (product) declare the home page as their canonical URL, a statement that the home page is the preferred address for content it does not carry. 2 further sampled page(s) were not assessed: 1 a navigation/reference address of http://127.0.0.1:34559/, not a document of its own; 1 carries a noindex directive, so it is not competing for a canonical URL.",
+      "interpretation": "A canonical names the URL the site prefers for this content. When a page with content of its own names the home page, the markup states that this page's content is a duplicate of the front door, which it is not. How any index acts on that statement is not something this audit measures.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "canonical on http://127.0.0.1:34559/products/northvale-kettle.html -> http://127.0.0.1:34559/ (collapses a deep page onto the home page)",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "locator": "link rel=canonical"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "page",
+        "affected": 1,
+        "sampled": 6,
+        "sample_unit": "sampled content page(s)",
+        "not_assessed": 2,
+        "priority_score": 43.26
+      },
+      "tags": [
+        "canonicalisation",
+        "blocking"
+      ],
+      "suggested_action": {
+        "summary": "Make each page canonical to itself unless it is a genuine duplicate.",
+        "priority": "high",
+        "mechanism": "Product detail pages whose canonical is the home page state that their content is the home page's; a self-referencing canonical states, explicitly, that each page is its own preferred address.",
+        "verification": "For each URL listed, the canonical equals the URL itself.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "high",
+        "steps": [
+          "Remove hardcoded canonicals from shared templates.",
+          "Generate the canonical from the page's own route, not from a site-wide constant."
+        ]
+      },
+      "priority_rank": 4
+    },
+    {
+      "id": "F-005",
+      "rule_id": "EG-REVIEWS-CLIENT-RENDERED",
+      "title": "Reviews appear to be loaded by a client-side widget, so the proof is invisible to a fetch",
+      "severity": "high",
+      "pillar": "engagement",
+      "pillar_label": "Engagement & comparison readiness",
+      "dimension": "engagement",
+      "confidence": 0.75,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "count",
+        "affected": 1,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "1 sampled page(s)"
+      },
+      "source_skill": "engagement-audit",
+      "evidence": "1 product page(s) reference reviews in their text and load many external scripts, but no review text or rating value is present in the server response - the pattern of a rating assembled after load by a client-side widget, in a form a fetch that does not run scripts cannot read.",
+      "observation": "1 product page(s) reference reviews in their text and load many external scripts, but no review text or rating value is present in the server response - the pattern of a rating assembled after load by a client-side widget, in a form a fetch that does not run scripts cannot read.",
+      "interpretation": "Third-party review widgets inject their content after load, so the rating exists in the rendered page and not in the server response; rendering it server-side puts the same value in the bytes a fetch receives.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "6 external scripts, review wording present, no Review/AggregateRating node in the HTML",
+          "url": "http://127.0.0.1:34559/products/northvale-grinder.html",
+          "locator": "raw HTML response"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-grinder.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "template",
+        "affected": 1,
+        "priority_score": 40.5
+      },
+      "tags": [
+        "reviews",
+        "rendering"
+      ],
+      "suggested_action": {
+        "summary": "Render at least the aggregate rating and a few reviews server-side.",
+        "priority": "high",
+        "mechanism": "Third-party review widgets inject their content after load, so the rating exists in the rendered page and not in the server response; rendering it server-side puts the same value in the bytes a fetch receives.",
+        "verification": "curl -s <product url> | grep -i 'ratingValue' returns a value.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Ask the review vendor for their SEO/server-rendered snippet or API.",
+          "Fetch the aggregate at build/render time and emit it in the HTML plus AggregateRating markup.",
+          "Render the newest 3-5 review bodies server-side; keep pagination client-side.",
+          "Never mark up a rating the page does not actually display."
+        ]
+      },
+      "priority_rank": 5
+    },
+    {
+      "id": "F-006",
+      "rule_id": "EG-SPECS-MISSING",
+      "title": "Product attributes are not presented in a standardized specification structure",
+      "severity": "high",
+      "pillar": "engagement",
+      "pillar_label": "Engagement & comparison readiness",
+      "dimension": "engagement",
+      "confidence": 0.74,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": 4,
+        "sampled": 4,
+        "unit": "sampled physical-goods product page(s)",
+        "coverage": 1.0,
+        "basis": "4/4 sampled physical-goods product page(s)"
+      },
+      "source_skill": "engagement-audit",
+      "evidence": "4 of 4 physical-goods product page(s) contain no two-column specification table, no <dl> definition list and no typed attribute set. No attribute label/value pairs were detected in their visible copy either. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "observation": "4 of 4 physical-goods product page(s) contain no two-column specification table, no <dl> definition list and no typed attribute set. No attribute label/value pairs were detected in their visible copy either. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "interpretation": "A standardized structure is what makes attributes line up across products: the same rows, in the same order, with units. Attributes stated as running copy have to be located and parsed per page before any two products can be set side by side, and the parse is the step that goes wrong. This is about the shape of the presentation, not about whether the information exists.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "no specification table, <dl> or typed attribute block on http://127.0.0.1:34559/products/image-price.html; 0 attribute label/value pair(s) detected in visible copy",
+          "url": "http://127.0.0.1:34559/products/image-price.html",
+          "locator": "product page body"
+        },
+        {
+          "kind": "observation",
+          "observation": "no specification table, <dl> or typed attribute block on http://127.0.0.1:34559/products/northvale-grinder.html; 0 attribute label/value pair(s) detected in visible copy",
+          "url": "http://127.0.0.1:34559/products/northvale-grinder.html",
+          "locator": "product page body"
+        },
+        {
+          "kind": "observation",
+          "observation": "no specification table, <dl> or typed attribute block on http://127.0.0.1:34559/products/northvale-kettle-blue.html; 0 attribute label/value pair(s) detected in visible copy",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "locator": "product page body"
+        },
+        {
+          "kind": "observation",
+          "observation": "no specification table, <dl> or typed attribute block on http://127.0.0.1:34559/products/northvale-kettle.html; 0 attribute label/value pair(s) detected in visible copy",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "locator": "product page body"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/image-price.html",
+        "http://127.0.0.1:34559/products/northvale-grinder.html",
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 4,
+      "metrics": {
+        "scope": "template",
+        "affected": 4,
+        "sampled": 4,
+        "visible_attribute_counts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "observed_attributes": [
+          "<Attribute>"
+        ],
+        "sample_unit": "sampled physical-goods product page(s)",
+        "not_assessed": 0,
+        "kind_inferred_from_site": 1,
+        "priority_score": 39.96
+      },
+      "tags": [
+        "specs",
+        "comparison",
+        "structure"
+      ],
+      "suggested_action": {
+        "summary": "Move the attributes already published into a specification structure.",
+        "priority": "high",
+        "mechanism": "A two-column structure with one row per attribute makes the same attribute addressable at the same place on every product page, so values can be compared across the range without interpreting a sentence differently on each page.",
+        "example": "<table>\n  <tr><th scope=\"row\"><Attribute></th><td>&lt;value&gt;</td></tr>\n</table>",
+        "verification": "curl -s <product-url> shows a <table> or <dl> whose rows are the attribute names.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Use a real <table> or <dl> with one row per attribute, including units - starting with the attributes these pages already publish: '<Attribute>'.",
+          "Keep the same attribute set, in the same order, across the category so rows line up between products.",
+          "State the negative values too, not only the positive ones - an explicitly absent property cannot be inferred as present.",
+          "Mirror the same values in additionalProperty markup so the visible table and the typed data agree."
+        ]
+      },
+      "priority_rank": 6
+    },
+    {
+      "id": "F-007",
+      "rule_id": "CR-SITEMAP-BROKEN",
+      "title": "A declared sitemap is missing or does not parse",
+      "severity": "medium",
+      "pillar": "crawl_render",
+      "pillar_label": "Crawl & render reachability",
+      "dimension": "discoverability",
+      "confidence": 0.95,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "site_wide",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "site-wide observation"
+      },
+      "source_skill": "crawl-render-audit",
+      "evidence": "1 sitemap(s) that the site itself declares did not yield a valid sitemap: http://127.0.0.1:34559/sitemap-products.xml -> HTTP 404",
+      "observation": "1 sitemap(s) that the site itself declares did not yield a valid sitemap: http://127.0.0.1:34559/sitemap-products.xml -> HTTP 404",
+      "interpretation": "A declared sitemap is the site's own statement of which URLs exist; one that does not parse, or is not there, states nothing, so the URLs it was meant to list are discoverable only by following links.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "declared sitemap http://127.0.0.1:34559/sitemap-products.xml: HTTP 404",
+          "url": "http://127.0.0.1:34559/sitemap-products.xml",
+          "locator": "robots.txt Sitemap directive"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/sitemap-products.xml"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "broken": 1,
+        "outcomes": {
+          "not_found": 1
+        },
+        "priority_score": 39.33
+      },
+      "tags": [
+        "sitemap"
+      ],
+      "suggested_action": {
+        "summary": "Fix or remove the broken sitemap references.",
+        "priority": "medium",
+        "mechanism": "A declared sitemap is the site's own statement of which URLs exist; one that does not parse, or is not there, states nothing, so the URLs it was meant to list are discoverable only by following links.",
+        "verification": "Every URL in every Sitemap: directive returns 200 and valid XML.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Remove Sitemap: lines pointing at URLs that 404.",
+          "Validate the XML (a stray & or an unescaped < will break the whole file).",
+          "If a sitemap index lists children, make sure every child resolves.",
+          "If the sitemap is served but refuses unknown user-agents, allow crawlers to read it - a sitemap only a browser can fetch helps no crawler."
+        ]
+      },
+      "priority_rank": 7
+    },
+    {
+      "id": "F-008",
+      "rule_id": "MR-IDENTIFIERS-MISSING",
+      "title": "Products carry no stable identifier, so listings elsewhere cannot be matched to them",
+      "severity": "high",
+      "pillar": "machine_readability",
+      "pillar_label": "Machine readability & structured data",
+      "dimension": "discoverability",
+      "confidence": 0.63,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": 2,
+        "sampled": 2,
+        "unit": "sampled physical-goods product page(s)",
+        "coverage": 1.0,
+        "basis": "2/2 sampled physical-goods product page(s)"
+      },
+      "source_skill": "machine-readability-audit",
+      "evidence": "2 of 2 physical-goods product page(s) declare no sku, gtin, mpn or productID in their markup. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "observation": "2 of 2 physical-goods product page(s) declare no sku, gtin, mpn or productID in their markup. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "interpretation": "A shared identifier is how the same product is recognised as the same product across sources. Without one, a listing of this product elsewhere and this page have no field in common to match on, so agreement between them cannot be established even when they agree.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "no sku/gtin/mpn/productID in the Product markup on http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html"
+        },
+        {
+          "kind": "absence",
+          "observation": "no sku/gtin/mpn/productID in the Product markup on http://127.0.0.1:34559/products/northvale-kettle.html",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 2,
+      "metrics": {
+        "scope": "section",
+        "affected": 2,
+        "sampled": 2,
+        "sample_unit": "sampled physical-goods product page(s)",
+        "not_assessed": 0,
+        "kind_inferred_from_site": 1,
+        "priority_score": 36.74
+      },
+      "tags": [
+        "identifiers",
+        "corroboration"
+      ],
+      "suggested_action": {
+        "summary": "Publish a stable sku plus a global identifier (GTIN or MPN) on every product.",
+        "priority": "high",
+        "mechanism": "Corroboration works by matching entities across sources. Without a shared identifier there is no field on which your page and a retailer's listing are the same product, so the two never reinforce each other and neither becomes the trusted answer.",
+        "verification": "Search a GTIN from your catalogue; your own page and your retail partners' listings should both surface.",
+        "verification_type": "external_validation",
+        "effort": "low",
+        "impact": "high",
+        "steps": [
+          "Emit sku (your internal code) on every Product.",
+          "Emit gtin13/gtin12/gtin8 where a barcode exists, mpn otherwise.",
+          "Use the same identifier in your merchant feeds and marketplace listings so they resolve to one entity.",
+          "Keep the identifier stable across price changes and re-designs."
+        ]
+      },
+      "priority_rank": 8
+    },
+    {
+      "id": "F-009",
+      "rule_id": "AN-UNANSWERABLE-PRODUCT-SPECIFICATIONS",
+      "title": "A buyer asking about a product's specifications finds no answer in the fetched evidence",
+      "severity": "high",
+      "pillar": "answerability",
+      "pillar_label": "Answerability of buyer questions",
+      "dimension": "answerability",
+      "confidence": 0.68,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": 3,
+        "sampled": 3,
+        "unit": "generated question(s)",
+        "coverage": 1.0,
+        "basis": "3/3 generated question(s)"
+      },
+      "source_skill": "answerability-audit",
+      "evidence": "3 of 3 generated question(s) of this kind could not be answered from the crawled pages. Example: \"What are the specifications of Northvale Press?\" - no specification table, definition list, label/value lines or typed attributes found in the server response.",
+      "observation": "3 of 3 generated question(s) of this kind could not be answered from the crawled pages. Example: \"What are the specifications of Northvale Press?\" - no specification table, definition list, label/value lines or typed attributes found in the server response.",
+      "interpretation": "The question was generated from this site's own content, so it is a question the catalogue invites. An assistant assembling an answer has the same pages this audit read; where the fact is not in them, the answer has to come from somewhere else or not at all. This measures the evidence, not any particular assistant's behaviour.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "\"What are the specifications of Northvale Press?\" - no specification table, definition list, label/value lines or typed attributes found in the server response",
+          "url": "http://127.0.0.1:34559/products/image-price.html",
+          "locator": "product page"
+        },
+        {
+          "kind": "observation",
+          "observation": "\"What are the specifications of Northvale Kettle?\" - no specification table, definition list, label/value lines or typed attributes found in the server response",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "locator": "product page"
+        },
+        {
+          "kind": "observation",
+          "observation": "\"What are the specifications of Northvale Kettle?\" - no specification table, definition list, label/value lines or typed attributes found in the server response",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "locator": "product page"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/image-price.html",
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 3,
+      "metrics": {
+        "scope": "template",
+        "affected": 3,
+        "sampled": 3,
+        "sample_unit": "generated question(s)",
+        "question_kind": "product_specifications",
+        "priority_score": 36.72
+      },
+      "tags": [
+        "answerability",
+        "product"
+      ],
+      "suggested_action": {
+        "summary": "Publish the product's attributes as a specification block and mirror them in additionalProperty.",
+        "priority": "high",
+        "mechanism": "A question is answerable when the fact is present in the response and identifiable without guessing. Publishing it once, in a typed field, makes every phrasing of the question resolvable from the same value.",
+        "verification": "Re-run this audit; the question moves out of not_answerable in the answerability matrix.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Publish the product's attributes as a specification block and mirror them in additionalProperty."
+        ]
+      },
+      "priority_rank": 9
+    },
+    {
+      "id": "F-010",
+      "rule_id": "CR-THIN-PRODUCT-HTML",
+      "title": "Product pages carry very little extractable text",
+      "severity": "high",
+      "pillar": "crawl_render",
+      "pillar_label": "Crawl & render reachability",
+      "dimension": "discoverability",
+      "confidence": 0.68,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": 3,
+        "sampled": 4,
+        "unit": "sampled product page(s)",
+        "coverage": 0.75,
+        "basis": "3/4 sampled product page(s)"
+      },
+      "source_skill": "crawl-render-audit",
+      "evidence": "3 of 4 product page(s) contain fewer than 200 words of text in the response body (median 116 words).",
+      "observation": "3 of 4 product page(s) contain fewer than 200 words of text in the response body (median 116 words).",
+      "interpretation": "A page carrying a title, a price and a few bullet points states very little that a question could be matched against, so a fuller description of the same product elsewhere would state more. Whether any system prefers the fuller page is not something this audit measures.",
+      "evidence_items": [
+        {
+          "kind": "measurement",
+          "observation": "101 words of body text",
+          "url": "http://127.0.0.1:34559/products/image-price.html",
+          "value": 101
+        },
+        {
+          "kind": "measurement",
+          "observation": "116 words of body text",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "value": 116
+        },
+        {
+          "kind": "measurement",
+          "observation": "162 words of body text",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "value": 162
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/image-price.html",
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 3,
+      "metrics": {
+        "scope": "section",
+        "affected": 3,
+        "sampled": 4,
+        "sample_unit": "sampled product page(s)",
+        "priority_score": 35.19
+      },
+      "tags": [
+        "content-depth"
+      ],
+      "suggested_action": {
+        "summary": "Give each product page enough plain-text substance to answer a question.",
+        "priority": "high",
+        "mechanism": "Plain-text substance is what a question can be matched against; a page with a title, a price and three bullet points states almost nothing to match.",
+        "verification": "curl -s <url> | wc -w exceeds ~400 for a product page.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Add a 100-200 word description that states what the product is, who it is for and what makes it different - in plain sentences.",
+          "Publish the full specification as text (not an image or a PDF).",
+          "Include the questions buyers actually ask, with answers.",
+          "Keep the text in the server response, not in a tab loaded on click."
+        ]
+      },
+      "priority_rank": 10
+    },
+    {
+      "id": "F-011",
+      "rule_id": "FC-SITEMAP-NO-LASTMOD",
+      "title": "Sitemap entries omit <lastmod>, so the sitemap says nothing about what changed",
+      "severity": "medium",
+      "pillar": "freshness_corroboration",
+      "pillar_label": "Freshness & corroboration",
+      "dimension": "discoverability",
+      "confidence": 0.95,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "site_wide",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "site-wide observation"
+      },
+      "source_skill": "freshness-corroboration",
+      "evidence": "9 of 9 sitemap URL(s) have no <lastmod> value.",
+      "observation": "9 of 9 sitemap URL(s) have no <lastmod> value.",
+      "interpretation": "lastmod is the sitemap's own statement of what changed and when. Without it the sitemap gives a reader no basis to tell a page that changed this morning from one untouched for two years.",
+      "evidence_items": [
+        {
+          "kind": "measurement",
+          "observation": "9 of 9 entries without <lastmod>",
+          "url": "http://127.0.0.1:34559/sitemap.xml",
+          "value": 9
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/sitemap.xml"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "missing": 9,
+        "captured": 9,
+        "priority_score": 34.2
+      },
+      "tags": [
+        "freshness",
+        "sitemap"
+      ],
+      "suggested_action": {
+        "summary": "Emit a truthful <lastmod> for every sitemap URL.",
+        "priority": "medium",
+        "mechanism": "lastmod is the sitemap's own statement of what changed and when. Without it the sitemap gives a reader no basis to tell a page that changed this morning from one untouched for two years.",
+        "verification": "Change one page, regenerate the sitemap, and confirm only that URL's lastmod moved.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Set lastmod from the content's real modification timestamp.",
+          "Use W3C datetime format with a timezone.",
+          "Update it whenever a stated fact on the page changes, not only on copy edits."
+        ]
+      },
+      "priority_rank": 11
+    },
+    {
+      "id": "F-012",
+      "rule_id": "CR-HTTP-ERRORS",
+      "title": "Pages the site itself advertises are not there",
+      "severity": "medium",
+      "pillar": "crawl_render",
+      "pillar_label": "Crawl & render reachability",
+      "dimension": "discoverability",
+      "confidence": 0.98,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "sample",
+        "affected": null,
+        "sampled": 9,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "over 9 sampled page(s)"
+      },
+      "source_skill": "crawl-render-audit",
+      "evidence": "1 of 9 fetched URL(s) answered HTTP 404. Each of these URLs is listed in the site's own sitemap or linked from one of its pages, so the site is pointing at a page that its origin says does not exist.",
+      "observation": "1 of 9 fetched URL(s) answered HTTP 404. Each of these URLs is listed in the site's own sitemap or linked from one of its pages, so the site is pointing at a page that its origin says does not exist.",
+      "interpretation": "A URL the site advertises and then answers with 404 or 410 is a statement the site contradicts itself on; each one is a request spent on a page that did not serve.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "HTTP 404 at http://127.0.0.1:34559/products/ghost-product.html",
+          "url": "http://127.0.0.1:34559/products/ghost-product.html",
+          "locator": "why fetched: listed in http://127.0.0.1:34559/sitemap.xml"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/ghost-product.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "failed": 1,
+        "sampled": 9,
+        "priority_score": 33.81
+      },
+      "tags": [
+        "http",
+        "hygiene"
+      ],
+      "suggested_action": {
+        "summary": "Repair or remove the missing URLs from sitemaps and internal links.",
+        "priority": "medium",
+        "mechanism": "A URL the site advertises and then answers with 404 or 410 is a statement the site contradicts itself on; each one is a request spent on a page that did not serve.",
+        "verification": "Re-crawl: zero 404/410 among sitemap-listed and internally linked URLs.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "medium",
+        "steps": [
+          "Either restore the page or 301 it to the closest live equivalent.",
+          "Regenerate the sitemap so it no longer lists missing URLs.",
+          "Add a build-time check that every sitemap URL returns 200."
+        ]
+      },
+      "priority_rank": 12
+    },
+    {
+      "id": "F-013",
+      "rule_id": "EN-ORG-INCOMPLETE",
+      "title": "The Organization entity is declared but omits properties a site of this shape is expected to carry",
+      "severity": "medium",
+      "pillar": "entity",
+      "pillar_label": "Entity clarity & disambiguation",
+      "dimension": "discoverability",
+      "confidence": 0.9,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "site_wide",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "site-wide observation"
+      },
+      "source_skill": "entity-audit",
+      "evidence": "The site's Organization/Brand node declares name, url but omits address (the site sells physical goods), description (it describes any organisation), contactPoint (the site sells online), sameAs (official profiles are linked from the site). Also absent, but optional for any site and not counted: logo, foundingDate. Expectations follow the site's shape (ecommerce).",
+      "observation": "The site's Organization/Brand node declares name, url but omits address (the site sells physical goods), description (it describes any organisation), contactPoint (the site sells online), sameAs (official profiles are linked from the site). Also absent, but optional for any site and not counted: logo, foundingDate. Expectations follow the site's shape (ecommerce).",
+      "interpretation": "Each of these properties is an explicit, machine-readable statement that tells this organisation apart from others with a similar name. Which ones a site owes depends on what kind of organisation it is; this audit does not measure how any system resolves the entity.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "Organization node has no `address` property (required when applicable)",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "JSON-LD Organization"
+        },
+        {
+          "kind": "absence",
+          "observation": "Organization node has no `description` property (recommended)",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "JSON-LD Organization"
+        },
+        {
+          "kind": "absence",
+          "observation": "Organization node has no `contactPoint` property (recommended)",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "JSON-LD Organization"
+        },
+        {
+          "kind": "absence",
+          "observation": "Organization node has no `sameAs` property (recommended)",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "JSON-LD Organization"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "missing_required": [
+          "address"
+        ],
+        "missing_recommended": [
+          "description",
+          "contactPoint",
+          "sameAs"
+        ],
+        "missing_optional": [
+          "logo",
+          "foundingDate"
+        ],
+        "site_kind": "ecommerce",
+        "priority_score": 32.4
+      },
+      "tags": [
+        "entity"
+      ],
+      "suggested_action": {
+        "summary": "Fill out the Organization entity with the properties that apply to it.",
+        "priority": "medium",
+        "mechanism": "Entity resolution works by matching attributes. A node with only a name matches every company sharing that name; a node with a description, contact details and, where it has one, an address provides explicit machine-readable evidence to match on.",
+        "example": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"@id\": \"http://127.0.0.1:34559/#organization\",\n  \"name\": \"Northvale\",\n  \"url\": \"http://127.0.0.1:34559/\",\n  \"logo\": \"http://127.0.0.1:34559/<logo-path>\",\n  \"legalName\": \"<Registered Legal Name>\",\n  \"foundingDate\": \"<YYYY>\",\n  \"description\": \"<one sentence describing what this organization sells>\",\n  \"address\": {\n    \"@type\": \"PostalAddress\",\n    \"addressLocality\": \"<City>\",\n    \"addressCountry\": \"<CC>\"\n  },\n  \"sameAs\": [\n    \"<canonical profile URL>\",\n    \"<knowledge base entry URL>\"\n  ]\n}",
+        "verification": "Structured-data test shows an Organization carrying the properties listed as expected.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Add description (one factual sentence, no marketing).",
+          "Add a PostalAddress for the organisation's location.",
+          "Add a ContactPoint (or telephone/email).",
+          "Add sameAs for every official profile the site links to.",
+          "Add legalName when it differs from the trading name.",
+          "Give the node a stable @id such as https://example.com/#organization and reference it from every page that names the organisation."
+        ]
+      },
+      "priority_rank": 13
+    },
+    {
+      "id": "F-014",
+      "rule_id": "MR-JSONLD-CONTEXT",
+      "title": "JSON-LD blocks do not declare the schema.org context",
+      "severity": "medium",
+      "pillar": "machine_readability",
+      "pillar_label": "Machine readability & structured data",
+      "dimension": "discoverability",
+      "confidence": 0.9,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "scoped",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "template-wide observation"
+      },
+      "source_skill": "machine-readability-audit",
+      "evidence": "1 parseable JSON-LD block(s) have a missing or non-schema.org @context, so their @type values resolve to nothing and consumers ignore them.",
+      "observation": "1 parseable JSON-LD block(s) have a missing or non-schema.org @context, so their @type values resolve to nothing and consumers ignore them.",
+      "interpretation": "Without the context, `\"@type\": \"Product\"` is an undefined term rather than schema.org's Product, so the block carries no meaning to a consumer.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "block #0 has @context=missing",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "locator": "ld+json #0"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "template",
+        "blocks": 1,
+        "priority_score": 31.49
+      },
+      "tags": [
+        "structured-data"
+      ],
+      "suggested_action": {
+        "summary": "Set \"@context\": \"https://schema.org\" on every JSON-LD block.",
+        "priority": "medium",
+        "mechanism": "Without the context, `\"@type\": \"Product\"` is an undefined term rather than schema.org's Product, so the block carries no meaning to a consumer.",
+        "verification": "Every ld+json block contains schema.org in its @context.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Use the https:// form of the context URL.",
+          "If you use @graph, put @context once at the top level."
+        ]
+      },
+      "priority_rank": 14
+    },
+    {
+      "id": "F-015",
+      "rule_id": "MR-ATTRIBUTES-THIN",
+      "title": "Product pages expose no typed schema.org attributes",
+      "severity": "high",
+      "pillar": "machine_readability",
+      "pillar_label": "Machine readability & structured data",
+      "dimension": "discoverability",
+      "confidence": 0.63,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": 2,
+        "sampled": 2,
+        "unit": "sampled physical-goods product page(s)",
+        "coverage": 1.0,
+        "basis": "2/2 sampled physical-goods product page(s)"
+      },
+      "source_skill": "machine-readability-audit",
+      "evidence": "2 of 2 physical-goods product page(s) declare fewer than two typed schema.org attributes (color, size, material, additionalProperty...) and no specification table in the HTML. No attribute label/value pairs were detected in their visible content either. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "observation": "2 of 2 physical-goods product page(s) declare fewer than two typed schema.org attributes (color, size, material, additionalProperty...) and no specification table in the HTML. No attribute label/value pairs were detected in their visible content either. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "interpretation": "A typed attribute is addressable: it has a name, a value and often a unit, in a fixed place, identical in shape on every product. The same fact written into a sentence has to be found and parsed first, and the parse differs per page and per language. A comparison across products can be assembled from the addressable form without interpreting each page; whether any system does so is not something this audit measures.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "0 typed schema.org attribute(s) and no specification table on http://127.0.0.1:34559/products/northvale-kettle-blue.html; 0 attribute label/value pair(s) present in visible content",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "locator": "Product JSON-LD and page body"
+        },
+        {
+          "kind": "observation",
+          "observation": "0 typed schema.org attribute(s) and no specification table on http://127.0.0.1:34559/products/northvale-kettle.html; 0 attribute label/value pair(s) present in visible content",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "locator": "Product JSON-LD and page body"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 2,
+      "metrics": {
+        "scope": "section",
+        "affected": 2,
+        "sampled": 2,
+        "structured_attribute_presence": [
+          0,
+          0
+        ],
+        "visible_attribute_presence": [
+          0,
+          0
+        ],
+        "observed_visible_attributes": [
+          "<Attribute>"
+        ],
+        "sample_unit": "sampled physical-goods product page(s)",
+        "not_assessed": 0,
+        "kind_inferred_from_site": 1,
+        "priority_score": 30.62
+      },
+      "tags": [
+        "attributes",
+        "comparison",
+        "structure"
+      ],
+      "suggested_action": {
+        "summary": "Publish the attributes this catalogue already states as typed properties.",
+        "priority": "high",
+        "mechanism": "A PropertyValue with a name, a value and a unit is comparable across products without interpretation. The same fact in prose has to be located and parsed first, and that step is where it is dropped.",
+        "example": "\"additionalProperty\": [{\"@type\": \"PropertyValue\", \"name\": \"<Attribute>\", \"value\": \"<value>\", \"unitText\": \"<unit, if the value has one>\"}]",
+        "verification": "The Product JSON-LD on a product page contains an additionalProperty entry for each attribute the page displays, with matching values.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Add an additionalProperty PropertyValue entry for each attribute these pages already publish: '<Attribute>'.",
+          "Use the first-class properties where schema.org has one: color, size, material, weight, width, height.",
+          "Keep the typed value and the visible value identical - the markup must describe what the page displays.",
+          "State the negative facts as well as the positive ones; an attribute that is absent from the markup is not readable as 'no', only as 'unknown'."
+        ]
+      },
+      "priority_rank": 15
+    },
+    {
+      "id": "F-016",
+      "rule_id": "MR-PRODUCT-SCHEMA-MISSING",
+      "title": "Product pages carry no Product structured data",
+      "severity": "high",
+      "pillar": "machine_readability",
+      "pillar_label": "Machine readability & structured data",
+      "dimension": "discoverability",
+      "confidence": 0.63,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": 2,
+        "sampled": 4,
+        "unit": "sampled product page(s)",
+        "coverage": 0.5,
+        "basis": "2/4 sampled product page(s)"
+      },
+      "source_skill": "machine-readability-audit",
+      "evidence": "2 of 4 identified product page(s) contain no schema.org Product node in JSON-LD or microdata, so name, price, availability and identifiers are not machine-addressable on those pages.",
+      "observation": "2 of 4 identified product page(s) contain no schema.org Product node in JSON-LD or microdata, so name, price, availability and identifiers are not machine-addressable on those pages.",
+      "interpretation": "A Product node (or the schema.org type for what the page sells) is the explicit, typed statement of what the page is about; without it the same facts are available only as prose to be interpreted.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "no Product node in the structured data on http://127.0.0.1:34559/products/image-price.html",
+          "url": "http://127.0.0.1:34559/products/image-price.html"
+        },
+        {
+          "kind": "absence",
+          "observation": "no Product node in the structured data on http://127.0.0.1:34559/products/northvale-grinder.html",
+          "url": "http://127.0.0.1:34559/products/northvale-grinder.html"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/image-price.html",
+        "http://127.0.0.1:34559/products/northvale-grinder.html"
+      ],
+      "affected_url_count": 2,
+      "metrics": {
+        "scope": "section",
+        "affected": 2,
+        "sampled": 4,
+        "sample_unit": "sampled product page(s)",
+        "priority_score": 30.62
+      },
+      "tags": [
+        "structured-data",
+        "product"
+      ],
+      "suggested_action": {
+        "summary": "Emit a complete Product + Offer JSON-LD block on every product page.",
+        "priority": "high",
+        "mechanism": "A Product node (or the schema.org type for what the page sells) is the explicit, typed statement of what the page is about; without it the same facts are available only as prose to be interpreted.",
+        "example": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Product\",\n  \"@id\": \"http://127.0.0.1:34559/<product-path>#product\",\n  \"name\": \"Northvale Press\",\n  \"sku\": \"<SKU>\",\n  \"gtin13\": \"<13-digit GTIN>\",\n  \"brand\": {\n    \"@type\": \"Brand\",\n    \"name\": \"Northvale\"\n  },\n  \"category\": \"All products\",\n  \"additionalProperty\": [\n    {\n      \"@type\": \"PropertyValue\",\n      \"name\": \"<Attribute>\",\n      \"value\": \"<value>\"\n    }\n  ],\n  \"aggregateRating\": {\n    \"@type\": \"AggregateRating\",\n    \"ratingValue\": \"<value>\",\n    \"reviewCount\": \"<count>\"\n  },\n  \"offers\": {\n    \"@type\": \"Offer\",\n    \"price\": \"4499\",\n    \"priceCurrency\": \"INR\",\n    \"availability\": \"https://schema.org/InStock\",\n    \"priceValidUntil\": \"<YYYY-MM-DD>\",\n    \"url\": \"http://127.0.0.1:34559/<product-path>\"\n  }\n}\n</script>",
+        "verification": "curl -s <product url> | python -c \"import sys,re,json; print('Product' in sys.stdin.read())\"",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Generate the block from the same data the page renders, in the same request, so the two can never drift.",
+          "Required minimum: name, image, description, sku, brand, offers {price, priceCurrency, availability, url}.",
+          "Add category and additionalProperty for the specs.",
+          "Keep it in the server-rendered HTML, not injected by a tag manager."
+        ]
+      },
+      "priority_rank": 16
+    },
+    {
+      "id": "F-017",
+      "rule_id": "EN-SAMEAS-UNDECLARED",
+      "title": "Official profiles are linked in the page but not declared as sameAs",
+      "severity": "medium",
+      "pillar": "entity",
+      "pillar_label": "Entity clarity & disambiguation",
+      "dimension": "discoverability",
+      "confidence": 0.85,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "site_wide",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "site-wide observation"
+      },
+      "source_skill": "entity-audit",
+      "evidence": "2 outbound link(s) to an account on another platform were found (e.g. https://www.instagram.com/northvale.example) but the Organization node declares no sameAs, so the identity link is left for a consumer to infer from a footer icon. This audit did not verify that those accounts belong to the organisation.",
+      "observation": "2 outbound link(s) to an account on another platform were found (e.g. https://www.instagram.com/northvale.example) but the Organization node declares no sameAs, so the identity link is left for a consumer to infer from a footer icon. This audit did not verify that those accounts belong to the organisation.",
+      "interpretation": "A footer icon is a link; sameAs is an explicit, machine-readable assertion that the account is this organisation, which is what lets facts stated there be matched to facts stated here.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "profile link present in page markup: https://www.instagram.com/northvale.example",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "outbound profile/knowledge link"
+        },
+        {
+          "kind": "observation",
+          "observation": "profile link present in page markup: https://www.linkedin.com/company/northvale-example",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "outbound profile/knowledge link"
+        }
+      ],
+      "affected_urls": [
+        "https://www.instagram.com/northvale.example",
+        "https://www.linkedin.com/company/northvale-example"
+      ],
+      "affected_url_count": 2,
+      "metrics": {
+        "scope": "site",
+        "profiles": 2,
+        "other_platform_links_not_counted": 0,
+        "priority_score": 30.6
+      },
+      "tags": [
+        "entity",
+        "corroboration"
+      ],
+      "suggested_action": {
+        "summary": "List every official profile in Organization.sameAs.",
+        "priority": "medium",
+        "mechanism": "A footer icon is a link; sameAs is an explicit, machine-readable assertion that the account is this organisation, which is what lets facts stated there be matched to facts stated here.",
+        "verification": "Structured-data test shows sameAs containing every official profile.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Add \"sameAs\": [\"<profile 1>\", \"<profile 2>\", ...] to the Organization node.",
+          "Include only accounts you actually control.",
+          "Make sure each profile links back to the canonical domain."
+        ]
+      },
+      "priority_rank": 17
+    },
+    {
+      "id": "F-018",
+      "rule_id": "EG-POLICY-NOT-STRUCTURED",
+      "title": "Shipping and return terms are prose only, not typed data",
+      "severity": "medium",
+      "pillar": "engagement",
+      "pillar_label": "Engagement & comparison readiness",
+      "dimension": "engagement",
+      "confidence": 0.9,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "count",
+        "affected": 3,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "3 sampled page(s)"
+      },
+      "source_skill": "engagement-audit",
+      "evidence": "3 product page(s) to which delivery or return terms apply (physical goods, or pages that state such terms themselves) mention shipping and/or returns in prose, but none declares MerchantReturnPolicy or OfferShippingDetails, so the actual numbers (days, cost, destinations) are not addressable. 1 further product page(s) were not assessed because the expectation does not apply to them: 1 (the page describes the item without selling it).",
+      "observation": "3 product page(s) to which delivery or return terms apply (physical goods, or pages that state such terms themselves) mention shipping and/or returns in prose, but none declares MerchantReturnPolicy or OfferShippingDetails, so the actual numbers (days, cost, destinations) are not addressable. 1 further product page(s) were not assessed because the expectation does not apply to them: 1 (the page describes the item without selling it).",
+      "interpretation": "Prose has to be interpreted; typed fields are read. merchantReturnDays is a number that can be read and quoted directly; 'hassle-free returns' is not.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "shipping/returns mentioned in text but no MerchantReturnPolicy or OfferShippingDetails markup",
+          "url": "http://127.0.0.1:34559/products/image-price.html",
+          "locator": "JSON-LD Offer"
+        },
+        {
+          "kind": "absence",
+          "observation": "shipping/returns mentioned in text but no MerchantReturnPolicy or OfferShippingDetails markup",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "locator": "JSON-LD Offer"
+        },
+        {
+          "kind": "absence",
+          "observation": "shipping/returns mentioned in text but no MerchantReturnPolicy or OfferShippingDetails markup",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "locator": "JSON-LD Offer"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/image-price.html",
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 3,
+      "metrics": {
+        "scope": "template",
+        "affected": 3,
+        "priority_score": 29.16
+      },
+      "tags": [
+        "policy",
+        "structured-data"
+      ],
+      "suggested_action": {
+        "summary": "Add MerchantReturnPolicy and OfferShippingDetails to the Offer.",
+        "priority": "medium",
+        "mechanism": "Prose has to be interpreted; typed fields are read. merchantReturnDays is a number that can be read and quoted directly; 'hassle-free returns' is not.",
+        "example": "\"hasMerchantReturnPolicy\":{\"@type\":\"MerchantReturnPolicy\",\"merchantReturnDays\":30,\"returnPolicyCategory\":\"https://schema.org/MerchantReturnFiniteReturnWindow\",\"returnFees\":\"https://schema.org/FreeReturn\"}",
+        "verification": "Ask an assistant what this organization's return window is and check it returns the exact number of days stated on the policy page.",
+        "verification_type": "external_validation",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Add hasMerchantReturnPolicy with merchantReturnDays, returnPolicyCategory, returnFees and returnMethod.",
+          "Add shippingDetails with shippingRate and deliveryTime (handlingTime + transitTime) per shippingDestination.",
+          "Keep the numbers identical to the policy page."
+        ]
+      },
+      "priority_rank": 18
+    },
+    {
+      "id": "F-019",
+      "rule_id": "FC-REVIEWS-UNDATED",
+      "title": "Reviews are marked up but carry no publication date",
+      "severity": "medium",
+      "pillar": "freshness_corroboration",
+      "pillar_label": "Freshness & corroboration",
+      "dimension": "discoverability",
+      "confidence": 0.9,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "count",
+        "affected": 1,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "1 sampled page(s)"
+      },
+      "source_skill": "freshness-corroboration",
+      "evidence": "1 page(s) publish Review structured data with no datePublished value on any Review node.",
+      "observation": "1 page(s) publish Review structured data with no datePublished value on any Review node.",
+      "interpretation": "An undated review states a judgement without stating when it was made, so nothing on the page says whether the opinions are recent. How any reader weighs that is not something this audit measures.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "Review nodes have no datePublished",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "locator": "JSON-LD Review"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "template",
+        "affected": 1,
+        "priority_score": 29.16
+      },
+      "tags": [
+        "reviews",
+        "freshness"
+      ],
+      "suggested_action": {
+        "summary": "Emit datePublished on every Review node.",
+        "priority": "medium",
+        "mechanism": "A datePublished on each Review is the explicit, machine-readable statement of when the opinion was given; without it nothing on the page supports 'well reviewed recently'.",
+        "verification": "Every Review node in the rendered HTML has a datePublished.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Populate datePublished from the review's submission timestamp.",
+          "Show the date visibly next to each review as well."
+        ]
+      },
+      "priority_rank": 19
+    },
+    {
+      "id": "F-020",
+      "rule_id": "MR-OPEN-GRAPH-INCOMPLETE",
+      "title": "Pages ship without a usable Open Graph summary",
+      "severity": "medium",
+      "pillar": "machine_readability",
+      "pillar_label": "Machine readability & structured data",
+      "dimension": "discoverability",
+      "confidence": 0.75,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": 6,
+        "sampled": 6,
+        "unit": "sampled page(s)",
+        "coverage": 1.0,
+        "basis": "6/6 sampled page(s)"
+      },
+      "source_skill": "machine-readability-audit",
+      "evidence": "6 of 6 sampled page(s) are missing at least one of og:title, og:description, og:type, and 6 carry none of them. Open Graph is optional metadata; this is a gap in the explicit summary a page offers, not a blocker.",
+      "observation": "6 of 6 sampled page(s) are missing at least one of og:title, og:description, og:type, and 6 carry none of them. Open Graph is optional metadata; this is a gap in the explicit summary a page offers, not a blocker.",
+      "interpretation": "Open Graph states a title, a one-line summary and a type in a fixed place with a declared meaning. Where it is absent, any summary of the page has to be assembled from its body. Which consumers make use of the Open Graph block, and when, is not something this audit measures.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "incomplete Open Graph on http://127.0.0.1:34559/",
+          "url": "http://127.0.0.1:34559/"
+        },
+        {
+          "kind": "absence",
+          "observation": "incomplete Open Graph on http://127.0.0.1:34559/collections/all.html",
+          "url": "http://127.0.0.1:34559/collections/all.html"
+        },
+        {
+          "kind": "absence",
+          "observation": "incomplete Open Graph on http://127.0.0.1:34559/products/image-price.html",
+          "url": "http://127.0.0.1:34559/products/image-price.html"
+        },
+        {
+          "kind": "absence",
+          "observation": "incomplete Open Graph on http://127.0.0.1:34559/products/northvale-grinder.html",
+          "url": "http://127.0.0.1:34559/products/northvale-grinder.html"
+        },
+        {
+          "kind": "absence",
+          "observation": "incomplete Open Graph on http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html"
+        },
+        {
+          "kind": "measurement",
+          "observation": "...and 1 further page(s) with the same observation",
+          "value": 6
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/",
+        "http://127.0.0.1:34559/collections/all.html",
+        "http://127.0.0.1:34559/products/image-price.html",
+        "http://127.0.0.1:34559/products/northvale-grinder.html",
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 6,
+      "metrics": {
+        "scope": "template",
+        "affected": 6,
+        "sampled": 6,
+        "priority_score": 26.24
+      },
+      "tags": [
+        "metadata",
+        "open-graph"
+      ],
+      "suggested_action": {
+        "summary": "Emit og:title, og:description and og:type on every page a machine might quote.",
+        "priority": "medium",
+        "mechanism": "Open Graph is a page's own one-line summary in a fixed, unambiguous place: explicit, machine-readable evidence of what the page is about that does not depend on parsing the body.",
+        "verification": "curl -s <url> | grep 'og:' shows title, description and type on every sampled page.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Set og:title from the page title, og:description from the same sentence as the meta description, and og:type ('website', 'article', 'product').",
+          "Add og:url as the canonical absolute URL so shares resolve to one address.",
+          "Keep the OG values identical to the visible title and summary - a contradiction between them is a freshness defect of its own."
+        ]
+      },
+      "priority_rank": 20
+    },
+    {
+      "id": "F-021",
+      "rule_id": "EG-FAQ-MISSING",
+      "title": "No page states an answer in the form of the question it answers",
+      "severity": "medium",
+      "pillar": "engagement",
+      "pillar_label": "Engagement & comparison readiness",
+      "dimension": "engagement",
+      "confidence": 0.85,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "sample",
+        "affected": null,
+        "sampled": 7,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "over 7 sampled page(s)"
+      },
+      "source_skill": "engagement-audit",
+      "evidence": "Across 7 sampled page(s) there is no FAQ page, no FAQPage/Question markup, and no question-shaped headings. On the evidence of what this site publishes, the questions its readers arrive with are about price, availability, specifications, delivery and returns (the site sells physical goods).",
+      "observation": "Across 7 sampled page(s) there is no FAQ page, no FAQPage/Question markup, and no question-shaped headings. On the evidence of what this site publishes, the questions its readers arrive with are about price, availability, specifications, delivery and returns (the site sells physical goods).",
+      "interpretation": "A question-shaped heading with its answer immediately below states one fact in the form the question takes, in one place, where the same fact spread through prose has to be assembled. Which questions are worth publishing follows what this site is; whether any system matches on that shape is not something this audit measures.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "no FAQ page found among the crawled pages",
+          "url": "http://127.0.0.1:34559"
+        },
+        {
+          "kind": "absence",
+          "observation": "no FAQPage/QAPage/Question structured data on any sampled page",
+          "url": "http://127.0.0.1:34559",
+          "locator": "JSON-LD"
+        },
+        {
+          "kind": "absence",
+          "observation": "no question-shaped headings or <details>/<summary> Q&A blocks",
+          "url": "http://127.0.0.1:34559",
+          "locator": "page headings"
+        },
+        {
+          "kind": "observation",
+          "observation": "question intents derived from this site's own evidence: price, availability, specifications, delivery and returns (the site sells physical goods)",
+          "url": "http://127.0.0.1:34559",
+          "locator": "site semantics"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "sampled": 7,
+        "question_intents": [
+          "physical_goods"
+        ],
+        "site_kind": "ecommerce",
+        "priority_score": 25.5
+      },
+      "tags": [
+        "content",
+        "answerability"
+      ],
+      "suggested_action": {
+        "summary": "Publish the questions your readers actually arrive with, each answered directly beneath it, on the page that owns the answer.",
+        "priority": "medium",
+        "mechanism": "A heading that is the question, with the answer in the next sentence, states that answer explicitly and in one place. Where no page does that, the answer has to be assembled from prose that was written for a different purpose.",
+        "verification": "Fetch the page with curl and confirm each question appears as a heading with its answer in the following element, and that FAQPage markup quotes the same text.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Start from the subjects this site publishes: price, availability, specifications, delivery and returns.",
+          "Take the real wording from your own sources - support tickets, on-site search logs, the questions people send you. This audit derives intents from your content, not from anyone's behaviour.",
+          "Answer each in 2-3 sentences immediately under the question heading; no preamble.",
+          "Keep each question on the page that owns the answer, and general ones on a single FAQ page.",
+          "Add FAQPage markup, and keep the marked-up text identical to what is displayed."
+        ]
+      },
+      "priority_rank": 21
+    },
+    {
+      "id": "F-022",
+      "rule_id": "MR-OFFER-INCOMPLETE",
+      "title": "Offer markup is missing fields a buying question is answered from",
+      "severity": "high",
+      "pillar": "machine_readability",
+      "pillar_label": "Machine readability & structured data",
+      "dimension": "discoverability",
+      "confidence": 0.53,
+      "confidence_level": "low",
+      "sampling": {
+        "kind": "sample",
+        "affected": 1,
+        "sampled": 2,
+        "unit": "sampled product page(s) offered for sale",
+        "coverage": 0.5,
+        "basis": "1/2 sampled product page(s) offered for sale"
+      },
+      "source_skill": "machine-readability-audit",
+      "evidence": "Offers on 1 of 2 product page(s) offered for sale omit priceCurrency, availability. Those fields are where 'how much', 'in what currency' and 'can I buy it now' are stated as typed values. Availability was expected only of the pages selling physical goods. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "observation": "Offers on 1 of 2 product page(s) offered for sale omit priceCurrency, availability. Those fields are where 'how much', 'in what currency' and 'can I buy it now' are stated as typed values. Availability was expected only of the pages selling physical goods. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "interpretation": "A partial Offer looks valid to a validator, so the field that is missing is the one nobody notices; each field is the typed statement of one fact a buyer asks about.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "Offer on this page has no priceCurrency",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "locator": "JSON-LD Offer"
+        },
+        {
+          "kind": "absence",
+          "observation": "Offer on this page has no availability",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "locator": "JSON-LD Offer"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "page",
+        "missing_fields": [
+          "priceCurrency",
+          "availability"
+        ],
+        "affected": 1,
+        "sampled": 2,
+        "sample_unit": "sampled product page(s) offered for sale",
+        "not_assessed": 0,
+        "priority_score": 22.67
+      },
+      "tags": [
+        "structured-data",
+        "offer"
+      ],
+      "suggested_action": {
+        "summary": "Complete every Offer: price, priceCurrency, availability and url.",
+        "priority": "high",
+        "mechanism": "A partial Offer looks valid to a validator, so the field that is missing is the one nobody notices; each field is the typed statement of one fact a buyer asks about.",
+        "verification": "Structured-data testing tool reports no missing recommended fields on Offer.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "high",
+        "steps": [
+          "Emit availability on every offer, including out-of-stock states (https://schema.org/OutOfStock) - an absent value states nothing, not 'available'.",
+          "Emit priceCurrency even for a single-currency store.",
+          "Add priceValidUntil so a cached price has an expiry.",
+          "For price ranges use AggregateOffer with lowPrice/highPrice."
+        ]
+      },
+      "priority_rank": 22
+    },
+    {
+      "id": "F-023",
+      "rule_id": "EG-COMPARISON-UNSUPPORTED",
+      "title": "Nothing on the site supports comparing one model against another",
+      "severity": "medium",
+      "pillar": "engagement",
+      "pillar_label": "Engagement & comparison readiness",
+      "dimension": "engagement",
+      "confidence": 0.75,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": null,
+        "sampled": 4,
+        "unit": "sampled product page(s)",
+        "coverage": null,
+        "basis": "over 4 sampled product page(s)"
+      },
+      "source_skill": "engagement-audit",
+      "evidence": "No comparison wording or comparison UI was found across 7 sampled page(s), and only 0 of 4 product page(s) publish a comparable specification block.",
+      "observation": "No comparison wording or comparison UI was found across 7 sampled page(s), and only 0 of 4 product page(s) publish a comparable specification block.",
+      "interpretation": "A comparison page states, on the site's own pages, how its models differ; comparable attributes in the same structure on every product page let those differences be read without interpreting each page separately. Whether any visitor or assistant was mid-comparison is not something this audit measures.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "no compare control, comparison table or 'X vs Y' content found in the crawl",
+          "url": "http://127.0.0.1:34559"
+        },
+        {
+          "kind": "measurement",
+          "observation": "0 of 4 product pages have a comparable spec block",
+          "url": "http://127.0.0.1:34559",
+          "value": 0
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "spec_coverage": 0,
+        "sampled": 4,
+        "sample_unit": "sampled product page(s)",
+        "priority_score": 22.5
+      },
+      "tags": [
+        "comparison"
+      ],
+      "suggested_action": {
+        "summary": "Publish comparison content and give the catalogue comparable attributes.",
+        "priority": "medium",
+        "mechanism": "A comparison page states, on the site's own pages, how its models differ; comparable attributes in the same structure on every product page let those differences be read without interpreting each page separately. Whether any visitor or assistant was mid-comparison is not something this audit measures.",
+        "verification": "Ask an assistant to compare two products from this catalogue and check it can, and cites this site.",
+        "verification_type": "external_validation",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Publish '<model A> vs <model B>' pages for your own range, with a real HTML table.",
+          "Standardise the attribute set across the category so rows line up.",
+          "Add a compare control on category pages that produces a shareable URL.",
+          "State who each model is for - the differentiator buyers actually use."
+        ]
+      },
+      "priority_rank": 23
+    },
+    {
+      "id": "F-024",
+      "rule_id": "CR-NOINDEX-ON-IMPORTANT-PAGES",
+      "title": "Content pages a site would usually want indexed carry a noindex directive",
+      "severity": "medium",
+      "pillar": "crawl_render",
+      "pillar_label": "Crawl & render reachability",
+      "dimension": "discoverability",
+      "confidence": 0.98,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "sample",
+        "affected": 1,
+        "sampled": 7,
+        "unit": "sampled page(s)",
+        "coverage": 0.14,
+        "basis": "1/7 sampled page(s)"
+      },
+      "source_skill": "crawl-render-audit",
+      "evidence": "1 of 7 sampled page(s) outside carts, accounts and internal search carry a noindex directive, including 1 content page(s) of a kind a site usually publishes to be found (product). Whether the exclusion is intentional is not something this audit can tell from the directive.",
+      "observation": "1 of 7 sampled page(s) outside carts, accounts and internal search carry a noindex directive, including 1 content page(s) of a kind a site usually publishes to be found (product). Whether the exclusion is intentional is not something this audit can tell from the directive.",
+      "interpretation": "A noindex directive asks indexes not to keep the page, so an index that honours it does not hold the page, while a person visiting directly reads it as normal. This audit observes the directive, not the intent behind it: the exclusion may be deliberate, and the point of the finding is that the decision should be a conscious one for pages the business wants cited.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "noindex directive `noindex, follow` on a product page",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "locator": "meta robots / X-Robots-Tag"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "page",
+        "affected": 1,
+        "sampled": 7,
+        "discoverable_pages_noindexed": 1,
+        "utility_pages_excluded_from_finding": 0,
+        "discoverable_ratio": 0.14,
+        "priority_score": 22.31
+      },
+      "tags": [
+        "indexability",
+        "blocking"
+      ],
+      "suggested_action": {
+        "summary": "Review whether this exclusion is intentional on each of these pages.",
+        "priority": "high",
+        "mechanism": "A page a directive asks indexes not to keep cannot be retrieved from one that honours it. Where the exclusion is deliberate that is the correct outcome; where it is inherited from a template or a CDN-wide header it removes pages the business wants cited, with no visible symptom.",
+        "verification": "For each page you decided should be indexable, curl -sI <url> returns no noindex X-Robots-Tag and the HTML contains no noindex meta.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "high",
+        "steps": [
+          "Confirm for each listed page whether the exclusion is intended.",
+          "Where it is not, make the robots meta value explicit per page type in the template rather than inherited.",
+          "Check the X-Robots-Tag response header as well - it overrides the meta tag and is easy to set globally by mistake at the CDN.",
+          "Keep noindex where it belongs: carts, accounts, internal search results and thin filter permutations."
+        ]
+      },
+      "priority_rank": 24
+    },
+    {
+      "id": "F-025",
+      "rule_id": "AN-ANSWERS-PROSE-ONLY",
+      "title": "Answers exist on the page but only as prose, not as typed values",
+      "severity": "medium",
+      "pillar": "answerability",
+      "pillar_label": "Answerability of buyer questions",
+      "dimension": "answerability",
+      "confidence": 0.73,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": 3,
+        "sampled": 14,
+        "unit": "generated question(s)",
+        "coverage": 0.21,
+        "basis": "3/14 generated question(s)"
+      },
+      "source_skill": "answerability-audit",
+      "evidence": "3 of 14 generated question(s) were answerable only from visible text, with no typed value behind them (product_availability, return_window, shipping_destinations).",
+      "observation": "3 of 14 generated question(s) were answerable only from visible text, with no typed value behind them (product_availability, return_window, shipping_destinations).",
+      "interpretation": "A fact stated in a sentence is available to a reader and recoverable by a machine only after parsing that sentence, which differs by phrasing and by language. The same fact in a typed field is read directly. This is the gap between a page a person can use and evidence a system can quote.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "\"Is Northvale Kettle in stock?\" - stock state stated in prose (in stock), on the phrase \"in stock\": \"thvale Kettle Northvale Kettle ₹4,499 — in stock. The Northvale Kettle is a cushioned daily trainer with a breathable mesh upper and a durable rubber outsole. It suits neutral runners logging thirty t\"",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+          "locator": "visible main content"
+        },
+        {
+          "kind": "observation",
+          "observation": "\"What is the return window?\" - stated in prose, on the phrase \"returns\": \"Shipping and returns Free shipping over ₹2,000. Delivery in 3–6 business days. Returns accepted within 30 days of delivery on unused items.\"",
+          "url": "http://127.0.0.1:34559/pages/shipping.html",
+          "locator": "visible main content"
+        },
+        {
+          "kind": "observation",
+          "observation": "\"Where does this site ship to, and what does delivery cost?\" - stated in prose, on the phrase \"Shipping\": \"Shipping and returns Free shipping over ₹2,000. Delivery in 3–6 business days. Returns accepted within 30 days of delivery on unused items.\"",
+          "url": "http://127.0.0.1:34559/pages/shipping.html",
+          "locator": "visible main content"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle.html",
+        "http://127.0.0.1:34559/pages/shipping.html"
+      ],
+      "affected_url_count": 2,
+      "metrics": {
+        "scope": "section",
+        "affected": 3,
+        "sampled": 14,
+        "sample_unit": "generated question(s)",
+        "kinds": [
+          "product_availability",
+          "return_window",
+          "shipping_destinations"
+        ],
+        "priority_score": 19.71
+      },
+      "tags": [
+        "answerability",
+        "structured-data"
+      ],
+      "suggested_action": {
+        "summary": "Mirror the facts already published into typed structured data.",
+        "priority": "medium",
+        "mechanism": "The content already exists; publishing it as a typed value removes the parsing step between the page and an answer.",
+        "verification": "Re-run this audit; these questions move from partial to answerable in the answerability matrix.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "high",
+        "steps": [
+          "Add MerchantReturnPolicy with merchantReturnDays to the Offer, matching the number stated on the policy page.",
+          "Add Offer.availability (schema.org InStock / OutOfStock) to the product's Offer.",
+          "Add OfferShippingDetails to the Offer, naming the destinations served and the rate, so delivery can be answered without reading the policy page."
+        ]
+      },
+      "priority_rank": 25
+    },
+    {
+      "id": "F-026",
+      "rule_id": "EN-DUPLICATE-PRODUCT-NAMES",
+      "title": "Several distinct URLs present themselves as the same product",
+      "severity": "medium",
+      "pillar": "entity",
+      "pillar_label": "Entity clarity & disambiguation",
+      "dimension": "discoverability",
+      "confidence": 0.8,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "scoped",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "observed across a section of the site"
+      },
+      "source_skill": "entity-audit",
+      "evidence": "1 product name(s) are used by more than one URL (e.g. \"northvale kettle\" appears on 2 pages). A consumer cannot tell whether these are variants, duplicates or different products.",
+      "observation": "1 product name(s) are used by more than one URL (e.g. \"northvale kettle\" appears on 2 pages). A consumer cannot tell whether these are variants, duplicates or different products.",
+      "interpretation": "Identically-named pages state nothing that tells them apart, so a question about one particular variant has no name to be matched to the URL that describes it. A distinct name, or a ProductGroup with named variants, makes the difference explicit.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "product name \"northvale kettle\" also used by 2 URL(s)",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "locator": "http://127.0.0.1:34559/products/northvale-kettle.html"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 2,
+      "metrics": {
+        "scope": "section",
+        "duplicate_names": 1,
+        "priority_score": 18.0
+      },
+      "tags": [
+        "entity",
+        "variants"
+      ],
+      "suggested_action": {
+        "summary": "Disambiguate variants explicitly instead of duplicating the product name.",
+        "priority": "medium",
+        "mechanism": "Identically-named pages state nothing that tells them apart, so a question about one particular variant has no name to be matched to the URL that describes it. A distinct name, or a ProductGroup with named variants, makes the difference explicit.",
+        "verification": "No two indexable product URLs share an identical Product.name.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "medium",
+        "steps": [
+          "Model variants as a ProductGroup with hasVariant rather than as separate identically-named products.",
+          "If separate URLs are required, make each name unique by appending the attribute that varies (e.g. 'Northvale Press - <Attribute> <value>') and set canonical to the group page.",
+          "Give each variant its own sku and its own Offer."
+        ]
+      },
+      "priority_rank": 26
+    },
+    {
+      "id": "F-027",
+      "rule_id": "EN-CATEGORY-UNDECLARED",
+      "title": "Product pages expose no machine-readable category relationship",
+      "severity": "medium",
+      "pillar": "entity",
+      "pillar_label": "Entity clarity & disambiguation",
+      "dimension": "discoverability",
+      "confidence": 0.63,
+      "confidence_level": "medium",
+      "sampling": {
+        "kind": "sample",
+        "affected": 2,
+        "sampled": 2,
+        "unit": "sampled product page(s)",
+        "coverage": 1.0,
+        "basis": "2/2 sampled product page(s)"
+      },
+      "source_skill": "entity-audit",
+      "evidence": "2 of 2 product page(s) expose no machine-readable category relationship through `Product.category` or `BreadcrumbList` in the sampled markup.",
+      "observation": "2 of 2 product page(s) expose no machine-readable category relationship through `Product.category` or `BreadcrumbList` in the sampled markup.",
+      "interpretation": "Category membership is one of the relationships an answer about a group of products can be assembled from. Where it is not stated in the markup it has to be inferred from the URL, the navigation or the copy, which is slower and less reliable than reading a declared value. This can make category membership harder for automated systems to resolve; it does not establish that any particular system failed to.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "no `category` property and no BreadcrumbList markup on http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html"
+        },
+        {
+          "kind": "absence",
+          "observation": "no `category` property and no BreadcrumbList markup on http://127.0.0.1:34559/products/northvale-kettle.html",
+          "url": "http://127.0.0.1:34559/products/northvale-kettle.html"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "http://127.0.0.1:34559/products/northvale-kettle.html"
+      ],
+      "affected_url_count": 2,
+      "metrics": {
+        "scope": "section",
+        "affected": 2,
+        "sampled": 2,
+        "sample_unit": "sampled product page(s)",
+        "priority_score": 17.01
+      },
+      "tags": [
+        "entity",
+        "taxonomy"
+      ],
+      "suggested_action": {
+        "summary": "Declare a consistent category for every product.",
+        "priority": "medium",
+        "mechanism": "A declared category states the product's membership directly, so a system assembling an answer about that category does not have to infer the relationship from the URL or the surrounding copy.",
+        "verification": "Every Product node has a category value that matches a real category page.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Add category to Product using this site's own taxonomy path (the path shown in its breadcrumbs, e.g. 'All products').",
+          "Add BreadcrumbList markup mirroring the same path.",
+          "Use the same category strings on the category page's own markup.",
+          "Keep the taxonomy shallow and stable - renaming categories resets the association."
+        ]
+      },
+      "priority_rank": 27
+    },
+    {
+      "id": "F-028",
+      "rule_id": "AN-UNANSWERABLE-PAYMENT-OPTIONS",
+      "title": "A buyer asking about which payment methods are accepted finds no answer in the fetched evidence",
+      "severity": "medium",
+      "pillar": "answerability",
+      "pillar_label": "Answerability of buyer questions",
+      "dimension": "answerability",
+      "confidence": 0.58,
+      "confidence_level": "low",
+      "sampling": {
+        "kind": "sample",
+        "affected": 1,
+        "sampled": 1,
+        "unit": "generated question(s)",
+        "coverage": 1.0,
+        "basis": "1/1 generated question(s)"
+      },
+      "source_skill": "answerability-audit",
+      "evidence": "1 of 1 generated question(s) of this kind could not be answered from the crawled pages. Example: \"What payment methods are accepted?\" - no statement of this policy was detected in any page the crawl fetched, in markup or in text.",
+      "observation": "1 of 1 generated question(s) of this kind could not be answered from the crawled pages. Example: \"What payment methods are accepted?\" - no statement of this policy was detected in any page the crawl fetched, in markup or in text.",
+      "interpretation": "The question was generated from this site's own content, so it is a question the catalogue invites. An assistant assembling an answer has the same pages this audit read; where the fact is not in them, the answer has to come from somewhere else or not at all. This measures the evidence, not any particular assistant's behaviour.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "\"What payment methods are accepted?\" - no statement of this policy was detected in any page the crawl fetched, in markup or in text",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "all crawled pages"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "template",
+        "affected": 1,
+        "sampled": 1,
+        "sample_unit": "generated question(s)",
+        "question_kind": "payment_options",
+        "priority_score": 15.66
+      },
+      "tags": [
+        "answerability",
+        "payment"
+      ],
+      "suggested_action": {
+        "summary": "State accepted payment methods in the page text and as acceptedPaymentMethod on the Offer.",
+        "priority": "medium",
+        "mechanism": "A question is answerable when the fact is present in the response and identifiable without guessing. Publishing it once, in a typed field, makes every phrasing of the question resolvable from the same value.",
+        "verification": "Re-run this audit; the question moves out of not_answerable in the answerability matrix.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "State accepted payment methods in the page text and as acceptedPaymentMethod on the Offer."
+        ]
+      },
+      "priority_rank": 28
+    },
+    {
+      "id": "F-029",
+      "rule_id": "EG-LEAD-ANSWER-WEAK",
+      "title": "Price and availability are not in the opening block of the product HTML",
+      "severity": "medium",
+      "pillar": "engagement",
+      "pillar_label": "Engagement & comparison readiness",
+      "dimension": "engagement",
+      "confidence": 0.56,
+      "confidence_level": "low",
+      "sampling": {
+        "kind": "sample",
+        "affected": 2,
+        "sampled": 4,
+        "unit": "sampled product page(s) offered for sale",
+        "coverage": 0.5,
+        "basis": "2/4 sampled product page(s) offered for sale"
+      },
+      "source_skill": "engagement-audit",
+      "evidence": "On 2 of 4 product page(s) offered for sale, the first ~1,200 characters of readable content in the fetched HTML contain no price and/or no availability statement. Measured on the server-rendered HTML in document order; no headless render was performed, so this finding makes no claim about what is visible without scrolling. A stock statement was expected only of the pages selling physical goods. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "observation": "On 2 of 4 product page(s) offered for sale, the first ~1,200 characters of readable content in the fetched HTML contain no price and/or no availability statement. Measured on the server-rendered HTML in document order; no headless render was performed, so this finding makes no claim about what is visible without scrolling. A stock statement was expected only of the pages selling physical goods. For 1 of the assessed page(s) the kind of item is not established on the page itself and was inferred from what the site as a whole is seen to sell.",
+      "interpretation": "A reader that takes the document in order meets the opening block first, and one that works from a bounded window may not reach facts placed further down, or may not associate them with this product. This is an observation about document order; how any particular fetcher windows a page, and the effect on any individual visit, are not things this audit measures.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "opening block contains no price and no an availability statement",
+          "url": "http://127.0.0.1:34559/products/image-price.html",
+          "locator": "first ~1200 characters of block text, document order"
+        },
+        {
+          "kind": "observation",
+          "observation": "opening block contains no price",
+          "url": "http://127.0.0.1:34559/products/northvale-grinder.html",
+          "locator": "first ~1200 characters of block text, document order"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/image-price.html",
+        "http://127.0.0.1:34559/products/northvale-grinder.html"
+      ],
+      "affected_url_count": 2,
+      "metrics": {
+        "scope": "section",
+        "affected": 2,
+        "sampled": 4,
+        "sample_unit": "sampled product page(s) offered for sale",
+        "not_assessed": 0,
+        "kind_inferred_from_site": 1,
+        "stock_statement_expected_on": 1,
+        "render_mode": "static-fetch",
+        "viewport": null,
+        "measured_on": "server-rendered HTML in document order",
+        "stated_later_in_document": 0,
+        "priority_score": 15.12
+      },
+      "tags": [
+        "continuity",
+        "landing",
+        "document-order"
+      ],
+      "suggested_action": {
+        "summary": "Order the product template so price and availability come first.",
+        "priority": "high",
+        "mechanism": "A reader that takes a bounded window of the document gets the facts that appear early. Putting the name and the decisive facts at the top of the markup puts them inside any such window regardless of how the page is laid out visually.",
+        "verification": "curl -s <product-url> | head -c 4000 contains price and availability.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "high",
+        "steps": [
+          "Emit the name, the price, the stock position, the delivery estimate and the return window early in the product template's markup, before long-form marketing copy.",
+          "Server-render those facts so they are in the HTML a fetcher receives, not added afterwards by script.",
+          "Keep the visible layout free to differ - this is about the order of the markup, not the order on screen."
+        ]
+      },
+      "priority_rank": 29
+    },
+    {
+      "id": "F-030",
+      "rule_id": "AN-UNANSWERABLE-PRODUCT-AVAILABILITY",
+      "title": "A buyer asking about whether a product is in stock finds no answer in the fetched evidence",
+      "severity": "medium",
+      "pillar": "answerability",
+      "pillar_label": "Answerability of buyer questions",
+      "dimension": "answerability",
+      "confidence": 0.55,
+      "confidence_level": "low",
+      "sampling": {
+        "kind": "sample",
+        "affected": 1,
+        "sampled": 3,
+        "unit": "generated question(s)",
+        "coverage": 0.33,
+        "basis": "1/3 generated question(s)"
+      },
+      "source_skill": "answerability-audit",
+      "evidence": "1 of 3 generated question(s) of this kind could not be answered from the crawled pages. Example: \"Is Northvale Press in stock?\" - no Offer.availability in markup and no stock statement detected in the fetched text.",
+      "observation": "1 of 3 generated question(s) of this kind could not be answered from the crawled pages. Example: \"Is Northvale Press in stock?\" - no Offer.availability in markup and no stock statement detected in the fetched text.",
+      "interpretation": "The question was generated from this site's own content, so it is a question the catalogue invites. An assistant assembling an answer has the same pages this audit read; where the fact is not in them, the answer has to come from somewhere else or not at all. This measures the evidence, not any particular assistant's behaviour.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "\"Is Northvale Press in stock?\" - no Offer.availability in markup and no stock statement detected in the fetched text",
+          "url": "http://127.0.0.1:34559/products/image-price.html",
+          "locator": "product page"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/image-price.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "section",
+        "affected": 1,
+        "sampled": 3,
+        "sample_unit": "generated question(s)",
+        "question_kind": "product_availability",
+        "priority_score": 12.38
+      },
+      "tags": [
+        "answerability",
+        "product"
+      ],
+      "suggested_action": {
+        "summary": "State stock status on the page and in Offer.availability.",
+        "priority": "medium",
+        "mechanism": "A question is answerable when the fact is present in the response and identifiable without guessing. Publishing it once, in a typed field, makes every phrasing of the question resolvable from the same value.",
+        "verification": "Re-run this audit; the question moves out of not_answerable in the answerability matrix.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "State stock status on the page and in Offer.availability."
+        ]
+      },
+      "priority_rank": 30
+    },
+    {
+      "id": "F-031",
+      "rule_id": "AN-UNANSWERABLE-PRODUCT-PRICE",
+      "title": "A buyer asking about the price of a product finds no answer in the fetched evidence",
+      "severity": "medium",
+      "pillar": "answerability",
+      "pillar_label": "Answerability of buyer questions",
+      "dimension": "answerability",
+      "confidence": 0.55,
+      "confidence_level": "low",
+      "sampling": {
+        "kind": "sample",
+        "affected": 1,
+        "sampled": 3,
+        "unit": "generated question(s)",
+        "coverage": 0.33,
+        "basis": "1/3 generated question(s)"
+      },
+      "source_skill": "answerability-audit",
+      "evidence": "1 of 3 generated question(s) of this kind could not be answered from the crawled pages. Example: \"What is the price of Northvale Press?\" - no currency-formatted price found in the fetched HTML and no Offer.price in structured data.",
+      "observation": "1 of 3 generated question(s) of this kind could not be answered from the crawled pages. Example: \"What is the price of Northvale Press?\" - no currency-formatted price found in the fetched HTML and no Offer.price in structured data.",
+      "interpretation": "The question was generated from this site's own content, so it is a question the catalogue invites. An assistant assembling an answer has the same pages this audit read; where the fact is not in them, the answer has to come from somewhere else or not at all. This measures the evidence, not any particular assistant's behaviour.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "\"What is the price of Northvale Press?\" - no currency-formatted price found in the fetched HTML and no Offer.price in structured data",
+          "url": "http://127.0.0.1:34559/products/image-price.html",
+          "locator": "product page"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/image-price.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "section",
+        "affected": 1,
+        "sampled": 3,
+        "sample_unit": "generated question(s)",
+        "question_kind": "product_price",
+        "priority_score": 12.38
+      },
+      "tags": [
+        "answerability",
+        "product"
+      ],
+      "suggested_action": {
+        "summary": "State the price in the server-rendered HTML and mirror it in Offer.price / priceCurrency.",
+        "priority": "medium",
+        "mechanism": "A question is answerable when the fact is present in the response and identifiable without guessing. Publishing it once, in a typed field, makes every phrasing of the question resolvable from the same value.",
+        "verification": "Re-run this audit; the question moves out of not_answerable in the answerability matrix.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "State the price in the server-rendered HTML and mirror it in Offer.price / priceCurrency."
+        ]
+      },
+      "priority_rank": 31
+    },
+    {
+      "id": "F-032",
+      "rule_id": "EN-NO-CONTACT-GROUNDING",
+      "title": "The organisation declares no address or contact point",
+      "severity": "low",
+      "pillar": "entity",
+      "pillar_label": "Entity clarity & disambiguation",
+      "dimension": "discoverability",
+      "confidence": 0.85,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "site_wide",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "site-wide observation"
+      },
+      "source_skill": "entity-audit",
+      "evidence": "The Organization node declares no address, contactPoint, telephone or email, and no contact page was found in the crawl. Contact grounding is expected of a ecommerce site.",
+      "observation": "The Organization node declares no address, contactPoint, telephone or email, and no contact page was found in the crawl. Contact grounding is expected of a ecommerce site.",
+      "interpretation": "An address and a contact point are explicit, machine-readable attributes that tell this organisation apart from others with a similar name, and that a registry entry can be matched on.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "no address/contactPoint/telephone/email on the Organization node",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "JSON-LD Organization"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "priority_score": 12.24
+      },
+      "tags": [
+        "entity",
+        "disambiguation"
+      ],
+      "suggested_action": {
+        "summary": "Add a postal address and a contact point to the Organization entity.",
+        "priority": "low",
+        "mechanism": "An address and a contact point are explicit, machine-readable attributes that tell this organisation apart from others with a similar name, and that a registry entry can be matched on.",
+        "verification": "Structured-data test shows an address on the Organization.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "medium",
+        "steps": [
+          "Add a PostalAddress with locality, region and country.",
+          "Add a ContactPoint with contactType 'customer service'.",
+          "For physical locations, publish LocalBusiness/Store markup per location so each is a typed entity."
+        ]
+      },
+      "priority_rank": 32
+    },
+    {
+      "id": "F-033",
+      "rule_id": "MR-FACTS-NOT-IN-TEXT",
+      "title": "Core buying facts do not exist as text anywhere in the response",
+      "severity": "medium",
+      "pillar": "machine_readability",
+      "pillar_label": "Machine readability & structured data",
+      "dimension": "discoverability",
+      "confidence": 0.51,
+      "confidence_level": "low",
+      "sampling": {
+        "kind": "sample",
+        "affected": 1,
+        "sampled": 4,
+        "unit": "sampled product page(s)",
+        "coverage": 0.25,
+        "basis": "1/4 sampled product page(s)"
+      },
+      "source_skill": "machine-readability-audit",
+      "evidence": "1 of 4 product page(s) contain no currency-formatted price in the visible text and no price in structured data, while carrying 3 image(s).",
+      "observation": "1 of 4 product page(s) contain no currency-formatted price in the visible text and no price in structured data, while carrying 3 image(s).",
+      "interpretation": "Three things produce this observation - the price is inside an image, it is injected after load by script, or the page does not state it - and the audit cannot tell them apart from a single fetch. What is common to all three is that the number is not in the bytes a text extractor receives, so a system reading the response has no price to quote from this page.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "no currency-formatted price in text and no Offer.price in markup; 3 images on the page, 0 without alt text",
+          "url": "http://127.0.0.1:34559/products/image-price.html",
+          "locator": "page text + JSON-LD"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/image-price.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "page",
+        "affected": 1,
+        "sampled": 4,
+        "sample_unit": "sampled product page(s)",
+        "not_assessed": 0,
+        "priority_score": 9.09
+      },
+      "tags": [
+        "non-text",
+        "blocking"
+      ],
+      "suggested_action": {
+        "summary": "Put every buying-decision fact in the HTML as text, and mirror it in markup.",
+        "priority": "critical",
+        "mechanism": "A fact that lives only inside an image carries no text for a reader that does not run OCR, so a page that looks complete to a person can carry no readable version of that fact in text at all.",
+        "verification": "curl -s <product url> | grep -F '<your price>' finds the price in the raw HTML.",
+        "verification_type": "self_verifiable",
+        "effort": "medium",
+        "impact": "high",
+        "steps": [
+          "Render the price, the currency and the key facts a buyer asks about as selectable text.",
+          "Never place price, offers or specifications inside a banner image.",
+          "Give every informative image a descriptive alt attribute as a backstop.",
+          "Mirror the same values in Product/Offer JSON-LD."
+        ]
+      },
+      "priority_rank": 33
+    },
+    {
+      "id": "F-034",
+      "rule_id": "CR-JS-RENDERED-SHELL",
+      "title": "Page content is delivered through an empty client-rendering shell",
+      "severity": "medium",
+      "pillar": "crawl_render",
+      "pillar_label": "Crawl & render reachability",
+      "dimension": "discoverability",
+      "confidence": 0.57,
+      "confidence_level": "low",
+      "sampling": {
+        "kind": "sample",
+        "affected": 1,
+        "sampled": 6,
+        "unit": "sampled content page(s)",
+        "coverage": 0.17,
+        "basis": "1/6 sampled content page(s)"
+      },
+      "source_skill": "crawl-render-audit",
+      "evidence": "1 of 6 sampled page(s) contain client-rendering markers and fewer than 120 words of text in the raw HTML (e.g. http://127.0.0.1:34559/products/northvale-grinder.html: 6 words, markers: empty React mount point in the raw HTML). A fetch that does not execute JavaScript receives only this raw response.",
+      "observation": "1 of 6 sampled page(s) contain client-rendering markers and fewer than 120 words of text in the raw HTML (e.g. http://127.0.0.1:34559/products/northvale-grinder.html: 6 words, markers: empty React mount point in the raw HTML). A fetch that does not execute JavaScript receives only this raw response.",
+      "interpretation": "This is a statement about how the page is *delivered*, not about how much is missing from it: the response contains an unfilled mount point and almost no text, and the content is assembled afterwards by script. A fetch that does not execute JavaScript receives the pre-hydration HTML, so any fact that only exists after hydration is not in the bytes it receives.",
+      "evidence_items": [
+        {
+          "kind": "observation",
+          "observation": "6 words of text in raw HTML; client-render markers: empty React mount point in the raw HTML",
+          "url": "http://127.0.0.1:34559/products/northvale-grinder.html",
+          "locator": "raw HTML response"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/products/northvale-grinder.html"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "page",
+        "affected": 1,
+        "sampled": 6,
+        "sample_unit": "sampled content page(s)",
+        "measures": "delivery architecture: an unfilled mount point and under 120 words in the response",
+        "measured_from": "server response only",
+        "priority_score": 8.65
+      },
+      "tags": [
+        "rendering",
+        "blocking",
+        "architecture"
+      ],
+      "suggested_action": {
+        "summary": "Server-render (or pre-render) the facts that must be quotable.",
+        "priority": "critical",
+        "mechanism": "This is a statement about how the page is *delivered*, not about how much is missing from it: the response contains an unfilled mount point and almost no text, and the content is assembled afterwards by script. A fetch that does not execute JavaScript receives the pre-hydration HTML, so any fact that only exists after hydration is not in the bytes it receives.",
+        "verification": "curl -s <product url> | grep -c 'application/ld+json' returns >= 1 and the price string appears in the raw HTML.",
+        "verification_type": "self_verifiable",
+        "effort": "high",
+        "impact": "high",
+        "steps": [
+          "Move the page's name, its key facts, breadcrumbs and the JSON-LD block into the server-rendered HTML.",
+          "If a full SSR migration is out of scope, add a pre-render/static snapshot layer for the content routes - that is where the citable facts live.",
+          "Verify with `curl -s <url> | grep -i '<price>'` rather than with a browser: the browser will always look fine.",
+          "Keep interactive extras (recommendations, live chat) client-side; only the facts need to be in the HTML."
+        ]
+      },
+      "priority_rank": 34
+    },
+    {
+      "id": "F-035",
+      "rule_id": "MR-SITE-SCHEMA-MISSING",
+      "title": "The home page declares no WebSite node",
+      "severity": "info",
+      "pillar": "machine_readability",
+      "pillar_label": "Machine readability & structured data",
+      "dimension": "discoverability",
+      "confidence": 0.95,
+      "confidence_level": "high",
+      "sampling": {
+        "kind": "site_wide",
+        "affected": null,
+        "sampled": null,
+        "unit": "sampled page(s)",
+        "coverage": null,
+        "basis": "site-wide observation"
+      },
+      "source_skill": "machine-readability-audit",
+      "evidence": "The home page (http://127.0.0.1:34559/) has no WebSite node in its JSON-LD (types found: Organization). WebSite is optional metadata; this is an observation, not a defect.",
+      "observation": "The home page (http://127.0.0.1:34559/) has no WebSite node in its JSON-LD (types found: Organization). WebSite is optional metadata; this is an observation, not a defect.",
+      "interpretation": "The home page does not expose Organization/Brand or WebSite identity through the structured-data structures checked by this rule. That reduces the amount of explicit machine-readable identity information available to automated systems, which then have to infer the operator from page copy and the domain. This audit observes the absence of the markup; it does not test, and does not claim, that any system failed to identify the brand.",
+      "evidence_items": [
+        {
+          "kind": "absence",
+          "observation": "no WebSite node in the home page structured data",
+          "url": "http://127.0.0.1:34559/",
+          "locator": "JSON-LD"
+        }
+      ],
+      "affected_urls": [
+        "http://127.0.0.1:34559/"
+      ],
+      "affected_url_count": 1,
+      "metrics": {
+        "scope": "site",
+        "missing": [
+          "WebSite"
+        ],
+        "recommended_organization_fields": [
+          "name",
+          "url",
+          "description",
+          "address",
+          "contactPoint"
+        ],
+        "priority_score": 0.0
+      },
+      "tags": [
+        "structured-data",
+        "entity"
+      ],
+      "suggested_action": {
+        "summary": "Optionally declare WebSite JSON-LD on the home page.",
+        "priority": "low",
+        "mechanism": "An Organization node is a typed statement of who the site belongs to, and WebSite ties the domain to that entity. Publishing them adds explicit machine-readable identity information for entity resolution to work from, in place of inferring the operator from page copy and the domain name.",
+        "example": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"Organization\",\n  \"@id\": \"http://127.0.0.1:34559/#organization\",\n  \"name\": \"Northvale\",\n  \"url\": \"http://127.0.0.1:34559/\",\n  \"logo\": \"http://127.0.0.1:34559/<logo-path>\",\n  \"sameAs\": [\n    \"<canonical profile URL>\",\n    \"<knowledge base entry URL>\"\n  ]\n}",
+        "verification": "curl -s https://<host>/ | grep -c '\"Organization\"' >= 1.",
+        "verification_type": "self_verifiable",
+        "effort": "low",
+        "impact": "low",
+        "steps": [
+          "Add Organization with name, url, description, address, contactPoint; legalName, logo and foundingDate are optional.",
+          "Add WebSite with url, name and a potentialAction SearchAction pointing at your site-search URL template.",
+          "Use one @id (e.g. https://example.com/#organization) and reference it from every page that names the organisation, so the whole site resolves to one entity."
+        ]
+      },
+      "priority_rank": 35
+    }
+  ],
+  "site_url": "http://127.0.0.1:34559/",
+  "report_version": "1.0",
+  "generator": {
+    "tool": "marketplace-ai-visibility-auditor",
+    "version": "1.11.2",
+    "mode": "read-only audit; recommendations only; no site modification",
+    "entrypoint_skill": "marketplace-ai-visibility-audit",
+    "specialist_skills": [
+      "crawl-render-audit",
+      "machine-readability-audit",
+      "freshness-corroboration",
+      "entity-audit",
+      "engagement-audit",
+      "answerability-audit"
+    ]
+  },
+  "scores": {
+    "overall": {
+      "score": 10.5,
+      "band": "critical",
+      "interpretation": "Little of the site's content was readable, reachable or stated in a form a machine can quote; the findings say which.",
+      "discoverability_score": 8.4,
+      "engagement_score": 0.0,
+      "measured_pillars": [
+        "answerability",
+        "crawl_render",
+        "engagement",
+        "entity",
+        "freshness_corroboration",
+        "machine_readability"
+      ],
+      "unmeasured_pillars": [],
+      "weight_measured": 1.0,
+      "weakest_pillar": "crawl_render"
+    },
+    "pillars": {
+      "crawl_render": {
+        "label": "Crawl & render reachability",
+        "dimension": "discoverability",
+        "weight": 0.204,
+        "findings": 6,
+        "by_severity": {
+          "high": 2,
+          "medium": 4
+        },
+        "measured": true,
+        "score": 0.0,
+        "band": "critical"
+      },
+      "machine_readability": {
+        "label": "Machine readability & structured data",
+        "dimension": "discoverability",
+        "weight": 0.204,
+        "findings": 8,
+        "by_severity": {
+          "high": 4,
+          "medium": 3,
+          "info": 1
+        },
+        "measured": true,
+        "score": 0.0,
+        "band": "critical"
+      },
+      "freshness_corroboration": {
+        "label": "Freshness & corroboration",
+        "dimension": "discoverability",
+        "weight": 0.136,
+        "findings": 3,
+        "by_severity": {
+          "high": 1,
+          "medium": 2
+        },
+        "measured": true,
+        "score": 34.3,
+        "band": "poor"
+      },
+      "entity": {
+        "label": "Entity clarity & disambiguation",
+        "dimension": "discoverability",
+        "weight": 0.136,
+        "findings": 6,
+        "by_severity": {
+          "high": 1,
+          "medium": 4,
+          "low": 1
+        },
+        "measured": true,
+        "score": 7.8,
+        "band": "critical"
+      },
+      "engagement": {
+        "label": "Engagement & comparison readiness",
+        "dimension": "engagement",
+        "weight": 0.17,
+        "findings": 7,
+        "by_severity": {
+          "high": 3,
+          "medium": 4
+        },
+        "measured": true,
+        "score": 0.0,
+        "band": "critical"
+      },
+      "answerability": {
+        "label": "Answerability of buyer questions",
+        "dimension": "answerability",
+        "weight": 0.15,
+        "findings": 5,
+        "by_severity": {
+          "high": 1,
+          "medium": 4
+        },
+        "measured": true,
+        "score": 32.1,
+        "band": "poor"
+      }
+    }
+  },
+  "prioritized_actions": [
+    {
+      "rank": 1,
+      "finding_id": "F-001",
+      "type": "fix",
+      "title": "Stop collapsing unknown or retired URLs onto the home page.",
+      "addresses": "Deep links are redirected to the home page",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "engagement",
+      "dimension": "engagement",
+      "effort": "low",
+      "impact": "high",
+      "mechanism": "A home-page catch-all breaks the continuity between the answer and the visit, and it means arbitrary URLs under the host return 200 rather than 404, so retired addresses stay indistinguishable from live ones.",
+      "steps": [
+        "Redirect a retired product to its closest live replacement, not to the home page.",
+        "If there is no replacement, return 404/410 with a helpful page.",
+        "Never use a catch-all rewrite for unmatched routes."
+      ],
+      "verification": "Each URL listed resolves to its own content or returns 404.",
+      "owner": ""
+    },
+    {
+      "rank": 2,
+      "finding_id": "F-002",
+      "type": "fix",
+      "title": "Pick one canonical brand string and use it byte-identically everywhere.",
+      "addresses": "The brand is called different things in different places on its own site",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "entity",
+      "dimension": "discoverability",
+      "effort": "low",
+      "impact": "high",
+      "mechanism": "One exact string in Organization.name, og:site_name, the title suffix and Product.brand is an explicit statement that every mention is the same entity; several strings leave that to be inferred.",
+      "steps": [
+        "Choose the exact trading name, including capitalisation and any suffix.",
+        "Use it in Organization.name, og:site_name, the <title> suffix, the footer copyright and Product.brand.name.",
+        "Put the legal entity name in legalName, not in name.",
+        "Roll the same string out to every off-site profile."
+      ],
+      "verification": "Grep the rendered home page for the brand string; every occurrence should be identical.",
+      "owner": ""
+    },
+    {
+      "rank": 3,
+      "finding_id": "F-003",
+      "type": "fix",
+      "title": "Serve one price per product from a single source, on every surface.",
+      "addresses": "The same product is priced differently on the listing and on its own page",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "freshness_corroboration",
+      "dimension": "discoverability",
+      "effort": "medium",
+      "impact": "high",
+      "mechanism": "Two prices for one product is an internal contradiction: nothing in the markup says which is current, so a reader of either page has no basis to pick. One source removes the disagreement.",
+      "steps": [
+        "Render listing tiles and product pages from the same pricing service call, not from a denormalised copy.",
+        "Invalidate listing caches when a product price changes.",
+        "Add a nightly consistency job that diffs listing vs detail prices."
+      ],
+      "verification": "A crawl of every category page reports zero price mismatches against the linked product pages.",
+      "owner": ""
+    },
+    {
+      "rank": 4,
+      "finding_id": "F-004",
+      "type": "fix",
+      "title": "Make each page canonical to itself unless it is a genuine duplicate.",
+      "addresses": "Canonical tags collapse content pages onto the home page",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "crawl_render",
+      "dimension": "discoverability",
+      "effort": "low",
+      "impact": "high",
+      "mechanism": "Product detail pages whose canonical is the home page state that their content is the home page's; a self-referencing canonical states, explicitly, that each page is its own preferred address.",
+      "steps": [
+        "Remove hardcoded canonicals from shared templates.",
+        "Generate the canonical from the page's own route, not from a site-wide constant."
+      ],
+      "verification": "For each URL listed, the canonical equals the URL itself.",
+      "owner": ""
+    },
+    {
+      "rank": 5,
+      "finding_id": "F-005",
+      "type": "fix",
+      "title": "Render at least the aggregate rating and a few reviews server-side.",
+      "addresses": "Reviews appear to be loaded by a client-side widget, so the proof is invisible to a fetch",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "engagement",
+      "dimension": "engagement",
+      "effort": "medium",
+      "impact": "high",
+      "mechanism": "Third-party review widgets inject their content after load, so the rating exists in the rendered page and not in the server response; rendering it server-side puts the same value in the bytes a fetch receives.",
+      "steps": [
+        "Ask the review vendor for their SEO/server-rendered snippet or API.",
+        "Fetch the aggregate at build/render time and emit it in the HTML plus AggregateRating markup.",
+        "Render the newest 3-5 review bodies server-side; keep pagination client-side.",
+        "Never mark up a rating the page does not actually display."
+      ],
+      "verification": "curl -s <product url> | grep -i 'ratingValue' returns a value.",
+      "owner": ""
+    },
+    {
+      "rank": 6,
+      "finding_id": "F-006",
+      "type": "fix",
+      "title": "Move the attributes already published into a specification structure.",
+      "addresses": "Product attributes are not presented in a standardized specification structure",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "engagement",
+      "dimension": "engagement",
+      "effort": "medium",
+      "impact": "high",
+      "mechanism": "A two-column structure with one row per attribute makes the same attribute addressable at the same place on every product page, so values can be compared across the range without interpreting a sentence differently on each page.",
+      "steps": [
+        "Use a real <table> or <dl> with one row per attribute, including units - starting with the attributes these pages already publish: '<Attribute>'.",
+        "Keep the same attribute set, in the same order, across the category so rows line up between products.",
+        "State the negative values too, not only the positive ones - an explicitly absent property cannot be inferred as present.",
+        "Mirror the same values in additionalProperty markup so the visible table and the typed data agree."
+      ],
+      "verification": "curl -s <product-url> shows a <table> or <dl> whose rows are the attribute names.",
+      "owner": ""
+    },
+    {
+      "rank": 7,
+      "finding_id": "F-007",
+      "type": "fix",
+      "title": "Fix or remove the broken sitemap references.",
+      "addresses": "A declared sitemap is missing or does not parse",
+      "priority": "medium",
+      "severity": "medium",
+      "pillar": "crawl_render",
+      "dimension": "discoverability",
+      "effort": "low",
+      "impact": "medium",
+      "mechanism": "A declared sitemap is the site's own statement of which URLs exist; one that does not parse, or is not there, states nothing, so the URLs it was meant to list are discoverable only by following links.",
+      "steps": [
+        "Remove Sitemap: lines pointing at URLs that 404.",
+        "Validate the XML (a stray & or an unescaped < will break the whole file).",
+        "If a sitemap index lists children, make sure every child resolves.",
+        "If the sitemap is served but refuses unknown user-agents, allow crawlers to read it - a sitemap only a browser can fetch helps no crawler."
+      ],
+      "verification": "Every URL in every Sitemap: directive returns 200 and valid XML.",
+      "owner": ""
+    },
+    {
+      "rank": 8,
+      "finding_id": "F-008",
+      "type": "fix",
+      "title": "Publish a stable sku plus a global identifier (GTIN or MPN) on every product.",
+      "addresses": "Products carry no stable identifier, so listings elsewhere cannot be matched to them",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "machine_readability",
+      "dimension": "discoverability",
+      "effort": "low",
+      "impact": "high",
+      "mechanism": "Corroboration works by matching entities across sources. Without a shared identifier there is no field on which your page and a retailer's listing are the same product, so the two never reinforce each other and neither becomes the trusted answer.",
+      "steps": [
+        "Emit sku (your internal code) on every Product.",
+        "Emit gtin13/gtin12/gtin8 where a barcode exists, mpn otherwise.",
+        "Use the same identifier in your merchant feeds and marketplace listings so they resolve to one entity.",
+        "Keep the identifier stable across price changes and re-designs."
+      ],
+      "verification": "Search a GTIN from your catalogue; your own page and your retail partners' listings should both surface.",
+      "owner": ""
+    },
+    {
+      "rank": 9,
+      "finding_id": "F-009",
+      "type": "fix",
+      "title": "Publish the product's attributes as a specification block and mirror them in additionalProperty.",
+      "addresses": "A buyer asking about a product's specifications finds no answer in the fetched evidence",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "answerability",
+      "dimension": "answerability",
+      "effort": "medium",
+      "impact": "high",
+      "mechanism": "A question is answerable when the fact is present in the response and identifiable without guessing. Publishing it once, in a typed field, makes every phrasing of the question resolvable from the same value.",
+      "steps": [
+        "Publish the product's attributes as a specification block and mirror them in additionalProperty."
+      ],
+      "verification": "Re-run this audit; the question moves out of not_answerable in the answerability matrix.",
+      "owner": ""
+    },
+    {
+      "rank": 10,
+      "finding_id": "F-010",
+      "type": "fix",
+      "title": "Give each product page enough plain-text substance to answer a question.",
+      "addresses": "Product pages carry very little extractable text",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "crawl_render",
+      "dimension": "discoverability",
+      "effort": "medium",
+      "impact": "high",
+      "mechanism": "Plain-text substance is what a question can be matched against; a page with a title, a price and three bullet points states almost nothing to match.",
+      "steps": [
+        "Add a 100-200 word description that states what the product is, who it is for and what makes it different - in plain sentences.",
+        "Publish the full specification as text (not an image or a PDF).",
+        "Include the questions buyers actually ask, with answers.",
+        "Keep the text in the server response, not in a tab loaded on click."
+      ],
+      "verification": "curl -s <url> | wc -w exceeds ~400 for a product page.",
+      "owner": ""
+    },
+    {
+      "rank": 11,
+      "finding_id": "F-011",
+      "type": "fix",
+      "title": "Emit a truthful <lastmod> for every sitemap URL.",
+      "addresses": "Sitemap entries omit <lastmod>, so the sitemap says nothing about what changed",
+      "priority": "medium",
+      "severity": "medium",
+      "pillar": "freshness_corroboration",
+      "dimension": "discoverability",
+      "effort": "low",
+      "impact": "medium",
+      "mechanism": "lastmod is the sitemap's own statement of what changed and when. Without it the sitemap gives a reader no basis to tell a page that changed this morning from one untouched for two years.",
+      "steps": [
+        "Set lastmod from the content's real modification timestamp.",
+        "Use W3C datetime format with a timezone.",
+        "Update it whenever a stated fact on the page changes, not only on copy edits."
+      ],
+      "verification": "Change one page, regenerate the sitemap, and confirm only that URL's lastmod moved.",
+      "owner": ""
+    },
+    {
+      "rank": 12,
+      "finding_id": "F-012",
+      "type": "fix",
+      "title": "Repair or remove the missing URLs from sitemaps and internal links.",
+      "addresses": "Pages the site itself advertises are not there",
+      "priority": "medium",
+      "severity": "medium",
+      "pillar": "crawl_render",
+      "dimension": "discoverability",
+      "effort": "medium",
+      "impact": "medium",
+      "mechanism": "A URL the site advertises and then answers with 404 or 410 is a statement the site contradicts itself on; each one is a request spent on a page that did not serve.",
+      "steps": [
+        "Either restore the page or 301 it to the closest live equivalent.",
+        "Regenerate the sitemap so it no longer lists missing URLs.",
+        "Add a build-time check that every sitemap URL returns 200."
+      ],
+      "verification": "Re-crawl: zero 404/410 among sitemap-listed and internally linked URLs.",
+      "owner": ""
+    },
+    {
+      "rank": 13,
+      "finding_id": "F-013",
+      "type": "fix",
+      "title": "Fill out the Organization entity with the properties that apply to it.",
+      "addresses": "The Organization entity is declared but omits properties a site of this shape is expected to carry",
+      "priority": "medium",
+      "severity": "medium",
+      "pillar": "entity",
+      "dimension": "discoverability",
+      "effort": "low",
+      "impact": "medium",
+      "mechanism": "Entity resolution works by matching attributes. A node with only a name matches every company sharing that name; a node with a description, contact details and, where it has one, an address provides explicit machine-readable evidence to match on.",
+      "steps": [
+        "Add description (one factual sentence, no marketing).",
+        "Add a PostalAddress for the organisation's location.",
+        "Add a ContactPoint (or telephone/email).",
+        "Add sameAs for every official profile the site links to.",
+        "Add legalName when it differs from the trading name.",
+        "Give the node a stable @id such as https://example.com/#organization and reference it from every page that names the organisation."
+      ],
+      "verification": "Structured-data test shows an Organization carrying the properties listed as expected.",
+      "owner": ""
+    },
+    {
+      "rank": 14,
+      "finding_id": "F-014",
+      "type": "fix",
+      "title": "Set \"@context\": \"https://schema.org\" on every JSON-LD block.",
+      "addresses": "JSON-LD blocks do not declare the schema.org context",
+      "priority": "medium",
+      "severity": "medium",
+      "pillar": "machine_readability",
+      "dimension": "discoverability",
+      "effort": "low",
+      "impact": "medium",
+      "mechanism": "Without the context, `\"@type\": \"Product\"` is an undefined term rather than schema.org's Product, so the block carries no meaning to a consumer.",
+      "steps": [
+        "Use the https:// form of the context URL.",
+        "If you use @graph, put @context once at the top level."
+      ],
+      "verification": "Every ld+json block contains schema.org in its @context.",
+      "owner": ""
+    },
+    {
+      "rank": 15,
+      "finding_id": "F-015",
+      "type": "fix",
+      "title": "Publish the attributes this catalogue already states as typed properties.",
+      "addresses": "Product pages expose no typed schema.org attributes",
+      "priority": "high",
+      "severity": "high",
+      "pillar": "machine_readability",
+      "dimension": "discoverability",
+      "effort": "medium",
+      "impact": "high",
+      "mechanism": "A PropertyValue with a name, a value and a unit is comparable across products without interpretation. The same fact in prose has to be located and parsed first, and that step is where it is dropped.",
+      "steps": [
+        "Add an additionalProperty PropertyValue entry for each attribute these pages already publish: '<Attribute>'.",
+        "Use the first-class properties where schema.org has one: color, size, material, weight, width, height.",
+        "Keep the typed value and the visible value identical - the markup must describe what the page displays.",
+        "State the negative facts as well as the positive ones; an attribute that is absent from the markup is not readable as 'no', only as 'unknown'."
+      ],
+      "verification": "The Product JSON-LD on a product page contains an additionalProperty entry for each attribute the page displays, with matching values.",
+      "owner": ""
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "OPP-ANSWER-PAGES",
+      "type": "proactive",
+      "grounding": "generic",
+      "title": "Publish comparison and 'which one for what' pages for the range you sell",
+      "dimension": "discoverability",
+      "mechanism": "A page whose heading is the question and whose body is a comparison table states the answer to a constrained question explicitly, in one place, where a listing states only the range. That provides a page that can be quoted and linked to for that question; whether any system retrieves it is not something this audit measures.",
+      "why_now": "The site sells a range (two or more sellable items of the same kind (physical: 3)) and comparison-shaped content is the direct way to state how its items differ.",
+      "steps": [
+        "List the 10-20 questions your buyers actually ask, from support tickets, on-site search logs and marketplace Q&A. This audit generates its questions from your content, not from anyone's behaviour, so your own sources are the ones that know.",
+        "Publish comparison and 'best <item> for <use>' pages, each at its own URL with the question as the heading and a direct answer in the first paragraph (e.g. about Northvale Press).",
+        "Include an HTML <table> comparing the items on the attributes the question cares about, with units, and link each row to its own page.",
+        "Mark the page up with FAQPage or ItemList as appropriate and keep it updated."
+      ],
+      "effort": "medium",
+      "impact": "high",
+      "priority": "medium",
+      "verification": "Re-ask the same questions in a browsing-enabled assistant, monthly, and record whether the page is cited.",
+      "verification_type": "external_validation",
+      "example": "",
+      "applicability": {
+        "site_kind": "ecommerce",
+        "applies_because": "two or more sellable items of the same kind (physical: 3), on a ecommerce site",
+        "conditions": [
+          "two or more comparable sellable items were read"
+        ],
+        "evidence_requirement": "two or more comparable sellable items were read",
+        "site_kinds": [
+          "ecommerce",
+          "marketplace",
+          "mixed",
+          "services",
+          "software",
+          "travel_hospitality"
+        ],
+        "page_contexts": [
+          "product",
+          "category"
+        ]
+      }
+    },
+    {
+      "id": "OPP-REFERRAL-CONTINUITY",
+      "type": "proactive",
+      "grounding": "generic",
+      "title": "Make every deep link land on the specific page it names",
+      "dimension": "engagement",
+      "mechanism": "A visitor who arrives by a link was pointed at something specific. A deep link that resolves to the exact page, with the decisive fact stated early in the server-rendered HTML, provides that fact at the point of arrival instead of leaving it to be searched for. How often visitors arrive this way, and what they do next, is not something this audit measures.",
+      "why_now": "Every quotable fact on the site is a potential landing page, and a landing page that answers the question it was linked for needs nothing else.",
+      "steps": [
+        "Deep-link from every quotable fact to the exact product page, never the home page, and never collapse retired URLs onto the front door.",
+        "Keep what the page exists to state - the price and whether it is available - in the first screen of server-rendered markup, before long-form copy.",
+        "Where a documented intent parameter is read (for example ?intent=...), server-render the matching one-line context strip; use first-party storage only.",
+        "Give each section a breadcrumb and onward links so a near-miss landing has a path to the right page."
+      ],
+      "effort": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "verification": "Segment analytics by referrer and compare bounce rate and time-to-first-interaction against organic search.",
+      "verification_type": "requires_external_data",
+      "example": "",
+      "applicability": {
+        "site_kind": "ecommerce",
+        "applies_because": "5 deep content pages were read on a ecommerce site",
+        "conditions": [
+          "two or more deep content pages read"
+        ],
+        "evidence_requirement": "two or more deep content pages were read",
+        "site_kinds": "any",
+        "page_contexts": [
+          "product",
+          "article",
+          "faq",
+          "support",
+          "policy"
+        ]
+      }
+    },
+    {
+      "id": "OPP-MONITORING",
+      "type": "proactive",
+      "grounding": "generic",
+      "title": "Stand up a recurring answer-monitoring set instead of auditing once",
+      "dimension": "discoverability",
+      "mechanism": "A fixed question set turned into a weekly measurement converts 'are we visible?' from an opinion into a series of observations that can be compared over time; this audit makes one such observation, of the site alone.",
+      "why_now": "This audit is a point-in-time snapshot; the gaps it detects recur silently.",
+      "steps": [
+        "Freeze ~30 questions in your own nouns: 10 category questions, 10 brand-fact questions (return window, delivery time, who you are), and 10 product questions, for example 'is Northvale Press available, and what does it cost?'.",
+        "Run them weekly across at least three assistants with browsing enabled.",
+        "Record three numbers per question: organisation mentioned (y/n), correct fact (y/n), own domain cited (y/n).",
+        "Re-run this audit on the same cadence and track the pillar scores and the finding count alongside."
+      ],
+      "effort": "low",
+      "impact": "medium",
+      "priority": "medium",
+      "verification": "A dated spreadsheet or dashboard showing mention-rate, fact-accuracy and citation-rate for 127.0.0.1:34559 over time.",
+      "verification_type": "requires_external_data",
+      "example": "",
+      "applicability": {
+        "site_kind": "ecommerce",
+        "applies_because": "a standing practice for any site; this audit is a point-in-time snapshot",
+        "conditions": [
+          "none: a standing practice for any site that wants to know how its published facts are being read"
+        ],
+        "evidence_requirement": "none - a standing practice for any site",
+        "site_kinds": "any",
+        "page_contexts": [
+          "home"
+        ]
+      }
+    },
+    {
+      "id": "OPP-PRODUCT-FEED",
+      "type": "proactive",
+      "grounding": "evidence_backed",
+      "title": "Expose a public, versioned product data feed at a stable URL",
+      "dimension": "discoverability",
+      "mechanism": "Page-by-page crawling samples a catalogue; a feed states it. A single crawlable feed provides every item's price, availability and identifier in one machine-readable document, so a change is visible in one fetch instead of a re-crawl of every page. Which consumers read feeds is not measured here.",
+      "why_now": "Product pages exist, so the catalogue data already exists in a database - publishing it costs one endpoint.",
+      "steps": [
+        "Publish /feeds/products.json (and optionally a merchant-centre style feed) with sku, gtin, mpn, name, brand, category, price, currency, availability, canonical URL, image, and lastModified per item.",
+        "Serve it uncompressed under 10MB per file, paginate with a next link if larger.",
+        "Reference the feed from robots.txt as a comment and from /llms.txt.",
+        "Regenerate on every price or stock change, never on a nightly-only cadence."
+      ],
+      "effort": "medium",
+      "impact": "medium",
+      "priority": "medium",
+      "verification": "Diff the feed against three live product pages; price, availability and title must match exactly.",
+      "verification_type": "self_verifiable",
+      "example": "",
+      "applicability": {
+        "site_kind": "ecommerce",
+        "applies_because": "3 product page(s) selling physical or digital goods with a price were read",
+        "conditions": [
+          "two or more product pages selling goods with a price"
+        ],
+        "evidence_requirement": "physical or digital goods sold with priced offers",
+        "site_kinds": [
+          "ecommerce",
+          "marketplace",
+          "mixed"
+        ],
+        "page_contexts": [
+          "product"
+        ]
+      }
+    },
+    {
+      "id": "OPP-AI-DISCOVERY-SURFACE",
+      "type": "proactive",
+      "grounding": "evidence_backed",
+      "title": "Publish an agent-facing index (/llms.txt or /agents.md) of the pages you want quoted",
+      "dimension": "discoverability",
+      "mechanism": "An agent-facing index is a plain-text, machine-readable map naming which URLs carry the canonical answer to the questions the site is asked. It provides explicit evidence of where the facts are, on one fetch; how any given agent uses it, or whether it reads it at all, is not something this audit measures.",
+      "why_now": "Neither convention was served during this audit (probed: http://127.0.0.1:34559/llms.txt, http://127.0.0.1:34559/agents.md).",
+      "steps": [
+        "Create /llms.txt with an H1 of the organisation's name and a one-line description.",
+        "List, as markdown links with a short gloss each: the brand fact page, the top product pages, the category hubs, shipping, returns, warranty and FAQ.",
+        "Keep every linked page server-rendered and under the same canonical host.",
+        "Link it from robots.txt with a comment and list it in your sitemap so it is discoverable without guessing the path.",
+        "If you prefer the /agents.md convention, publish that instead - one is enough, and both should say the same thing if you ship both."
+      ],
+      "effort": "low",
+      "impact": "medium",
+      "priority": "medium",
+      "verification": "curl -s https://127.0.0.1:34559/llms.txt | head -40 returns the index, and each linked URL returns 200 with the fact visible in the raw HTML.",
+      "verification_type": "self_verifiable",
+      "example": "# Northvale\n> <one sentence describing what this organisation sells>\n\n## Products\n- [Northvale Press](http://127.0.0.1:34559/<product-path>): All products, INR 4499, in stock\n\n## Policies\n- [Returns](http://127.0.0.1:34559/<returns-path>): <return window>\n- [Delivery](http://127.0.0.1:34559/<delivery-path>): <destinations and cost>\n",
+      "applicability": {
+        "site_kind": "ecommerce",
+        "applies_because": "7 content pages were read, and every probed index location answered not-found or empty",
+        "conditions": [
+          "no /llms.txt or /agents.md served",
+          "every probe conclusive (404/410 or an empty 200)",
+          "at least one content page read"
+        ],
+        "evidence_requirement": "a content page was read, and every probed index location conclusively answered not-found or empty",
+        "site_kinds": "any",
+        "page_contexts": [
+          "home"
+        ]
+      }
+    },
+    {
+      "id": "OPP-KNOWLEDGE-ANCHOR",
+      "type": "proactive",
+      "grounding": "evidence_backed",
+      "title": "Link the organisation to an independent knowledge-base entry where one exists or is warranted",
+      "dimension": "discoverability",
+      "mechanism": "A knowledge-base or registry entry is an independent, machine-readable description of the organisation, and a sameAs pointing at it is the explicit statement that the two are the same entity. That provides evidence a similarly named organisation cannot be confused with; whether any system uses it is not something this audit measures.",
+      "why_now": "No outbound link to a knowledge-base entry about the organisation, and no sameAs, was found in the crawled pages.",
+      "steps": [
+        "Check whether a registry or knowledge-base entry already exists (a company register, a research or organisation identifier, an encyclopaedia article), and declare it in Organization.sameAs.",
+        "Where none exists and the organisation meets the relevant notability and conflict-of-interest rules, follow each knowledge base's own process - never author an entry covertly.",
+        "Use one exact official name string on the site and in every entry."
+      ],
+      "effort": "high",
+      "impact": "medium",
+      "priority": "low",
+      "verification": "Organization.sameAs lists at least one knowledge-base or registry entry that names this organisation.",
+      "verification_type": "external_validation",
+      "example": "",
+      "applicability": {
+        "site_kind": "ecommerce",
+        "applies_because": "an organisation is declared and no sameAs or entity-matching link to a public knowledge base or registry was found",
+        "conditions": [
+          "an organisation identity is declared",
+          "no knowledge-base entry about the organisation is linked or declared"
+        ],
+        "evidence_requirement": "an organisation is declared, and no sameAs or link to a knowledge-base entry about it was found",
+        "site_kinds": [
+          "community",
+          "corporate",
+          "developer_platform",
+          "documentation",
+          "ecommerce",
+          "education",
+          "government",
+          "knowledge_reference",
+          "marketplace",
+          "mixed",
+          "nonprofit",
+          "publisher",
+          "services",
+          "software",
+          "travel_hospitality",
+          "unknown"
+        ],
+        "page_contexts": [
+          "home",
+          "about"
+        ]
+      }
+    },
+    {
+      "id": "OPP-THIRD-PARTY-SYNC",
+      "type": "proactive",
+      "grounding": "generic",
+      "title": "Run a correction pass over the third-party copies of your facts",
+      "dimension": "discoverability",
+      "mechanism": "Facts about an organisation are repeated on sites it does not control, and a correction made only on its own site leaves every older copy stating the old fact. Correcting the copies provides the same fact in every place it is stated; how any system weighs agreement between sources is not something this audit measures.",
+      "why_now": "Updating the site is necessary but not sufficient: copies of its facts live off-site, and this audit can only see what the site itself declares.",
+      "steps": [
+        "Inventory where your facts are repeated: retailer listings, marketplaces, comparison sites, review aggregators and directories.",
+        "For each, submit the correction through that source's own supported channel - a listing or profile claim, a partner or seller portal where one exists, an editorial correction request - never by scraping or editing anything you do not own.",
+        "Publish a dated changelog page for renames, rebrands and discontinuations so third parties have something citable to point at.",
+        "Re-check the highest-traffic ten sources quarterly."
+      ],
+      "effort": "high",
+      "impact": "medium",
+      "priority": "low",
+      "verification": "Count of third-party sources stating the current fact, tracked quarterly.",
+      "verification_type": "requires_external_data",
+      "example": "",
+      "applicability": {
+        "site_kind": "ecommerce",
+        "applies_because": "an organisation is declared on a ecommerce site, with 2 off-site profile(s) linked",
+        "conditions": [
+          "an organisation identity is declared"
+        ],
+        "evidence_requirement": "the site declares off-site profiles or is an organisation whose facts are repeated elsewhere",
+        "site_kinds": [
+          "community",
+          "corporate",
+          "developer_platform",
+          "documentation",
+          "ecommerce",
+          "education",
+          "government",
+          "knowledge_reference",
+          "marketplace",
+          "mixed",
+          "nonprofit",
+          "publisher",
+          "services",
+          "software",
+          "travel_hospitality",
+          "unknown"
+        ],
+        "page_contexts": [
+          "home",
+          "about"
+        ]
+      }
+    }
+  ],
+  "answerability": {
+    "questions": [
+      {
+        "kind": "product_price",
+        "question": "What is the price of Northvale Press?",
+        "status": "not_answerable",
+        "citing_url": "http://127.0.0.1:34559/products/image-price.html",
+        "evidence": "no currency-formatted price found in the fetched HTML and no Offer.price in structured data",
+        "evidence_source": "product page",
+        "missing": "a price for this product in any readable form",
+        "suggested_action": "State the price in the server-rendered HTML and mirror it in Offer.price / priceCurrency.",
+        "subject_identity": "corroborated heading: <h1> matches the page title segment \"Northvale Press\"",
+        "subject_kind": "physical"
+      },
+      {
+        "kind": "product_availability",
+        "question": "Is Northvale Press in stock?",
+        "status": "not_answerable",
+        "citing_url": "http://127.0.0.1:34559/products/image-price.html",
+        "evidence": "no Offer.availability in markup and no stock statement detected in the fetched text",
+        "evidence_source": "product page",
+        "missing": "any statement of whether this product can be bought",
+        "suggested_action": "State stock status on the page and in Offer.availability.",
+        "subject_identity": "corroborated heading: <h1> matches the page title segment \"Northvale Press\"",
+        "subject_kind": "physical"
+      },
+      {
+        "kind": "product_specifications",
+        "question": "What are the specifications of Northvale Press?",
+        "status": "not_answerable",
+        "citing_url": "http://127.0.0.1:34559/products/image-price.html",
+        "evidence": "no specification table, definition list, label/value lines or typed attributes found in the server response",
+        "evidence_source": "product page",
+        "missing": "any attribute of this product beyond its name",
+        "suggested_action": "Publish the product's attributes as a specification block and mirror them in additionalProperty.",
+        "subject_identity": "corroborated heading: <h1> matches the page title segment \"Northvale Press\"",
+        "subject_kind": "physical"
+      },
+      {
+        "kind": "product_price",
+        "question": "What is the price of Northvale Kettle?",
+        "status": "answerable",
+        "citing_url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "evidence": "Offer.price = 4499 INR",
+        "evidence_source": "Offer.price in JSON-LD",
+        "missing": "",
+        "suggested_action": "",
+        "subject_identity": "declared product entity: JSON-LD Product.name on the page's subject node",
+        "subject_kind": "physical"
+      },
+      {
+        "kind": "product_availability",
+        "question": "Is Northvale Kettle in stock?",
+        "status": "answerable",
+        "citing_url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "evidence": "Offer.availability = InStock",
+        "evidence_source": "Offer.availability in JSON-LD",
+        "missing": "",
+        "suggested_action": "",
+        "subject_identity": "declared product entity: JSON-LD Product.name on the page's subject node",
+        "subject_kind": "physical"
+      },
+      {
+        "kind": "product_specifications",
+        "question": "What are the specifications of Northvale Kettle?",
+        "status": "not_answerable",
+        "citing_url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "evidence": "no specification table, definition list, label/value lines or typed attributes found in the server response",
+        "evidence_source": "product page",
+        "missing": "any attribute of this product beyond its name",
+        "suggested_action": "Publish the product's attributes as a specification block and mirror them in additionalProperty.",
+        "subject_identity": "declared product entity: JSON-LD Product.name on the page's subject node",
+        "subject_kind": "physical"
+      },
+      {
+        "kind": "product_price",
+        "question": "What is the price of Northvale Kettle?",
+        "status": "answerable",
+        "citing_url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+        "evidence": "Offer.price = 4499",
+        "evidence_source": "Offer.price in JSON-LD",
+        "missing": "",
+        "suggested_action": "",
+        "subject_identity": "declared product entity: JSON-LD Product.name on the page's subject node",
+        "subject_kind": "physical"
+      },
+      {
+        "kind": "product_availability",
+        "question": "Is Northvale Kettle in stock?",
+        "status": "partial",
+        "citing_url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+        "evidence": "stock state stated in prose (in stock), on the phrase \"in stock\": \"thvale Kettle Northvale Kettle ₹4,499 — in stock. The Northvale Kettle is a cushioned daily trainer with a breathable mesh upper and a durable rubber outsole. It suits neutral runners logging thirty t\"",
+        "evidence_source": "visible main content",
+        "missing": "no Offer.availability value, so stock state is not a typed fact",
+        "suggested_action": "Add Offer.availability (schema.org InStock / OutOfStock) to the product's Offer.",
+        "subject_identity": "declared product entity: JSON-LD Product.name on the page's subject node",
+        "subject_kind": "physical"
+      },
+      {
+        "kind": "product_specifications",
+        "question": "What are the specifications of Northvale Kettle?",
+        "status": "not_answerable",
+        "citing_url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+        "evidence": "no specification table, definition list, label/value lines or typed attributes found in the server response",
+        "evidence_source": "product page",
+        "missing": "any attribute of this product beyond its name",
+        "suggested_action": "Publish the product's attributes as a specification block and mirror them in additionalProperty.",
+        "subject_identity": "declared product entity: JSON-LD Product.name on the page's subject node",
+        "subject_kind": "physical"
+      },
+      {
+        "kind": "category_cheapest",
+        "question": "What is the cheapest item in All products?",
+        "status": "answerable",
+        "citing_url": "http://127.0.0.1:34559/collections/all.html",
+        "evidence": "2 sampled product(s) expose a typed price; the lowest observed is 4499 on http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "evidence_source": "Offer.price across sampled products",
+        "missing": "",
+        "suggested_action": ""
+      },
+      {
+        "kind": "product_comparison",
+        "question": "What is the difference between Northvale Press and Northvale Kettle?",
+        "status": "not_answerable",
+        "citing_url": "http://127.0.0.1:34559/products/image-price.html",
+        "evidence": "the two sampled products share no attribute name in typed markup or in visible content, so there is no common axis to compare on",
+        "evidence_source": "product pages",
+        "missing": "a consistent attribute set across products in the same category",
+        "suggested_action": "Publish the same attribute set, with the same names, on every product in a category.",
+        "subject_identity": "Northvale Press: corroborated heading (<h1> matches the page title segment \"Northvale Press\"); Northvale Kettle: declared product entity (JSON-LD Product.name on the page's subject node); both are listed in \"All products\""
+      },
+      {
+        "kind": "return_window",
+        "question": "What is the return window?",
+        "status": "partial",
+        "citing_url": "http://127.0.0.1:34559/pages/shipping.html",
+        "evidence": "stated in prose, on the phrase \"returns\": \"Shipping and returns Free shipping over ₹2,000. Delivery in 3–6 business days. Returns accepted within 30 days of delivery on unused items.\"",
+        "evidence_source": "visible main content",
+        "missing": "a MerchantReturnPolicy node stating merchantReturnDays",
+        "suggested_action": "Add MerchantReturnPolicy with merchantReturnDays to the Offer, matching the number stated on the policy page."
+      },
+      {
+        "kind": "shipping_destinations",
+        "question": "Where does this site ship to, and what does delivery cost?",
+        "status": "partial",
+        "citing_url": "http://127.0.0.1:34559/pages/shipping.html",
+        "evidence": "stated in prose, on the phrase \"Shipping\": \"Shipping and returns Free shipping over ₹2,000. Delivery in 3–6 business days. Returns accepted within 30 days of delivery on unused items.\"",
+        "evidence_source": "visible main content",
+        "missing": "an OfferShippingDetails node stating shippingDestination and shippingRate",
+        "suggested_action": "Add OfferShippingDetails to the Offer, naming the destinations served and the rate, so delivery can be answered without reading the policy page."
+      },
+      {
+        "kind": "payment_options",
+        "question": "What payment methods are accepted?",
+        "status": "not_answerable",
+        "citing_url": "http://127.0.0.1:34559/",
+        "evidence": "no statement of this policy was detected in any page the crawl fetched, in markup or in text",
+        "evidence_source": "all crawled pages",
+        "missing": "an acceptedPaymentMethod value on the Offer or Organization",
+        "suggested_action": "State accepted payment methods in the page text and as acceptedPaymentMethod on the Offer."
+      }
+    ],
+    "total_questions": 14,
+    "counts": {
+      "answerable": 4,
+      "partial": 3,
+      "not_answerable": 7
+    },
+    "by_kind": {
+      "product_price": {
+        "answerable": 2,
+        "partial": 0,
+        "not_answerable": 1
+      },
+      "product_availability": {
+        "answerable": 1,
+        "partial": 1,
+        "not_answerable": 1
+      },
+      "product_specifications": {
+        "answerable": 0,
+        "partial": 0,
+        "not_answerable": 3
+      },
+      "category_cheapest": {
+        "answerable": 1,
+        "partial": 0,
+        "not_answerable": 0
+      },
+      "product_comparison": {
+        "answerable": 0,
+        "partial": 0,
+        "not_answerable": 1
+      },
+      "return_window": {
+        "answerable": 0,
+        "partial": 1,
+        "not_answerable": 0
+      },
+      "shipping_destinations": {
+        "answerable": 0,
+        "partial": 1,
+        "not_answerable": 0
+      },
+      "payment_options": {
+        "answerable": 0,
+        "partial": 0,
+        "not_answerable": 1
+      }
+    },
+    "answerability_score": 39.3,
+    "commerce_evidence": [
+      "4 page(s) classified as product pages",
+      "1 page(s) classified as category pages",
+      "3 page(s) declaring commerce schema.org types",
+      "1 category page(s) listing product links or prices"
+    ],
+    "site_kind": "ecommerce",
+    "question_classes": [
+      "category_cheapest",
+      "payment_options",
+      "product_availability",
+      "product_comparison",
+      "product_price",
+      "product_specifications",
+      "return_window",
+      "shipping_destinations"
+    ],
+    "not_asked": {},
+    "notes": [
+      "1 page(s) classified as products were not asked product questions because no item-scoped evidence establishes what they are called - no declared product name, and no heading the page's title or URL corroborates: http://127.0.0.1:34559/products/northvale-grinder.html (no heading)"
+    ]
+  },
+  "coverage": {
+    "pages_fetched": 9,
+    "pages_by_type": {
+      "home": 1,
+      "category": 1,
+      "policy": 1,
+      "error": 1,
+      "product": 4,
+      "reference": 1
+    },
+    "content_pages": 7,
+    "non_content_pages_by_type": {
+      "reference": 1
+    },
+    "site_kind": "ecommerce",
+    "site_kind_confidence": "high",
+    "observed_contexts": [
+      {
+        "context": "ecommerce",
+        "evidence_score": 4,
+        "primary": true
+      }
+    ],
+    "product_subtypes": {
+      "physical": 3,
+      "informational": 1
+    },
+    "listing_subtypes": {
+      "ecommerce_listing": 1
+    },
+    "expectations_not_applied": [
+      {
+        "expectation": "shipping",
+        "applied_to": 3,
+        "product_pages": 4,
+        "not_applied": [
+          {
+            "reason": "the page describes the item without selling it",
+            "pages": 1
+          }
+        ]
+      },
+      {
+        "expectation": "returns",
+        "applied_to": 3,
+        "product_pages": 4,
+        "not_applied": [
+          {
+            "reason": "the page describes the item without selling it",
+            "pages": 1
+          }
+        ]
+      },
+      {
+        "expectation": "stock",
+        "applied_to": 3,
+        "product_pages": 4,
+        "not_applied": [
+          {
+            "reason": "the page describes the item without selling it",
+            "pages": 1
+          }
+        ]
+      },
+      {
+        "expectation": "purchase_cta",
+        "applied_to": 3,
+        "product_pages": 4,
+        "not_applied": [
+          {
+            "reason": "the page does not offer the item for sale",
+            "pages": 1
+          }
+        ]
+      }
+    ],
+    "sitemaps_found": 1,
+    "sitemap_urls_seen": 9,
+    "robots_txt_present": true,
+    "ai_discovery_surfaces": [],
+    "locale_scope": null,
+    "out_of_locale_candidates": 0,
+    "declared_anchors_checked": 2,
+    "headless_render_used": false,
+    "rendered_evidence": {
+      "attempted": false,
+      "available": false,
+      "render_mode": "static-fetch",
+      "viewport": null,
+      "pages_selected": 0,
+      "pages_rendered": 0,
+      "pages_failed": 0,
+      "budget": {},
+      "budget_exhausted": false,
+      "elapsed_s": null,
+      "unavailable_reason": null
+    },
+    "blocked_by_robots": 0,
+    "fetch_errors": 0,
+    "limits": {
+      "max_pages": 40,
+      "time_budget_s": 240.0
+    },
+    "transport": {
+      "time_by_outcome_s": {
+        "answered": 0.02,
+        "refused_or_error_status": 0.01,
+        "transport_failure": 0.0,
+        "retry_backoff": 0.0,
+        "throttle": 1.72
+      },
+      "transport_failures": 0,
+      "retries_spent": 0,
+      "requests_not_attempted": 0,
+      "hosts_stopped_early": {},
+      "request_timeout_s": 12.0,
+      "max_retries": 1
+    },
+    "elapsed_s": 1.81,
+    "requests": 19,
+    "notes": [
+      "1 fetched URL(s) served another fetched page's document (a redirect, a declared canonical, or an identical copy) and are recorded as reference endpoints rather than as content pages",
+      "site shape read as ecommerce (high confidence): ecommerce: 3 page(s) sell physical goods; ecommerce: an ecommerce listing page"
+    ],
+    "specialists": {
+      "state": "complete",
+      "expected": 6,
+      "completed": [
+        "crawl-render-audit",
+        "machine-readability-audit",
+        "freshness-corroboration",
+        "entity-audit",
+        "engagement-audit",
+        "answerability-audit"
+      ],
+      "failed": [],
+      "unmeasured_pillars": []
+    }
+  },
+  "evidence_manifest": {
+    "started_at": "2026-09-07T14:11:45Z",
+    "finished_at": "2026-09-07T14:11:47Z",
+    "stats": {
+      "requests": 19,
+      "bytes_downloaded": 16914,
+      "unique_urls_fetched": 19,
+      "html_pages_parsed": 8,
+      "cache_reuses": 0,
+      "duplicate_urls_collapsed": 9,
+      "blocked_by_robots": 0,
+      "errors": 0,
+      "elapsed_s": 1.81,
+      "effective_delay_s": 0.1,
+      "transport": {
+        "time_by_outcome_s": {
+          "answered": 0.02,
+          "refused_or_error_status": 0.01,
+          "transport_failure": 0.0,
+          "retry_backoff": 0.0,
+          "throttle": 1.72
+        },
+        "transport_failures": 0,
+        "retries_spent": 0,
+        "requests_not_attempted": 0,
+        "hosts_stopped_early": {},
+        "request_timeout_s": 12.0,
+        "max_retries": 1
+      }
+    },
+    "robots_url": "http://127.0.0.1:34559/robots.txt",
+    "pages": [
+      {
+        "url": "http://127.0.0.1:34559/",
+        "type": "home",
+        "status": 200,
+        "why_fetched": "home page (site root)",
+        "why_type": "the site root"
+      },
+      {
+        "url": "http://127.0.0.1:34559/collections/all.html",
+        "type": "category",
+        "status": 200,
+        "why_fetched": "linked from the home page",
+        "why_type": "the URL path is a category route"
+      },
+      {
+        "url": "http://127.0.0.1:34559/pages/shipping.html",
+        "type": "policy",
+        "status": 200,
+        "why_fetched": "linked from the home page",
+        "why_type": "the URL path is a policy route"
+      },
+      {
+        "url": "http://127.0.0.1:34559/products/ghost-product.html",
+        "type": "error",
+        "status": 404,
+        "why_fetched": "listed in http://127.0.0.1:34559/sitemap.xml",
+        "why_type": ""
+      },
+      {
+        "url": "http://127.0.0.1:34559/products/image-price.html",
+        "type": "product",
+        "status": 200,
+        "why_fetched": "linked from the home page",
+        "why_type": "content evidence; anchored on: url: an item slug rather than a section; corroborated by: heading: one heading, naming a thing, breadcrumb: a trail ending at this page"
+      },
+      {
+        "url": "http://127.0.0.1:34559/products/legacy-model.html",
+        "type": "reference",
+        "status": 200,
+        "why_fetched": "linked from the home page",
+        "why_type": "a navigation/reference address rather than a document of its own: it redirects to http://127.0.0.1:34559/, which the crawl holds as a page of its own (its content alone had read as home)"
+      },
+      {
+        "url": "http://127.0.0.1:34559/products/northvale-grinder.html",
+        "type": "product",
+        "status": 200,
+        "why_fetched": "linked from the home page",
+        "why_type": "an item URL and no content to weigh against it; anchored on: url: an item slug rather than a section"
+      },
+      {
+        "url": "http://127.0.0.1:34559/products/northvale-kettle-blue.html",
+        "type": "product",
+        "status": 200,
+        "why_fetched": "linked from the home page",
+        "why_type": "content evidence; anchored on: identity: one product entity declared, url: an item slug rather than a section; corroborated by: offer: a priced Offer on that entity, entity: the declaration describes the thing, heading: one heading, naming a thing, price: a small price set in the content region"
+      },
+      {
+        "url": "http://127.0.0.1:34559/products/northvale-kettle.html",
+        "type": "product",
+        "status": 200,
+        "why_fetched": "linked from the home page",
+        "why_type": "content evidence; anchored on: identity: one product entity declared, url: an item slug rather than a section; corroborated by: offer: a priced Offer on that entity, entity: the declaration describes the thing, heading: one heading, naming a thing, price: a small price set in the content region"
+      }
+    ]
+  },
+  "diagnostics": {
+    "skill_runs": [
+      {
+        "skill": "crawl-render-audit",
+        "pillar": "crawl_render",
+        "status": "ok",
+        "ok": true,
+        "findings": 6,
+        "elapsed_s": 0.001
+      },
+      {
+        "skill": "machine-readability-audit",
+        "pillar": "machine_readability",
+        "status": "ok",
+        "ok": true,
+        "findings": 8,
+        "elapsed_s": 0.005
+      },
+      {
+        "skill": "freshness-corroboration",
+        "pillar": "freshness_corroboration",
+        "status": "ok",
+        "ok": true,
+        "findings": 3,
+        "elapsed_s": 0.007
+      },
+      {
+        "skill": "entity-audit",
+        "pillar": "entity",
+        "status": "ok",
+        "ok": true,
+        "findings": 6,
+        "elapsed_s": 0.005
+      },
+      {
+        "skill": "engagement-audit",
+        "pillar": "engagement",
+        "status": "ok",
+        "ok": true,
+        "findings": 7,
+        "elapsed_s": 0.002
+      },
+      {
+        "skill": "answerability-audit",
+        "pillar": "answerability",
+        "status": "ok",
+        "ok": true,
+        "findings": 5,
+        "elapsed_s": 0.014
+      }
+    ],
+    "rejected_findings": [],
+    "rejected_finding_count": 0,
+    "evidence_reuse_ratio": 0.833,
+    "evidence_reuse": {
+      "network_requests": 19,
+      "specialists_served_from_the_bundle": 6,
+      "specialist_network_requests": 0,
+      "requests_if_each_specialist_had_crawled": 114,
+      "requests_avoided_by_sharing": 95,
+      "shared_evidence_reuse_ratio": 0.833,
+      "transport_cache_hit_ratio": 0.321,
+      "cache_reuses": 0,
+      "duplicate_urls_collapsed": 9,
+      "definition": "shared_evidence_reuse_ratio = 1 - R / (N x R) for N specialists that completed over a bundle of R network requests; transport_cache_hit_ratio = (cache reuses + duplicate URLs collapsed) / (requests + those), the fetch-layer measure an earlier version published as the evidence reuse ratio."
+    },
+    "fetches_avoided": 9,
+    "duplicate_evidence_entries_removed": 1,
+    "semantics": {
+      "site_kind": "ecommerce",
+      "site_kind_confidence": "high",
+      "site_kind_evidence": [
+        "ecommerce: 3 page(s) sell physical goods",
+        "ecommerce: an ecommerce listing page"
+      ],
+      "product_subtypes": {
+        "physical": 3,
+        "informational": 1
+      },
+      "listing_subtypes": {
+        "ecommerce_listing": 1
+      },
+      "question_classes": [
+        "category_cheapest",
+        "payment_options",
+        "product_availability",
+        "product_comparison",
+        "product_price",
+        "product_specifications",
+        "return_window",
+        "shipping_destinations"
+      ],
+      "site_search_expected": {},
+      "comparison_expected": {
+        "applies": true,
+        "reason": "two or more sellable items of the same kind (physical: 3)",
+        "basis": "declared",
+        "confidence": "medium"
+      },
+      "expectations": [
+        {
+          "expectation": "shipping",
+          "product_pages": 4,
+          "applied_to": 3,
+          "not_applied": [
+            {
+              "reason": "the page describes the item without selling it",
+              "pages": 1
+            }
+          ]
+        },
+        {
+          "expectation": "returns",
+          "product_pages": 4,
+          "applied_to": 3,
+          "not_applied": [
+            {
+              "reason": "the page describes the item without selling it",
+              "pages": 1
+            }
+          ]
+        },
+        {
+          "expectation": "stock",
+          "product_pages": 4,
+          "applied_to": 3,
+          "not_applied": [
+            {
+              "reason": "the page describes the item without selling it",
+              "pages": 1
+            }
+          ]
+        },
+        {
+          "expectation": "physical_specifications",
+          "product_pages": 4,
+          "applied_to": 4,
+          "not_applied": []
+        },
+        {
+          "expectation": "reviews",
+          "product_pages": 4,
+          "applied_to": 4,
+          "not_applied": []
+        },
+        {
+          "expectation": "price",
+          "product_pages": 4,
+          "applied_to": 4,
+          "not_applied": []
+        },
+        {
+          "expectation": "identifiers",
+          "product_pages": 4,
+          "applied_to": 4,
+          "not_applied": []
+        },
+        {
+          "expectation": "purchase_cta",
+          "product_pages": 4,
+          "applied_to": 3,
+          "not_applied": [
+            {
+              "reason": "the page does not offer the item for sale",
+              "pages": 1
+            }
+          ]
+        }
+      ]
+    },
+    "duplicate_urls_collapsed": 9,
+    "audit_notes": [
+      "1 fetched URL(s) served another fetched page's document (a redirect, a declared canonical, or an identical copy) and are recorded as reference endpoints rather than as content pages",
+      "site shape read as ecommerce (high confidence): ecommerce: 3 page(s) sell physical goods; ecommerce: an ecommerce listing page"
+    ],
+    "fetch_errors": [],
+    "blocked_by_robots": [],
+    "schema_validation": {
+      "schema": "audit-report.schema.json",
+      "valid": true,
+      "errors": []
+    }
+  }
+}

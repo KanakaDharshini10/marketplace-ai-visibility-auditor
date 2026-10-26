@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kestrel Athletics</title>
+  <!-- DEFECT FC-PRICE-CONFLICT: markup says 8999, the page shows 7,499
+       DEFECT FC-AVAILABILITY-CONFLICT: markup says InStock, the page says sold out
+       DEFECT FC-PRICE-VALID-UNTIL-EXPIRED: priceValidUntil is in the past
+       DEFECT MR-IDENTIFIERS-MISSING / EN-PRODUCT-BRAND-MISSING / EN-CATEGORY-UNDECLARED -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Marathon Elite",
+    "offers": {
+      "@type": "Offer",
+      "price": "8999",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "priceValidUntil": "{{STALE}}"
+    }
+  }
+  </script>
+</head>
+<body>
+  <h2>Marathon Elite</h2>
+  <img src="/img/me-1.png">
+  <img src="/img/me-2.png">
+  <img src="/img/me-3.png">
+  <img src="/img/me-4.png">
+  <p>Race-day shoe.</p>
+  <p>&#8377;7,499</p>
+  <p>Sold out</p>
+  <label>Size
+    <select name="size"><option>UK 8</option><option>UK 9</option></select>
+  </label>
+  <footer><p>&copy; {{OLD_YEAR}} Kestrel Athletics</p></footer>
+</body>
+</html>

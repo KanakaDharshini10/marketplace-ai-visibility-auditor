@@ -1,0 +1,18 @@
+# The marketplace has NO runtime dependencies.
+#
+# Everything in lib/aiva and skills/*/scripts uses the Python 3.9+ standard
+# library only, so a judge can run:
+#
+#     python3 skills/marketplace-ai-visibility-audit/scripts/run_audit.py https://example.com
+#
+# with nothing installed. `pip install -r requirements.txt` is a no-op.
+#
+# Optional, only for the `--render` browser-rendered evidence pass (the audit is
+# complete without it; the static JavaScript-dependency heuristics always run,
+# and every default is unchanged when it is absent):
+#
+#   playwright>=1.40      # then: playwright install chromium
+#
+# Optional, for development only:
+#
+#   pyflakes              # lint; the test suite itself needs nothing

@@ -1,0 +1,2398 @@
+{
+  "schema_version": "1.0",
+  "generator": {
+    "tool": "marketplace-ai-visibility-auditor",
+    "version": "1.10.2",
+    "user_agent": "MarketplaceAIVisibilityAuditor/1.10.2 (+read-only site audit; respects robots.txt; contact: site owner via audit operator)",
+    "robots_token": "MarketplaceAIVisibilityAuditor",
+    "mode": "read-only (GET/HEAD only, no authentication, no site modification)"
+  },
+  "config": {
+    "site": "http://127.0.0.1:39245",
+    "respect_robots": true,
+    "request_delay_s": 0.1,
+    "timeout_s": 12.0,
+    "max_retries": 1,
+    "max_bytes_per_response": 3000000,
+    "user_agent": null,
+    "max_pages": 40,
+    "max_sitemap_urls": 2000,
+    "max_sitemaps": 12,
+    "max_depth": 2,
+    "total_time_budget_s": 240.0,
+    "sample_targets": {
+      "product": 12,
+      "category": 5,
+      "policy": 4,
+      "about": 1,
+      "contact": 1,
+      "faq": 2,
+      "search": 1,
+      "article": 2,
+      "promotional": 2,
+      "program": 1,
+      "tool": 1,
+      "support": 2,
+      "other": 4
+    },
+    "check_external": false,
+    "max_external_checks": 12,
+    "use_headless_render": true,
+    "render_page_limit": 4,
+    "render_timeout_s": 15.0,
+    "render_budget_s": 60.0,
+    "render_viewport_width": 1280,
+    "render_viewport_height": 800,
+    "stale_page_days": 365,
+    "very_stale_page_days": 730,
+    "stale_review_days": 540,
+    "offline_root": null,
+    "allow_private_hosts": false,
+    "schema_variant": "full",
+    "verbose": false
+  },
+  "site": {
+    "input": "http://127.0.0.1:39245",
+    "origin": "http://127.0.0.1:39245",
+    "host": "127.0.0.1:39245",
+    "registrable_host": "127.0.0.1",
+    "home_url": "http://127.0.0.1:39245/",
+    "entry_url": "http://127.0.0.1:39245/",
+    "entry_is_home": true,
+    "scheme": "http",
+    "locale_scope": null
+  },
+  "started_at": "2026-09-07T09:25:56Z",
+  "finished_at": "2026-09-07T09:26:00Z",
+  "robots": {
+    "url": "http://127.0.0.1:39245/robots.txt",
+    "status": 200,
+    "exists": true,
+    "unreachable": false,
+    "error": null,
+    "bytes": 57,
+    "raw": "User-agent: *\nDisallow: /account/\n\nSitemap: /sitemap.xml\n",
+    "sitemaps": [
+      "/sitemap.xml"
+    ],
+    "groups": [
+      {
+        "user_agents": [
+          "*"
+        ],
+        "line": 1,
+        "crawl_delay": null,
+        "rules": [
+          {
+            "type": "disallow",
+            "pattern": "/account/",
+            "line": 2
+          }
+        ]
+      }
+    ],
+    "parse_warnings": [],
+    "unknown_directives": [],
+    "auditor_agent": "MarketplaceAIVisibilityAuditor",
+    "auditor_summary": {
+      "agent": "MarketplaceAIVisibilityAuditor",
+      "matched_group_line": 1,
+      "matched_group_agents": [
+        "*"
+      ],
+      "root_allowed": true,
+      "deciding_rule": null,
+      "crawl_delay": null,
+      "blocks_site": false
+    },
+    "ai_crawlers": {
+      "GPTBot": {
+        "agent": "GPTBot",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "OAI-SearchBot": {
+        "agent": "OAI-SearchBot",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "ChatGPT-User": {
+        "agent": "ChatGPT-User",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "ClaudeBot": {
+        "agent": "ClaudeBot",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "Claude-Web": {
+        "agent": "Claude-Web",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "Claude-User": {
+        "agent": "Claude-User",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "anthropic-ai": {
+        "agent": "anthropic-ai",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "PerplexityBot": {
+        "agent": "PerplexityBot",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "Perplexity-User": {
+        "agent": "Perplexity-User",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "Google-Extended": {
+        "agent": "Google-Extended",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "Applebot-Extended": {
+        "agent": "Applebot-Extended",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "Bingbot": {
+        "agent": "Bingbot",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "CCBot": {
+        "agent": "CCBot",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "Amazonbot": {
+        "agent": "Amazonbot",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "meta-externalagent": {
+        "agent": "meta-externalagent",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "Bytespider": {
+        "agent": "Bytespider",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "cohere-ai": {
+        "agent": "cohere-ai",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "Diffbot": {
+        "agent": "Diffbot",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      },
+      "YouBot": {
+        "agent": "YouBot",
+        "matched_group_line": 1,
+        "matched_group_agents": [
+          "*"
+        ],
+        "root_allowed": true,
+        "deciding_rule": null,
+        "crawl_delay": null,
+        "blocks_site": false
+      }
+    },
+    "ai_crawler_catalog": {
+      "GPTBot": "OpenAI - trains/serves ChatGPT retrieval corpus",
+      "OAI-SearchBot": "OpenAI - powers ChatGPT Search result citations",
+      "ChatGPT-User": "OpenAI - live fetch when a user's question needs the page",
+      "ClaudeBot": "Anthropic - Claude web index",
+      "Claude-Web": "Anthropic - legacy Claude crawler token",
+      "Claude-User": "Anthropic - live fetch on behalf of a Claude user",
+      "anthropic-ai": "Anthropic - legacy token still honoured by many sites",
+      "PerplexityBot": "Perplexity - index used for cited answers",
+      "Perplexity-User": "Perplexity - live fetch for a user question",
+      "Google-Extended": "Google - gates Gemini grounding / AI Overviews use",
+      "Applebot-Extended": "Apple - gates Apple Intelligence use",
+      "Bingbot": "Microsoft - index behind Copilot answers",
+      "CCBot": "Common Crawl - upstream corpus for many assistants",
+      "Amazonbot": "Amazon - Alexa/Rufus answer surfaces",
+      "meta-externalagent": "Meta AI - answer surfaces",
+      "Bytespider": "ByteDance - Doubao/TikTok answer surfaces",
+      "cohere-ai": "Cohere - retrieval corpus",
+      "Diffbot": "Diffbot - knowledge graph feeding several assistants",
+      "YouBot": "You.com - cited answers"
+    }
+  },
+  "host_probes": {},
+  "well_known": {
+    "llms_txt": {
+      "url": "http://127.0.0.1:39245/llms.txt",
+      "checked": true,
+      "status": 404,
+      "present": false,
+      "bytes": 61,
+      "content_type": "text/html",
+      "link_count": 0,
+      "excerpt": ""
+    },
+    "ai_surfaces": {
+      "llms_txt": {
+        "url": "http://127.0.0.1:39245/llms.txt",
+        "checked": true,
+        "status": 404,
+        "present": false,
+        "bytes": 61,
+        "content_type": "text/html",
+        "link_count": 0,
+        "excerpt": ""
+      },
+      "agents_md": {
+        "url": "http://127.0.0.1:39245/agents.md",
+        "checked": true,
+        "status": 404,
+        "present": false,
+        "bytes": 61,
+        "content_type": "text/html",
+        "link_count": 0,
+        "excerpt": ""
+      }
+    }
+  },
+  "sitemaps": [
+    {
+      "url": "http://127.0.0.1:39245/sitemap.xml",
+      "source": "robots.txt Sitemap directive",
+      "status": 200,
+      "kind": "urlset",
+      "error": null,
+      "url_count": 4,
+      "child_count": 0,
+      "lastmods": [
+        "2026-09-07",
+        "2026-09-07",
+        "2026-09-07",
+        "2026-09-07"
+      ],
+      "sample_urls": [
+        "/index.html",
+        "/collections/lanterns.html",
+        "/products/halo-lantern.html",
+        "/products/beacon-lantern.html"
+      ],
+      "content_type": "application/xml",
+      "url_count_out_of_scope": 0,
+      "entries_captured": 4,
+      "missing_lastmod": 0,
+      "entries": [
+        {
+          "url": "/index.html",
+          "lastmod": "2026-09-07",
+          "changefreq": null,
+          "priority": null
+        },
+        {
+          "url": "/collections/lanterns.html",
+          "lastmod": "2026-09-07",
+          "changefreq": null,
+          "priority": null
+        },
+        {
+          "url": "/products/halo-lantern.html",
+          "lastmod": "2026-09-07",
+          "changefreq": null,
+          "priority": null
+        },
+        {
+          "url": "/products/beacon-lantern.html",
+          "lastmod": "2026-09-07",
+          "changefreq": null,
+          "priority": null
+        }
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:39245/sitemap_index.xml",
+      "source": "well-known path probe",
+      "status": 404,
+      "kind": null,
+      "error": "HTTP 404",
+      "url_count": 0,
+      "child_count": 0,
+      "lastmods": [],
+      "sample_urls": [],
+      "content_type": "text/html"
+    },
+    {
+      "url": "http://127.0.0.1:39245/sitemap-index.xml",
+      "source": "well-known path probe",
+      "status": 404,
+      "kind": null,
+      "error": "HTTP 404",
+      "url_count": 0,
+      "child_count": 0,
+      "lastmods": [],
+      "sample_urls": [],
+      "content_type": "text/html"
+    },
+    {
+      "url": "http://127.0.0.1:39245/sitemap.xml.gz",
+      "source": "well-known path probe",
+      "status": 404,
+      "kind": null,
+      "error": "HTTP 404",
+      "url_count": 0,
+      "child_count": 0,
+      "lastmods": [],
+      "sample_urls": [],
+      "content_type": "text/html"
+    },
+    {
+      "url": "http://127.0.0.1:39245/wp-sitemap.xml",
+      "source": "well-known path probe",
+      "status": 404,
+      "kind": null,
+      "error": "HTTP 404",
+      "url_count": 0,
+      "child_count": 0,
+      "lastmods": [],
+      "sample_urls": [],
+      "content_type": "text/html"
+    }
+  ],
+  "not_found_probe": {
+    "url": "http://127.0.0.1:39245/aiva-probe-e95f2e29fd",
+    "checked": true,
+    "status": 404,
+    "final_url": "http://127.0.0.1:39245/aiva-probe-e95f2e29fd",
+    "returns_404": true,
+    "returns_200": false,
+    "redirected_to_home": false,
+    "body_bytes": 61,
+    "error": null
+  },
+  "pages": [
+    {
+      "url": "http://127.0.0.1:39245/",
+      "final_url": "http://127.0.0.1:39245/",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 823,
+      "elapsed_ms": 1,
+      "redirects": [],
+      "headers": {
+        "server": "aiva-fixture/1.0 Python/3.11.15",
+        "date": "Mon, 07 Sep 2026 09:25:56 GMT",
+        "last-modified": "Mon, 07 Sep 2026 09:18:13 GMT"
+      },
+      "lang": "en",
+      "doctype": "doctype html",
+      "parse_errors": 0,
+      "title": "Northbeam",
+      "meta_description": "Northbeam makes field lanterns and camp stoves.",
+      "meta_robots": "",
+      "meta_googlebot": "",
+      "meta_charset": "",
+      "viewport": "width=device-width, initial-scale=1",
+      "canonical": "http://127.0.0.1:39245/index.html",
+      "hreflang_alternates": [],
+      "feeds": [],
+      "open_graph": {
+        "og:title": "Northbeam",
+        "og:type": "website"
+      },
+      "twitter_card": {},
+      "headings": [
+        {
+          "level": 1,
+          "text": "Northbeam"
+        }
+      ],
+      "h1_count": 1,
+      "h1_texts": [
+        "Northbeam"
+      ],
+      "control_labels": [],
+      "heading_levels": [
+        1
+      ],
+      "semantic_landmarks": {
+        "main": false,
+        "nav": false,
+        "header": false,
+        "footer": false,
+        "article": false,
+        "section": false
+      },
+      "breadcrumbs": {
+        "present": false,
+        "link_depth": 0
+      },
+      "jsonld_blocks": [
+        {
+          "index": 0,
+          "bytes": 138,
+          "parse_ok": true,
+          "error": null,
+          "types": [
+            "Organization"
+          ],
+          "context": "https://schema.org"
+        }
+      ],
+      "jsonld_nodes": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Northbeam",
+          "url": "/",
+          "description": "An invented maker of field lanterns."
+        }
+      ],
+      "jsonld_types": [
+        "Organization"
+      ],
+      "jsonld_invalid_count": 0,
+      "microdata": [],
+      "rdfa_typeof_count": 0,
+      "text": "Northbeam Field lanterns and camp stoves, built for weather. Lanterns Halo Lantern Beacon Lantern",
+      "main_text": "Northbeam Field lanterns and camp stoves, built for weather. Lanterns Halo Lantern Beacon Lantern",
+      "text_word_count": 14,
+      "main_text_word_count": 14,
+      "block_text_excerpt": "Northbeam Field lanterns and camp stoves, built for weather. Lanterns Halo Lantern Beacon Lantern",
+      "html_bytes": 823,
+      "text_to_html_ratio": 0.1179,
+      "tables": [],
+      "definition_spec_lists": 0,
+      "definition_terms": [],
+      "visible_attribute_pairs": [],
+      "images": {
+        "total": 0,
+        "missing_alt": 0,
+        "empty_alt": 0,
+        "lazy_src_only": 0,
+        "samples": []
+      },
+      "links": {
+        "internal_count": 3,
+        "external_count": 0,
+        "nofollow_count": 0,
+        "internal": [
+          {
+            "url": "http://127.0.0.1:39245/collections/lanterns.html",
+            "text": "Lanterns",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/halo-lantern.html",
+            "text": "Halo Lantern",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+            "text": "Beacon Lantern",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          }
+        ],
+        "external": [],
+        "sameas_like": []
+      },
+      "scripts": {
+        "external_count": 0,
+        "inline_bytes": 0,
+        "spa_markers": [],
+        "hydration_markers": []
+      },
+      "noscript_present": false,
+      "noscript_text": "",
+      "prices_in_text": [],
+      "availability_text": {
+        "in_stock": false,
+        "out_of_stock": false,
+        "preorder": false,
+        "limited": false
+      },
+      "forms": {
+        "has_site_search": false,
+        "filter_controls": 0,
+        "sort_controls": 0,
+        "has_filter_controls": false,
+        "has_sort_controls": false,
+        "filter_control_names": [],
+        "sort_control_names": [],
+        "sort_options": [],
+        "has_sort_control": false,
+        "has_newsletter": false,
+        "has_cart_action": false,
+        "has_cart_action_in_main": false,
+        "cart_actions_in_main": 0,
+        "has_password_form_in_main": false,
+        "search_param_names": [],
+        "search_prefill_values": []
+      },
+      "variants": {
+        "variant_selects": 0,
+        "variant_swatches": 0
+      },
+      "dates": {
+        "time_elements": [],
+        "visible_updated": [],
+        "copyright_years": [],
+        "years_mentioned": []
+      },
+      "mentions": {
+        "shipping": false,
+        "returns": false,
+        "warranty": false,
+        "reviews": false,
+        "faq": false,
+        "compare": false,
+        "add_to_cart": false,
+        "payment": false
+      },
+      "language_supported": true,
+      "question_headings": [],
+      "details_faq_blocks": 0,
+      "html_excerpt": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Northbeam</title>\n<meta name=\"description\" content=\"Northbeam makes field lanterns and camp stoves.\">\n<meta property=\"og:title\" content=\"Northbeam\"><meta property=\"og:type\" content=\"website\">\n<link rel=\"canonical\" href=\"/index.html\">\n<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Northbeam\",\"url\":\"/\",\"description\":\"An invented maker of field lanterns.\"}</script>\n</head><body>\n<h1>Northbeam</h1>\n<p>Field lanterns and camp stoves, built for weather.</p>\n<a href=\"/collections/lanterns.html\">Lanterns</a>\n<a href=\"/products/halo-lantern.html\">Halo Lantern</a>\n<a href=\"/products/beacon-lantern.html\">Beacon Lantern</a>\n</body></html>\n",
+      "fetch_reason": "home page (site root)",
+      "page_type": "home",
+      "page_type_evidence": {
+        "decided_by": "the site root"
+      },
+      "rendered": {
+        "headings": [
+          {
+            "level": 1,
+            "text": "Northbeam"
+          }
+        ],
+        "links": {
+          "internal_count": 3,
+          "external_count": 0,
+          "nofollow_count": 0,
+          "internal": [
+            {
+              "url": "http://127.0.0.1:39245/collections/lanterns.html",
+              "text": "Lanterns",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/halo-lantern.html",
+              "text": "Halo Lantern",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+              "text": "Beacon Lantern",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            }
+          ],
+          "external": [],
+          "sameas_like": []
+        },
+        "forms": {
+          "has_site_search": false,
+          "filter_controls": 0,
+          "sort_controls": 0,
+          "has_filter_controls": false,
+          "has_sort_controls": false,
+          "filter_control_names": [],
+          "sort_control_names": [],
+          "sort_options": [],
+          "has_sort_control": false,
+          "has_newsletter": false,
+          "has_cart_action": false,
+          "has_cart_action_in_main": false,
+          "cart_actions_in_main": 0,
+          "has_password_form_in_main": false,
+          "search_param_names": [],
+          "search_prefill_values": []
+        },
+        "jsonld_blocks": [
+          {
+            "index": 0,
+            "bytes": 138,
+            "parse_ok": true,
+            "error": null,
+            "types": [
+              "Organization"
+            ],
+            "context": "https://schema.org"
+          }
+        ],
+        "jsonld_types": [
+          "Organization"
+        ],
+        "microdata": [],
+        "mentions": {
+          "shipping": false,
+          "returns": false,
+          "warranty": false,
+          "reviews": false,
+          "faq": false,
+          "compare": false,
+          "add_to_cart": false,
+          "payment": false
+        },
+        "prices_in_text": [],
+        "text_word_count": 14,
+        "open_graph": {
+          "og:title": "Northbeam",
+          "og:type": "website"
+        },
+        "scripts": {
+          "external_count": 0,
+          "inline_bytes": 0,
+          "spa_markers": [],
+          "hydration_markers": []
+        },
+        "images": {
+          "total": 0,
+          "missing_alt": 0,
+          "empty_alt": 0,
+          "lazy_src_only": 0,
+          "samples": []
+        },
+        "tables": [],
+        "language_supported": true,
+        "canonical": "http://127.0.0.1:39245/index.html",
+        "title": "Northbeam",
+        "hreflang_alternates": [],
+        "text": "Northbeam Field lanterns and camp stoves, built for weather. Lanterns Halo Lantern Beacon Lantern",
+        "main_text": "Northbeam Field lanterns and camp stoves, built for weather. Lanterns Halo Lantern Beacon Lantern",
+        "final_url": "http://127.0.0.1:39245/",
+        "ok": true
+      },
+      "semantics": {
+        "version": 1,
+        "endpoint": "content",
+        "lang": "en"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:39245/collections/lanterns.html",
+      "final_url": "http://127.0.0.1:39245/collections/lanterns.html",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 1983,
+      "elapsed_ms": 1,
+      "redirects": [],
+      "headers": {
+        "server": "aiva-fixture/1.0 Python/3.11.15",
+        "date": "Mon, 07 Sep 2026 09:25:57 GMT",
+        "last-modified": "Mon, 07 Sep 2026 09:13:01 GMT"
+      },
+      "lang": "en",
+      "doctype": "doctype html",
+      "parse_errors": 0,
+      "title": "Lanterns - Northbeam",
+      "meta_description": "Every Northbeam lantern.",
+      "meta_robots": "",
+      "meta_googlebot": "",
+      "meta_charset": "",
+      "viewport": "width=device-width, initial-scale=1",
+      "canonical": "http://127.0.0.1:39245/collections/lanterns.html",
+      "hreflang_alternates": [],
+      "feeds": [],
+      "open_graph": {
+        "og:title": "Lanterns",
+        "og:type": "website"
+      },
+      "twitter_card": {},
+      "headings": [
+        {
+          "level": 1,
+          "text": "Lanterns"
+        }
+      ],
+      "h1_count": 1,
+      "h1_texts": [
+        "Lanterns"
+      ],
+      "control_labels": [],
+      "heading_levels": [
+        1
+      ],
+      "semantic_landmarks": {
+        "main": true,
+        "nav": false,
+        "header": false,
+        "footer": false,
+        "article": false,
+        "section": false
+      },
+      "breadcrumbs": {
+        "present": false,
+        "link_depth": 0
+      },
+      "jsonld_blocks": [],
+      "jsonld_nodes": [],
+      "jsonld_types": [],
+      "jsonld_invalid_count": 0,
+      "microdata": [],
+      "rdfa_typeof_count": 0,
+      "text": "Lanterns Halo Lantern £79.00 Halo Lantern Mini £49.00 Beacon Lantern £99.00 Beacon Lantern XL £129.00 Trail Lantern £39.00 Trail Lantern Duo £69.00 Camp Lantern £59.00 Camp Lantern Pro £89.00 Summit Lantern £149.00",
+      "main_text": "Lanterns Halo Lantern £79.00 Halo Lantern Mini £49.00 Beacon Lantern £99.00 Beacon Lantern XL £129.00 Trail Lantern £39.00 Trail Lantern Duo £69.00 Camp Lantern £59.00 Camp Lantern Pro £89.00 Summit Lantern £149.00",
+      "text_word_count": 32,
+      "main_text_word_count": 32,
+      "block_text_excerpt": "Lanterns Halo Lantern £79.00 Halo Lantern Mini £49.00 Beacon Lantern £99.00 Beacon Lantern XL £129.00 Trail Lantern £39.00 Trail Lantern Duo £69.00 Camp Lantern £59.00 Camp Lantern Pro £89.00 Summit Lantern £149.00",
+      "html_bytes": 1983,
+      "text_to_html_ratio": 0.1079,
+      "tables": [],
+      "definition_spec_lists": 0,
+      "definition_terms": [],
+      "visible_attribute_pairs": [],
+      "images": {
+        "total": 0,
+        "missing_alt": 0,
+        "empty_alt": 0,
+        "lazy_src_only": 0,
+        "samples": []
+      },
+      "links": {
+        "internal_count": 9,
+        "external_count": 0,
+        "nofollow_count": 0,
+        "internal": [
+          {
+            "url": "http://127.0.0.1:39245/products/halo-lantern.html",
+            "text": "Halo Lantern",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/halo-lantern-mini.html",
+            "text": "Halo Lantern Mini",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+            "text": "Beacon Lantern",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/beacon-lantern-xl.html",
+            "text": "Beacon Lantern XL",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/trail-lantern.html",
+            "text": "Trail Lantern",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/trail-lantern-duo.html",
+            "text": "Trail Lantern Duo",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/camp-lantern.html",
+            "text": "Camp Lantern",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/camp-lantern-pro.html",
+            "text": "Camp Lantern Pro",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/summit-lantern.html",
+            "text": "Summit Lantern",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          }
+        ],
+        "external": [],
+        "sameas_like": []
+      },
+      "scripts": {
+        "external_count": 0,
+        "inline_bytes": 443,
+        "spa_markers": [],
+        "hydration_markers": []
+      },
+      "noscript_present": false,
+      "noscript_text": "",
+      "prices_in_text": [
+        {
+          "raw": "£79.00",
+          "value": 79.0,
+          "currency": "£"
+        },
+        {
+          "raw": "£49.00",
+          "value": 49.0,
+          "currency": "£"
+        },
+        {
+          "raw": "£99.00",
+          "value": 99.0,
+          "currency": "£"
+        },
+        {
+          "raw": "£129.00",
+          "value": 129.0,
+          "currency": "£"
+        },
+        {
+          "raw": "£39.00",
+          "value": 39.0,
+          "currency": "£"
+        },
+        {
+          "raw": "£69.00",
+          "value": 69.0,
+          "currency": "£"
+        },
+        {
+          "raw": "£59.00",
+          "value": 59.0,
+          "currency": "£"
+        },
+        {
+          "raw": "£89.00",
+          "value": 89.0,
+          "currency": "£"
+        },
+        {
+          "raw": "£149.00",
+          "value": 149.0,
+          "currency": "£"
+        }
+      ],
+      "availability_text": {
+        "in_stock": false,
+        "out_of_stock": false,
+        "preorder": false,
+        "limited": false
+      },
+      "forms": {
+        "has_site_search": false,
+        "filter_controls": 0,
+        "sort_controls": 0,
+        "has_filter_controls": false,
+        "has_sort_controls": false,
+        "filter_control_names": [],
+        "sort_control_names": [],
+        "sort_options": [],
+        "has_sort_control": false,
+        "has_newsletter": false,
+        "has_cart_action": false,
+        "has_cart_action_in_main": false,
+        "cart_actions_in_main": 0,
+        "has_password_form_in_main": false,
+        "search_param_names": [],
+        "search_prefill_values": []
+      },
+      "variants": {
+        "variant_selects": 0,
+        "variant_swatches": 0
+      },
+      "dates": {
+        "time_elements": [],
+        "visible_updated": [],
+        "copyright_years": [],
+        "years_mentioned": []
+      },
+      "mentions": {
+        "shipping": false,
+        "returns": false,
+        "warranty": false,
+        "reviews": false,
+        "faq": false,
+        "compare": false,
+        "add_to_cart": false,
+        "payment": false
+      },
+      "language_supported": true,
+      "question_headings": [],
+      "details_faq_blocks": 0,
+      "html_excerpt": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Lanterns - Northbeam</title>\n<meta name=\"description\" content=\"Every Northbeam lantern.\">\n<meta property=\"og:title\" content=\"Lanterns\"><meta property=\"og:type\" content=\"website\">\n<link rel=\"canonical\" href=\"/collections/lanterns.html\">\n</head><body>\n<main>\n  <h1>Lanterns</h1>\n  <ul>\n    <li><a href=\"/products/halo-lantern.html\">Halo Lantern</a> <span>&pound;79.00</span></li>\n    <li><a href=\"/products/halo-lantern-mini.html\">Halo Lantern Mini</a> <span>&pound;49.00</span></li>\n    <li><a href=\"/products/beacon-lantern.html\">Beacon Lantern</a> <span>&pound;99.00</span></li>\n    <li><a href=\"/products/beacon-lantern-xl.html\">Beacon Lantern XL</a> <span>&pound;129.00</span></li>\n    <li><a href=\"/products/trail-lantern.html\">Trail Lantern</a> <span>&pound;39.00</span></li>\n    <li><a href=\"/products/trail-lantern-duo.html\">Trail Lantern Duo</a> <span>&pound;69.00</span></li>\n    <li><a href=\"/products/camp-lantern.html\">Camp Lantern</a> <span>&pound;59.00</span></li>\n    <li><a href=\"/products/camp-lantern-pro.html\">Camp Lantern Pro</a> <span>&pound;89.00</span></li>\n    <li><a href=\"/products/summit-lantern.html\">Summit Lantern</a> <span>&pound;149.00</span></li>\n  </ul>\n\n  <!-- The filter and sort controls are mounted by script. In the server\n       response this listing has neither; in a browser it has both. -->\n  <div id=\"controls\"></div>\n</main>\n\n<script>\n  document.getElementById('controls').innerHTML =\n    '<form>' +\n    '<label for=\"f-price\">Filter by price</label>' +\n    '<select id=\"f-price\" name=\"filter_price\"><option>Under &pound;50</option>' +\n    '<option>&pound;50 to &pound;100</option></select>' +\n    '<label for=\"s-by\">Sort by</label>' +\n    '<select id=\"s-by\" name=\"sort\"><option>Price: low to high</option>' +\n    '<option>Price: high to low</option></select>' +\n    '</form>';\n</script>\n</body></html>\n",
+      "fetch_reason": "linked from the home page",
+      "page_type": "category",
+      "page_type_evidence": {
+        "decided_by": "the URL path is a category route"
+      },
+      "rendered": {
+        "headings": [
+          {
+            "level": 1,
+            "text": "Lanterns"
+          }
+        ],
+        "links": {
+          "internal_count": 9,
+          "external_count": 0,
+          "nofollow_count": 0,
+          "internal": [
+            {
+              "url": "http://127.0.0.1:39245/products/halo-lantern.html",
+              "text": "Halo Lantern",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/halo-lantern-mini.html",
+              "text": "Halo Lantern Mini",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+              "text": "Beacon Lantern",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/beacon-lantern-xl.html",
+              "text": "Beacon Lantern XL",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/trail-lantern.html",
+              "text": "Trail Lantern",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/trail-lantern-duo.html",
+              "text": "Trail Lantern Duo",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/camp-lantern.html",
+              "text": "Camp Lantern",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/camp-lantern-pro.html",
+              "text": "Camp Lantern Pro",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            },
+            {
+              "url": "http://127.0.0.1:39245/products/summit-lantern.html",
+              "text": "Summit Lantern",
+              "rel": "",
+              "in_nav": false,
+              "in_footer": false
+            }
+          ],
+          "external": [],
+          "sameas_like": []
+        },
+        "forms": {
+          "has_site_search": false,
+          "filter_controls": 1,
+          "sort_controls": 1,
+          "has_filter_controls": true,
+          "has_sort_controls": true,
+          "filter_control_names": [
+            "filter_price"
+          ],
+          "sort_control_names": [
+            "sort"
+          ],
+          "sort_options": [
+            "Price: low to high",
+            "Price: high to low"
+          ],
+          "has_sort_control": true,
+          "has_newsletter": false,
+          "has_cart_action": false,
+          "has_cart_action_in_main": false,
+          "cart_actions_in_main": 0,
+          "has_password_form_in_main": false,
+          "search_param_names": [],
+          "search_prefill_values": []
+        },
+        "jsonld_blocks": [],
+        "jsonld_types": [],
+        "microdata": [],
+        "mentions": {
+          "shipping": false,
+          "returns": false,
+          "warranty": false,
+          "reviews": false,
+          "faq": false,
+          "compare": false,
+          "add_to_cart": false,
+          "payment": false
+        },
+        "prices_in_text": [
+          {
+            "raw": "£79.00",
+            "value": 79.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£49.00",
+            "value": 49.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£99.00",
+            "value": 99.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£129.00",
+            "value": 129.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£39.00",
+            "value": 39.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£69.00",
+            "value": 69.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£59.00",
+            "value": 59.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£89.00",
+            "value": 89.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£149.00",
+            "value": 149.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£50",
+            "value": 50.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£50",
+            "value": 50.0,
+            "currency": "£"
+          },
+          {
+            "raw": "£100",
+            "value": 100.0,
+            "currency": "£"
+          }
+        ],
+        "text_word_count": 50,
+        "open_graph": {
+          "og:title": "Lanterns",
+          "og:type": "website"
+        },
+        "scripts": {
+          "external_count": 0,
+          "inline_bytes": 443,
+          "spa_markers": [],
+          "hydration_markers": []
+        },
+        "images": {
+          "total": 0,
+          "missing_alt": 0,
+          "empty_alt": 0,
+          "lazy_src_only": 0,
+          "samples": []
+        },
+        "tables": [],
+        "language_supported": true,
+        "canonical": "http://127.0.0.1:39245/collections/lanterns.html",
+        "title": "Lanterns - Northbeam",
+        "hreflang_alternates": [],
+        "text": "Lanterns Halo Lantern £79.00 Halo Lantern Mini £49.00 Beacon Lantern £99.00 Beacon Lantern XL £129.00 Trail Lantern £39.00 Trail Lantern Duo £69.00 Camp Lantern £59.00 Camp Lantern Pro £89.00 Summit Lantern £149.00 Filter by price Under £50 £50 to £100 Sort by Price: low to high Price: high to low",
+        "main_text": "Lanterns Halo Lantern £79.00 Halo Lantern Mini £49.00 Beacon Lantern £99.00 Beacon Lantern XL £129.00 Trail Lantern £39.00 Trail Lantern Duo £69.00 Camp Lantern £59.00 Camp Lantern Pro £89.00 Summit Lantern £149.00 Filter by price Under £50 £50 to £100 Sort by Price: low to high Price: high to low",
+        "final_url": "http://127.0.0.1:39245/collections/lanterns.html",
+        "ok": true
+      },
+      "semantics": {
+        "version": 1,
+        "endpoint": "listing",
+        "listing": {
+          "subtype": "ecommerce_listing",
+          "confidence": "high",
+          "evidence": [
+            "ecommerce_listing: links to 1 physical-goods product page(s)",
+            "ecommerce_listing: 9 prices in the page text"
+          ],
+          "decided_by": "ecommerce_listing scored 3 against 0"
+        },
+        "lang": "en"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:39245/index.html",
+      "final_url": "http://127.0.0.1:39245/index.html",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 823,
+      "elapsed_ms": 1,
+      "redirects": [],
+      "headers": {
+        "server": "aiva-fixture/1.0 Python/3.11.15",
+        "date": "Mon, 07 Sep 2026 09:25:57 GMT",
+        "last-modified": "Mon, 07 Sep 2026 09:18:13 GMT"
+      },
+      "lang": "en",
+      "doctype": "doctype html",
+      "parse_errors": 0,
+      "title": "Northbeam",
+      "meta_description": "Northbeam makes field lanterns and camp stoves.",
+      "meta_robots": "",
+      "meta_googlebot": "",
+      "meta_charset": "",
+      "viewport": "width=device-width, initial-scale=1",
+      "canonical": "http://127.0.0.1:39245/index.html",
+      "hreflang_alternates": [],
+      "feeds": [],
+      "open_graph": {
+        "og:title": "Northbeam",
+        "og:type": "website"
+      },
+      "twitter_card": {},
+      "headings": [
+        {
+          "level": 1,
+          "text": "Northbeam"
+        }
+      ],
+      "h1_count": 1,
+      "h1_texts": [
+        "Northbeam"
+      ],
+      "control_labels": [],
+      "heading_levels": [
+        1
+      ],
+      "semantic_landmarks": {
+        "main": false,
+        "nav": false,
+        "header": false,
+        "footer": false,
+        "article": false,
+        "section": false
+      },
+      "breadcrumbs": {
+        "present": false,
+        "link_depth": 0
+      },
+      "jsonld_blocks": [
+        {
+          "index": 0,
+          "bytes": 138,
+          "parse_ok": true,
+          "error": null,
+          "types": [
+            "Organization"
+          ],
+          "context": "https://schema.org"
+        }
+      ],
+      "jsonld_nodes": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Northbeam",
+          "url": "/",
+          "description": "An invented maker of field lanterns."
+        }
+      ],
+      "jsonld_types": [
+        "Organization"
+      ],
+      "jsonld_invalid_count": 0,
+      "microdata": [],
+      "rdfa_typeof_count": 0,
+      "text": "Northbeam Field lanterns and camp stoves, built for weather. Lanterns Halo Lantern Beacon Lantern",
+      "main_text": "Northbeam Field lanterns and camp stoves, built for weather. Lanterns Halo Lantern Beacon Lantern",
+      "text_word_count": 14,
+      "main_text_word_count": 14,
+      "block_text_excerpt": "Northbeam Field lanterns and camp stoves, built for weather. Lanterns Halo Lantern Beacon Lantern",
+      "html_bytes": 823,
+      "text_to_html_ratio": 0.1179,
+      "tables": [],
+      "definition_spec_lists": 0,
+      "definition_terms": [],
+      "visible_attribute_pairs": [],
+      "images": {
+        "total": 0,
+        "missing_alt": 0,
+        "empty_alt": 0,
+        "lazy_src_only": 0,
+        "samples": []
+      },
+      "links": {
+        "internal_count": 3,
+        "external_count": 0,
+        "nofollow_count": 0,
+        "internal": [
+          {
+            "url": "http://127.0.0.1:39245/collections/lanterns.html",
+            "text": "Lanterns",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/halo-lantern.html",
+            "text": "Halo Lantern",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          },
+          {
+            "url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+            "text": "Beacon Lantern",
+            "rel": "",
+            "in_nav": false,
+            "in_footer": false
+          }
+        ],
+        "external": [],
+        "sameas_like": []
+      },
+      "scripts": {
+        "external_count": 0,
+        "inline_bytes": 0,
+        "spa_markers": [],
+        "hydration_markers": []
+      },
+      "noscript_present": false,
+      "noscript_text": "",
+      "prices_in_text": [],
+      "availability_text": {
+        "in_stock": false,
+        "out_of_stock": false,
+        "preorder": false,
+        "limited": false
+      },
+      "forms": {
+        "has_site_search": false,
+        "filter_controls": 0,
+        "sort_controls": 0,
+        "has_filter_controls": false,
+        "has_sort_controls": false,
+        "filter_control_names": [],
+        "sort_control_names": [],
+        "sort_options": [],
+        "has_sort_control": false,
+        "has_newsletter": false,
+        "has_cart_action": false,
+        "has_cart_action_in_main": false,
+        "cart_actions_in_main": 0,
+        "has_password_form_in_main": false,
+        "search_param_names": [],
+        "search_prefill_values": []
+      },
+      "variants": {
+        "variant_selects": 0,
+        "variant_swatches": 0
+      },
+      "dates": {
+        "time_elements": [],
+        "visible_updated": [],
+        "copyright_years": [],
+        "years_mentioned": []
+      },
+      "mentions": {
+        "shipping": false,
+        "returns": false,
+        "warranty": false,
+        "reviews": false,
+        "faq": false,
+        "compare": false,
+        "add_to_cart": false,
+        "payment": false
+      },
+      "language_supported": true,
+      "question_headings": [],
+      "details_faq_blocks": 0,
+      "html_excerpt": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Northbeam</title>\n<meta name=\"description\" content=\"Northbeam makes field lanterns and camp stoves.\">\n<meta property=\"og:title\" content=\"Northbeam\"><meta property=\"og:type\" content=\"website\">\n<link rel=\"canonical\" href=\"/index.html\">\n<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Northbeam\",\"url\":\"/\",\"description\":\"An invented maker of field lanterns.\"}</script>\n</head><body>\n<h1>Northbeam</h1>\n<p>Field lanterns and camp stoves, built for weather.</p>\n<a href=\"/collections/lanterns.html\">Lanterns</a>\n<a href=\"/products/halo-lantern.html\">Halo Lantern</a>\n<a href=\"/products/beacon-lantern.html\">Beacon Lantern</a>\n</body></html>\n",
+      "fetch_reason": "listed in http://127.0.0.1:39245/sitemap.xml",
+      "page_type": "other",
+      "page_type_evidence": {
+        "decided_by": "no signal identified an individual item",
+        "corroborating": [
+          "heading: one heading, naming a thing"
+        ]
+      },
+      "semantics": {
+        "version": 1,
+        "endpoint": "content",
+        "lang": "en"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+      "final_url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 1485,
+      "elapsed_ms": 1,
+      "redirects": [],
+      "headers": {
+        "server": "aiva-fixture/1.0 Python/3.11.15",
+        "date": "Mon, 07 Sep 2026 09:25:57 GMT",
+        "last-modified": "Mon, 07 Sep 2026 09:18:01 GMT"
+      },
+      "lang": "en",
+      "doctype": "doctype html",
+      "parse_errors": 0,
+      "title": "Beacon Lantern - Northbeam",
+      "meta_description": "The Beacon Lantern is a mains-and-battery field lantern.",
+      "meta_robots": "",
+      "meta_googlebot": "",
+      "meta_charset": "",
+      "viewport": "width=device-width, initial-scale=1",
+      "canonical": "http://127.0.0.1:39245/products/beacon-lantern.html",
+      "hreflang_alternates": [],
+      "feeds": [],
+      "open_graph": {
+        "og:title": "Beacon Lantern",
+        "og:type": "product"
+      },
+      "twitter_card": {},
+      "headings": [
+        {
+          "level": 1,
+          "text": "Beacon Lantern"
+        }
+      ],
+      "h1_count": 1,
+      "h1_texts": [
+        "Beacon Lantern"
+      ],
+      "control_labels": [
+        "Add to cart"
+      ],
+      "heading_levels": [
+        1
+      ],
+      "semantic_landmarks": {
+        "main": true,
+        "nav": false,
+        "header": false,
+        "footer": false,
+        "article": false,
+        "section": false
+      },
+      "breadcrumbs": {
+        "present": false,
+        "link_depth": 0
+      },
+      "jsonld_blocks": [
+        {
+          "index": 0,
+          "bytes": 242,
+          "parse_ok": true,
+          "error": null,
+          "types": [
+            "Brand",
+            "Offer",
+            "Product"
+          ],
+          "context": "https://schema.org"
+        }
+      ],
+      "jsonld_nodes": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "Beacon Lantern",
+          "sku": "BL-1",
+          "brand": {
+            "@type": "Brand",
+            "name": "Northbeam"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "99.00",
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Brand",
+          "name": "Northbeam"
+        },
+        {
+          "@type": "Offer",
+          "price": "99.00",
+          "priceCurrency": "GBP",
+          "availability": "https://schema.org/InStock"
+        }
+      ],
+      "jsonld_types": [
+        "Brand",
+        "Offer",
+        "Product"
+      ],
+      "jsonld_invalid_count": 0,
+      "microdata": [],
+      "rdfa_typeof_count": 0,
+      "text": "Beacon Lantern £99.00. In stock - ships in 2 business days. A mains-and-battery field lantern with a folding handle. Add to cart",
+      "main_text": "Beacon Lantern £99.00. In stock - ships in 2 business days. A mains-and-battery field lantern with a folding handle. Add to cart",
+      "text_word_count": 21,
+      "main_text_word_count": 21,
+      "block_text_excerpt": "Beacon Lantern £99.00. In stock - ships in 2 business days. A mains-and-battery field lantern with a folding handle. Add to cart",
+      "html_bytes": 1485,
+      "text_to_html_ratio": 0.0862,
+      "tables": [],
+      "definition_spec_lists": 0,
+      "definition_terms": [],
+      "visible_attribute_pairs": [],
+      "images": {
+        "total": 0,
+        "missing_alt": 0,
+        "empty_alt": 0,
+        "lazy_src_only": 0,
+        "samples": []
+      },
+      "links": {
+        "internal_count": 0,
+        "external_count": 0,
+        "nofollow_count": 0,
+        "internal": [],
+        "external": [],
+        "sameas_like": []
+      },
+      "scripts": {
+        "external_count": 0,
+        "inline_bytes": 217,
+        "spa_markers": [],
+        "hydration_markers": []
+      },
+      "noscript_present": false,
+      "noscript_text": "",
+      "prices_in_text": [
+        {
+          "raw": "£99.00",
+          "value": 99.0,
+          "currency": "£"
+        }
+      ],
+      "availability_text": {
+        "in_stock": true,
+        "out_of_stock": false,
+        "preorder": false,
+        "limited": false
+      },
+      "forms": {
+        "has_site_search": false,
+        "filter_controls": 0,
+        "sort_controls": 0,
+        "has_filter_controls": false,
+        "has_sort_controls": false,
+        "filter_control_names": [],
+        "sort_control_names": [],
+        "sort_options": [],
+        "has_sort_control": false,
+        "has_newsletter": false,
+        "has_cart_action": true,
+        "has_cart_action_in_main": true,
+        "cart_actions_in_main": 1,
+        "has_password_form_in_main": false,
+        "search_param_names": [],
+        "search_prefill_values": []
+      },
+      "variants": {
+        "variant_selects": 0,
+        "variant_swatches": 0
+      },
+      "dates": {
+        "time_elements": [],
+        "visible_updated": [],
+        "copyright_years": [],
+        "years_mentioned": []
+      },
+      "mentions": {
+        "shipping": true,
+        "returns": false,
+        "warranty": false,
+        "reviews": false,
+        "faq": false,
+        "compare": false,
+        "add_to_cart": true,
+        "payment": false
+      },
+      "language_supported": true,
+      "question_headings": [],
+      "details_faq_blocks": 0,
+      "html_excerpt": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Beacon Lantern - Northbeam</title>\n<meta name=\"description\" content=\"The Beacon Lantern is a mains-and-battery field lantern.\">\n<meta property=\"og:title\" content=\"Beacon Lantern\"><meta property=\"og:type\" content=\"product\">\n<link rel=\"canonical\" href=\"/products/beacon-lantern.html\">\n<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Product\",\"name\":\"Beacon Lantern\",\"sku\":\"BL-1\",\"brand\":{\"@type\":\"Brand\",\"name\":\"Northbeam\"},\"offers\":{\"@type\":\"Offer\",\"price\":\"99.00\",\"priceCurrency\":\"GBP\",\"availability\":\"https://schema.org/InStock\"}}</script>\n</head><body>\n<main>\n  <h1>Beacon Lantern</h1>\n  <p>&pound;99.00. In stock - ships in 2 business days.</p>\n  <p>A mains-and-battery field lantern with a folding handle.</p>\n  <form action=\"/cart\" method=\"post\"><button type=\"submit\">Add to cart</button></form>\n\n  <!-- Price, stock and the buy control are all in the response. Only the\n       specification table is mounted after hydration, so this page is the\n       narrow case: one audited fact rendered-only, everything else server-side. -->\n  <div id=\"specs\"></div>\n</main>\n\n<script>\n  document.getElementById('specs').innerHTML =\n    '<table><tr><th>Weight</th><td>620 g</td></tr>' +\n    '<tr><th>Run time</th><td>30 hours</td></tr>' +\n    '<tr><th>Water resistance</th><td>IPX6</td></tr></table>';\n</script>\n</body></html>\n",
+      "fetch_reason": "linked from the home page",
+      "page_type": "product",
+      "page_type_evidence": {
+        "decided_by": "content evidence",
+        "anchors": [
+          "identity: one product entity declared",
+          "url: an item slug rather than a section",
+          "purchase: a cart affordance in the content region"
+        ],
+        "corroborating": [
+          "offer: a priced Offer on that entity",
+          "entity: the declaration describes the thing",
+          "heading: one heading, naming a thing",
+          "price: a small price set in the content region"
+        ]
+      },
+      "rendered": {
+        "headings": [
+          {
+            "level": 1,
+            "text": "Beacon Lantern"
+          }
+        ],
+        "links": {
+          "internal_count": 0,
+          "external_count": 0,
+          "nofollow_count": 0,
+          "internal": [],
+          "external": [],
+          "sameas_like": []
+        },
+        "forms": {
+          "has_site_search": false,
+          "filter_controls": 0,
+          "sort_controls": 0,
+          "has_filter_controls": false,
+          "has_sort_controls": false,
+          "filter_control_names": [],
+          "sort_control_names": [],
+          "sort_options": [],
+          "has_sort_control": false,
+          "has_newsletter": false,
+          "has_cart_action": true,
+          "has_cart_action_in_main": true,
+          "cart_actions_in_main": 1,
+          "has_password_form_in_main": false,
+          "search_param_names": [],
+          "search_prefill_values": []
+        },
+        "jsonld_blocks": [
+          {
+            "index": 0,
+            "bytes": 242,
+            "parse_ok": true,
+            "error": null,
+            "types": [
+              "Brand",
+              "Offer",
+              "Product"
+            ],
+            "context": "https://schema.org"
+          }
+        ],
+        "jsonld_types": [
+          "Brand",
+          "Offer",
+          "Product"
+        ],
+        "microdata": [],
+        "mentions": {
+          "shipping": true,
+          "returns": false,
+          "warranty": false,
+          "reviews": false,
+          "faq": false,
+          "compare": false,
+          "add_to_cart": true,
+          "payment": false
+        },
+        "prices_in_text": [
+          {
+            "raw": "£99.00",
+            "value": 99.0,
+            "currency": "£"
+          }
+        ],
+        "text_word_count": 32,
+        "open_graph": {
+          "og:title": "Beacon Lantern",
+          "og:type": "product"
+        },
+        "scripts": {
+          "external_count": 0,
+          "inline_bytes": 217,
+          "spa_markers": [],
+          "hydration_markers": []
+        },
+        "images": {
+          "total": 0,
+          "missing_alt": 0,
+          "empty_alt": 0,
+          "lazy_src_only": 0,
+          "samples": []
+        },
+        "tables": [
+          {
+            "rows": 3,
+            "two_column_rows": 3,
+            "looks_like_spec_table": true,
+            "sample_pairs": [
+              [
+                "Weight",
+                "620 g"
+              ],
+              [
+                "Run time",
+                "30 hours"
+              ],
+              [
+                "Water resistance",
+                "IPX6"
+              ]
+            ],
+            "has_caption": false
+          }
+        ],
+        "language_supported": true,
+        "canonical": "http://127.0.0.1:39245/products/beacon-lantern.html",
+        "title": "Beacon Lantern - Northbeam",
+        "hreflang_alternates": [],
+        "text": "Beacon Lantern £99.00. In stock - ships in 2 business days. A mains-and-battery field lantern with a folding handle. Add to cart Weight 620 g Run time 30 hours Water resistance IPX6",
+        "main_text": "Beacon Lantern £99.00. In stock - ships in 2 business days. A mains-and-battery field lantern with a folding handle. Add to cart Weight 620 g Run time 30 hours Water resistance IPX6",
+        "final_url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+        "ok": true
+      },
+      "semantics": {
+        "version": 1,
+        "endpoint": "content",
+        "product": {
+          "subtype": "physical",
+          "confidence": "high",
+          "evidence": [
+            "physical: Offer.availability declared",
+            "physical: page text mentions 'ships in', 'in stock'",
+            "physical: delivery/shipping wording on the page",
+            "physical: a stock statement in the page text",
+            "physical: a cart control and no sign of a download, plan, service or third-party seller"
+          ],
+          "facets": {
+            "physical": 6,
+            "digital": 0,
+            "software": 0,
+            "subscription": 0,
+            "service": 0,
+            "marketplace_listing": 0
+          },
+          "sells": true,
+          "sell_evidence": [
+            "a priced Offer in the markup",
+            "a purchase control in the content region",
+            "a currency-formatted price in the content",
+            "add-to-cart wording"
+          ],
+          "described_as": "physical",
+          "points_elsewhere": false,
+          "decided_by": "physical scored 6 against 0 for the next kind"
+        },
+        "lang": "en"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:39245/products/halo-lantern.html",
+      "final_url": "http://127.0.0.1:39245/products/halo-lantern.html",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 2401,
+      "elapsed_ms": 1,
+      "redirects": [],
+      "headers": {
+        "server": "aiva-fixture/1.0 Python/3.11.15",
+        "date": "Mon, 07 Sep 2026 09:25:56 GMT",
+        "last-modified": "Mon, 07 Sep 2026 09:12:51 GMT"
+      },
+      "lang": "en",
+      "doctype": "doctype html",
+      "parse_errors": 0,
+      "title": "Halo Lantern - Northbeam",
+      "meta_description": "The Halo Lantern is a rechargeable field lantern.",
+      "meta_robots": "",
+      "meta_googlebot": "",
+      "meta_charset": "",
+      "viewport": "width=device-width, initial-scale=1",
+      "canonical": "http://127.0.0.1:39245/products/halo-lantern.html",
+      "hreflang_alternates": [],
+      "feeds": [],
+      "open_graph": {
+        "og:title": "Halo Lantern",
+        "og:type": "product"
+      },
+      "twitter_card": {},
+      "headings": [
+        {
+          "level": 1,
+          "text": "Halo Lantern"
+        }
+      ],
+      "h1_count": 1,
+      "h1_texts": [
+        "Halo Lantern"
+      ],
+      "control_labels": [],
+      "heading_levels": [
+        1
+      ],
+      "semantic_landmarks": {
+        "main": true,
+        "nav": false,
+        "header": false,
+        "footer": false,
+        "article": false,
+        "section": false
+      },
+      "breadcrumbs": {
+        "present": false,
+        "link_depth": 0
+      },
+      "jsonld_blocks": [
+        {
+          "index": 0,
+          "bytes": 131,
+          "parse_ok": true,
+          "error": null,
+          "types": [
+            "Brand",
+            "Product"
+          ],
+          "context": "https://schema.org"
+        }
+      ],
+      "jsonld_nodes": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": "Halo Lantern",
+          "sku": "HL-1",
+          "brand": {
+            "@type": "Brand",
+            "name": "Northbeam"
+          }
+        },
+        {
+          "@type": "Brand",
+          "name": "Northbeam"
+        }
+      ],
+      "jsonld_types": [
+        "Brand",
+        "Product"
+      ],
+      "jsonld_invalid_count": 0,
+      "microdata": [],
+      "rdfa_typeof_count": 0,
+      "text": "Halo Lantern A rechargeable field lantern with a folding handle.",
+      "main_text": "Halo Lantern A rechargeable field lantern with a folding handle.",
+      "text_word_count": 10,
+      "main_text_word_count": 10,
+      "block_text_excerpt": "Halo Lantern A rechargeable field lantern with a folding handle.",
+      "html_bytes": 2401,
+      "text_to_html_ratio": 0.0267,
+      "tables": [],
+      "definition_spec_lists": 0,
+      "definition_terms": [],
+      "visible_attribute_pairs": [],
+      "images": {
+        "total": 0,
+        "missing_alt": 0,
+        "empty_alt": 0,
+        "lazy_src_only": 0,
+        "samples": []
+      },
+      "links": {
+        "internal_count": 0,
+        "external_count": 0,
+        "nofollow_count": 0,
+        "internal": [],
+        "external": [],
+        "sameas_like": []
+      },
+      "scripts": {
+        "external_count": 0,
+        "inline_bytes": 1305,
+        "spa_markers": [],
+        "hydration_markers": []
+      },
+      "noscript_present": false,
+      "noscript_text": "",
+      "prices_in_text": [],
+      "availability_text": {
+        "in_stock": false,
+        "out_of_stock": false,
+        "preorder": false,
+        "limited": false
+      },
+      "forms": {
+        "has_site_search": false,
+        "filter_controls": 0,
+        "sort_controls": 0,
+        "has_filter_controls": false,
+        "has_sort_controls": false,
+        "filter_control_names": [],
+        "sort_control_names": [],
+        "sort_options": [],
+        "has_sort_control": false,
+        "has_newsletter": false,
+        "has_cart_action": false,
+        "has_cart_action_in_main": false,
+        "cart_actions_in_main": 0,
+        "has_password_form_in_main": false,
+        "search_param_names": [],
+        "search_prefill_values": []
+      },
+      "variants": {
+        "variant_selects": 0,
+        "variant_swatches": 0
+      },
+      "dates": {
+        "time_elements": [],
+        "visible_updated": [],
+        "copyright_years": [],
+        "years_mentioned": []
+      },
+      "mentions": {
+        "shipping": false,
+        "returns": false,
+        "warranty": false,
+        "reviews": false,
+        "faq": false,
+        "compare": false,
+        "add_to_cart": false,
+        "payment": false
+      },
+      "language_supported": true,
+      "question_headings": [],
+      "details_faq_blocks": 0,
+      "html_excerpt": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Halo Lantern - Northbeam</title>\n<meta name=\"description\" content=\"The Halo Lantern is a rechargeable field lantern.\">\n<meta property=\"og:title\" content=\"Halo Lantern\"><meta property=\"og:type\" content=\"product\">\n<link rel=\"canonical\" href=\"/products/halo-lantern.html\">\n<script type=\"application/ld+json\">{\"@context\":\"https://schema.org\",\"@type\":\"Product\",\"name\":\"Halo Lantern\",\"sku\":\"HL-1\",\"brand\":{\"@type\":\"Brand\",\"name\":\"Northbeam\"}}</script>\n</head><body>\n<main>\n  <h1>Halo Lantern</h1>\n  <p>A rechargeable field lantern with a folding handle.</p>\n\n  <!-- Everything below arrives after hydration. The server response states\n       no price, no stock, no rating and carries no review markup: that is the\n       whole point of this fixture. A fetch that does not run scripts sees the\n       empty mounts; a browser sees the facts. -->\n  <div id=\"commerce\"></div>\n  <div id=\"reviews\"></div>\n  <div id=\"specs\"></div>\n</main>\n\n<script>\n  // Deliberately synchronous and immediate: the fixture must render the same\n  // way on every run, so nothing here waits on a timer or a network call.\n  document.getElementById('commerce').innerHTML =\n    '<p class=\"price\">&pound;79.00</p>' +\n    '<p class=\"stock\">In stock - ships in 2 business days.</p>' +\n    '<button type=\"button\">Add to cart</button>';\n  document.getElementById('reviews').innerHTML =\n    '<section><h2>Customer reviews</h2>' +\n    '<p class=\"rating\">Rated 4.6 out of 5 from 213 reviews</p>' +\n    '<p>\"Bright and light.\" - a verified buyer</p></section>';\n  document.getElementById('specs').innerHTML =\n    '<table><tr><th>Weight</th><td>410 g</td></tr>' +\n    '<tr><th>Run time</th><td>18 hours</td></tr>' +\n    '<tr><th>Water resistance</th><td>IPX6</td></tr></table>';\n  var typed = document.createElement('script');\n  typed.type = 'application/ld+json';\n  typed.textContent = JSON.stringify({\n    \"@context\": \"https://schema.org\", \"@type\": \"Product\", \"name\": \"Halo Lantern\",\n    \"aggregateRating\": {\"@type\": \"AggregateRating\", \"ratingValue\": \"4.6\",\n                        \"reviewCount\": \"213\"},\n    \"offers\": {\"@type\": \"Offer\", \"price\": \"79.00\", \"priceCurrency\": \"GBP\",\n               \"availability\": \"https://schema.org/InStock\"}\n  });\n  document.head.appendChild(typed);\n</script>\n</body></html>\n",
+      "fetch_reason": "linked from the home page",
+      "page_type": "product",
+      "page_type_evidence": {
+        "decided_by": "content evidence",
+        "anchors": [
+          "identity: one product entity declared",
+          "url: an item slug rather than a section"
+        ],
+        "corroborating": [
+          "entity: the declaration describes the thing",
+          "heading: one heading, naming a thing"
+        ]
+      },
+      "rendered": {
+        "headings": [
+          {
+            "level": 1,
+            "text": "Halo Lantern"
+          },
+          {
+            "level": 2,
+            "text": "Customer reviews"
+          }
+        ],
+        "links": {
+          "internal_count": 0,
+          "external_count": 0,
+          "nofollow_count": 0,
+          "internal": [],
+          "external": [],
+          "sameas_like": []
+        },
+        "forms": {
+          "has_site_search": false,
+          "filter_controls": 0,
+          "sort_controls": 0,
+          "has_filter_controls": false,
+          "has_sort_controls": false,
+          "filter_control_names": [],
+          "sort_control_names": [],
+          "sort_options": [],
+          "has_sort_control": false,
+          "has_newsletter": false,
+          "has_cart_action": false,
+          "has_cart_action_in_main": false,
+          "cart_actions_in_main": 0,
+          "has_password_form_in_main": false,
+          "search_param_names": [],
+          "search_prefill_values": []
+        },
+        "jsonld_blocks": [
+          {
+            "index": 0,
+            "bytes": 131,
+            "parse_ok": true,
+            "error": null,
+            "types": [
+              "Brand",
+              "Product"
+            ],
+            "context": "https://schema.org"
+          },
+          {
+            "index": 1,
+            "bytes": 268,
+            "parse_ok": true,
+            "error": null,
+            "types": [
+              "AggregateRating",
+              "Offer",
+              "Product"
+            ],
+            "context": "https://schema.org"
+          }
+        ],
+        "jsonld_types": [
+          "AggregateRating",
+          "Brand",
+          "Offer",
+          "Product"
+        ],
+        "microdata": [],
+        "mentions": {
+          "shipping": true,
+          "returns": false,
+          "warranty": false,
+          "reviews": true,
+          "faq": false,
+          "compare": false,
+          "add_to_cart": true,
+          "payment": false
+        },
+        "prices_in_text": [
+          {
+            "raw": "£79.00",
+            "value": 79.0,
+            "currency": "£"
+          }
+        ],
+        "text_word_count": 48,
+        "open_graph": {
+          "og:title": "Halo Lantern",
+          "og:type": "product"
+        },
+        "scripts": {
+          "external_count": 0,
+          "inline_bytes": 1305,
+          "spa_markers": [],
+          "hydration_markers": []
+        },
+        "images": {
+          "total": 0,
+          "missing_alt": 0,
+          "empty_alt": 0,
+          "lazy_src_only": 0,
+          "samples": []
+        },
+        "tables": [
+          {
+            "rows": 3,
+            "two_column_rows": 3,
+            "looks_like_spec_table": true,
+            "sample_pairs": [
+              [
+                "Weight",
+                "410 g"
+              ],
+              [
+                "Run time",
+                "18 hours"
+              ],
+              [
+                "Water resistance",
+                "IPX6"
+              ]
+            ],
+            "has_caption": false
+          }
+        ],
+        "language_supported": true,
+        "canonical": "http://127.0.0.1:39245/products/halo-lantern.html",
+        "title": "Halo Lantern - Northbeam",
+        "hreflang_alternates": [],
+        "text": "Halo Lantern A rechargeable field lantern with a folding handle. £79.00 In stock - ships in 2 business days. Add to cart Customer reviews Rated 4.6 out of 5 from 213 reviews \"Bright and light.\" - a verified buyer Weight 410 g Run time 18 hours Water resistance IPX6",
+        "main_text": "Halo Lantern A rechargeable field lantern with a folding handle. £79.00 In stock - ships in 2 business days. Add to cart Customer reviews Rated 4.6 out of 5 from 213 reviews \"Bright and light.\" - a verified buyer Weight 410 g Run time 18 hours Water resistance IPX6",
+        "final_url": "http://127.0.0.1:39245/products/halo-lantern.html",
+        "ok": true
+      },
+      "semantics": {
+        "version": 1,
+        "endpoint": "content",
+        "product": {
+          "subtype": "informational",
+          "confidence": "low",
+          "evidence": [],
+          "facets": {
+            "physical": 0,
+            "digital": 0,
+            "software": 0,
+            "subscription": 0,
+            "service": 0,
+            "marketplace_listing": 0
+          },
+          "sells": false,
+          "sell_evidence": [],
+          "described_as": "ambiguous",
+          "points_elsewhere": false,
+          "decided_by": "no price, offer or purchase control: the page describes the item without offering it for sale"
+        },
+        "lang": "en"
+      }
+    }
+  ],
+  "page_types": {
+    "http://127.0.0.1:39245/": "home",
+    "http://127.0.0.1:39245/products/halo-lantern.html": "product",
+    "http://127.0.0.1:39245/products/beacon-lantern.html": "product",
+    "http://127.0.0.1:39245/collections/lanterns.html": "category",
+    "http://127.0.0.1:39245/index.html": "other"
+  },
+  "declared_anchors": [],
+  "declared_anchors_total": 0,
+  "render": {
+    "attempted": true,
+    "available": true,
+    "render_mode": "headless-chromium",
+    "viewport": {
+      "width": 1280,
+      "height": 800
+    },
+    "comparisons": [
+      {
+        "url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+        "ok": true,
+        "final_url": "http://127.0.0.1:39245/products/beacon-lantern.html",
+        "status": 200,
+        "raw_word_count": 21,
+        "rendered_word_count": 32,
+        "content_gain_ratio": 1.52,
+        "jsonld_after_render": 1,
+        "jsonld_before_render": 1,
+        "elapsed_ms": 575
+      },
+      {
+        "url": "http://127.0.0.1:39245/products/halo-lantern.html",
+        "ok": true,
+        "final_url": "http://127.0.0.1:39245/products/halo-lantern.html",
+        "status": 200,
+        "raw_word_count": 10,
+        "rendered_word_count": 48,
+        "content_gain_ratio": 4.8,
+        "jsonld_after_render": 3,
+        "jsonld_before_render": 1,
+        "elapsed_ms": 546
+      },
+      {
+        "url": "http://127.0.0.1:39245/collections/lanterns.html",
+        "ok": true,
+        "final_url": "http://127.0.0.1:39245/collections/lanterns.html",
+        "status": 200,
+        "raw_word_count": 32,
+        "rendered_word_count": 50,
+        "content_gain_ratio": 1.56,
+        "jsonld_after_render": 0,
+        "jsonld_before_render": 0,
+        "elapsed_ms": 544
+      },
+      {
+        "url": "http://127.0.0.1:39245/",
+        "ok": true,
+        "final_url": "http://127.0.0.1:39245/",
+        "status": 200,
+        "raw_word_count": 14,
+        "rendered_word_count": 14,
+        "content_gain_ratio": 1.0,
+        "jsonld_after_render": 1,
+        "jsonld_before_render": 1,
+        "elapsed_ms": 540
+      }
+    ],
+    "error": null,
+    "pages_selected": 4,
+    "pages_rendered": 4,
+    "pages_failed": 0,
+    "budget": {
+      "page_limit": 4,
+      "page_timeout_s": 15.0,
+      "total_budget_s": 60.0
+    },
+    "budget_exhausted": false,
+    "elapsed_s": 2.8,
+    "selected_urls": [
+      "http://127.0.0.1:39245/products/beacon-lantern.html",
+      "http://127.0.0.1:39245/products/halo-lantern.html",
+      "http://127.0.0.1:39245/collections/lanterns.html",
+      "http://127.0.0.1:39245/"
+    ]
+  },
+  "blocked_by_robots": [],
+  "fetch_errors": [],
+  "access": {
+    "requests_observed": 14,
+    "refused_count": 0,
+    "refused_share": 0.0,
+    "refusal_statuses": {},
+    "home_refused": false,
+    "challenge_vendors_matched": [],
+    "wall_suspected": false,
+    "samples": [],
+    "auditor_user_agent": "MarketplaceAIVisibilityAuditor/1.10.2 (+read-only site audit; respects robots.txt; contact: site owner via audit operator)"
+  },
+  "notes": [
+    "site shape read as ecommerce (high confidence): ecommerce: 1 page(s) sell physical goods; ecommerce: an ecommerce listing page"
+  ],
+  "stats": {
+    "requests": 14,
+    "bytes_downloaded": 8418,
+    "unique_urls_fetched": 14,
+    "html_pages_parsed": 5,
+    "cache_reuses": 0,
+    "duplicate_urls_collapsed": 3,
+    "blocked_by_robots": 0,
+    "errors": 0,
+    "elapsed_s": 4.16,
+    "effective_delay_s": 0.1,
+    "transport": {
+      "time_by_outcome_s": {
+        "answered": 0.01,
+        "refused_or_error_status": 0.02,
+        "transport_failure": 0.0,
+        "retry_backoff": 0.0,
+        "throttle": 1.23
+      },
+      "transport_failures": 0,
+      "retries_spent": 0,
+      "requests_not_attempted": 0,
+      "hosts_stopped_early": {},
+      "request_timeout_s": 12.0,
+      "max_retries": 1
+    }
+  },
+  "semantics": {
+    "version": 1,
+    "site_kind": "ecommerce",
+    "site_kind_confidence": "high",
+    "site_kind_evidence": [
+      "ecommerce: 1 page(s) sell physical goods",
+      "ecommerce: an ecommerce listing page"
+    ],
+    "site_kind_scores": {
+      "ecommerce": 3,
+      "marketplace": 0,
+      "travel_hospitality": 0,
+      "software": 0,
+      "services": 0,
+      "documentation": 0,
+      "developer_platform": 0,
+      "publisher": 0,
+      "government": 0,
+      "education": 0,
+      "community": 0,
+      "knowledge_reference": 0,
+      "nonprofit": 0,
+      "corporate": 0
+    },
+    "components": [],
+    "organization_types": [
+      "brand",
+      "organization"
+    ],
+    "organization_names": [
+      "Northbeam"
+    ],
+    "product_pages": 2,
+    "product_subtypes": {
+      "physical": 1,
+      "informational": 1
+    },
+    "goods_sold": {
+      "physical": 1
+    },
+    "dominant_product_subtype": "physical",
+    "listing_subtypes": {
+      "ecommerce_listing": 1
+    },
+    "sells_online": true,
+    "sell_evidence": [
+      "a priced Offer in the markup",
+      "a purchase control in the content region",
+      "a currency-formatted price in the content",
+      "add-to-cart wording"
+    ],
+    "sells_physical_goods": true,
+    "sells_digital_goods": false,
+    "sells_software": false,
+    "sells_subscriptions": false,
+    "offers_services": false,
+    "is_marketplace": false,
+    "informational_catalogue": false,
+    "transactions": true,
+    "physical_presence": false,
+    "physical_presence_evidence": "",
+    "has_site_search": false,
+    "search_expected": false,
+    "search_expected_reason": "5 content page(s), 1 listing page(s) and 4 sitemap URL(s) were read; nothing observed shows the site is larger than a visitor can browse, so no search box is owed",
+    "content_pages": 5,
+    "article_pages": 0,
+    "documentation_pages": 0,
+    "primary_language": "en",
+    "languages": [
+      "en"
+    ],
+    "sitemap_urls_seen": 4
+  }
+}

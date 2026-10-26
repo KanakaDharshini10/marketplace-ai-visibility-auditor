@@ -1,0 +1,90 @@
+# Kestrel Athletics - assistant crawlers are welcome on everything but
+# transactional and account paths.
+User-agent: *
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account
+Allow: /
+
+User-agent: GPTBot
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account
+
+User-agent: OAI-SearchBot
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: ChatGPT-User
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: ClaudeBot
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Claude-User
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: PerplexityBot
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Google-Extended
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Applebot-Extended
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Bingbot
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Amazonbot
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: meta-externalagent
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: CCBot
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Bytespider
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: cohere-ai
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Diffbot
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: YouBot
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Perplexity-User
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Claude-Web
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: anthropic-ai
+Disallow: /cart
+Disallow: /checkout
+
+User-agent: Applebot
+Disallow: /cart
+Disallow: /checkout
+
+Sitemap: /sitemap.xml

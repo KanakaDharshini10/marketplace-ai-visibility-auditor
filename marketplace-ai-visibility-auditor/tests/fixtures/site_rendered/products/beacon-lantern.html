@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beacon Lantern - Northbeam</title>
+<meta name="description" content="The Beacon Lantern is a mains-and-battery field lantern.">
+<meta property="og:title" content="Beacon Lantern"><meta property="og:type" content="product">
+<link rel="canonical" href="/products/beacon-lantern.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Beacon Lantern","sku":"BL-1","brand":{"@type":"Brand","name":"Northbeam"},"offers":{"@type":"Offer","price":"99.00","priceCurrency":"GBP","availability":"https://schema.org/InStock"}}</script>
+</head><body>
+<main>
+  <h1>Beacon Lantern</h1>
+  <p>&pound;99.00. In stock - ships in 2 business days.</p>
+  <p>A mains-and-battery field lantern with a folding handle.</p>
+  <form action="/cart" method="post"><button type="submit">Add to cart</button></form>
+
+  <!-- Price, stock and the buy control are all in the response. Only the
+       specification table is mounted after hydration, so this page is the
+       narrow case: one audited fact rendered-only, everything else server-side. -->
+  <div id="specs"></div>
+</main>
+
+<script>
+  document.getElementById('specs').innerHTML =
+    '<table><tr><th>Weight</th><td>620 g</td></tr>' +
+    '<tr><th>Run time</th><td>30 hours</td></tr>' +
+    '<tr><th>Water resistance</th><td>IPX6</td></tr></table>';
+</script>
+</body></html>
